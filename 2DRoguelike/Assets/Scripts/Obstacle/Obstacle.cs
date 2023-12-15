@@ -1,14 +1,11 @@
 using UnityEngine;
 
-public interface IGenerateReward
-{
-    void GenerateReward();
-}
-
 public class Obstacle : MonoBehaviour, IGenerateReward
 {
-    [Range(0f, 100f)] public int RewardDropRate;
-    public GameObject rewardTable;
+    [SerializeField][Range(0f, 100f)] 
+    private int RewardDropRate;
+    
+    [SerializeField] private GameObject rewardTable;
     public GameObject mainObj;
 
     //파괴 가능

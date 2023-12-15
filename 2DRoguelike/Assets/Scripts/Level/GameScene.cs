@@ -9,7 +9,6 @@ public class GameScene : MonoBehaviour
     [SerializeField] private Room roomPrefab;
     [SerializeField] private int roomAmount;
     private Room[,] _roomArray = new Room[20, 20];
-    //private Room _currentRoom;
 
     #endregion
 
@@ -17,6 +16,9 @@ public class GameScene : MonoBehaviour
 
     private void Start()
     {
+        Main.Resource.Initialize();
+        Main.Resource.Instantiate("Player");
+
         CreateRooms();
     }
 
@@ -30,16 +32,12 @@ public class GameScene : MonoBehaviour
         List<Vector2> alternativeRoomList = new();
         List<Vector2> hasBeenRemoveRoomList = new();
 
-        alternativeRoomList.Clear();
-        hasBeenRemoveRoomList.Clear();
-
         // 시작 방 생성
         int outsetX = _roomArray.GetLength(0) / 2;
         int outsetY = _roomArray.GetLength(1) / 2;
         Room lastRoom = _roomArray[outsetX, outsetY] = CreateRoom(new Vector2(outsetX, outsetY));
-        //_currentRoom = lastRoom;
 
-        // 다른 방 생성 메서드
+        // 다른 방 생성 이벤트
         Action<int, int> action = (newX, newY) =>
         {
             Vector2 coordinate = new(newX, newY);

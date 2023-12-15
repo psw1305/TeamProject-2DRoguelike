@@ -3,16 +3,14 @@ using UnityEngine;
 
 public class ResourceManager
 {
-    private Dictionary<string, GameObject> items = new();
-    private Dictionary<string, GameObject> rooms = new();
+    private Dictionary<string, GameObject> models = new();
 
     /// <summary>
     /// Resources 폴더 안 아이템 불러오기
     /// </summary>
     public void Initialize()
     {
-        LoadPrefabs("Prefabs/Items", items);
-        LoadPrefabs("Prefabs/Rooms", rooms);
+        LoadPrefabs("Prefabs/Models", models);
     }
 
     /// <summary>
@@ -29,9 +27,9 @@ public class ResourceManager
         }
     }
 
-    public GameObject Instantiate(Dictionary<string, GameObject> list, string prefabName)
+    public GameObject Instantiate(string prefabName)
     {
-        if (!list.TryGetValue(prefabName, out GameObject prefab)) return null;
+        if (!models.TryGetValue(prefabName, out GameObject prefab)) return null;
         return GameObject.Instantiate(prefab);
     }
 }

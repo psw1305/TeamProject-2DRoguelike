@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PickupItem", menuName = "Blueprint/PickupItem")]
@@ -13,6 +11,7 @@ public class ItemBlueprint : ScriptableObject
     public Sprite itemSprite;
     public float getRadius;
 
+    // 삭제 필요
     [Header("Automatic")]
     public float magnetRadius;
     public float magnetSpeed;
