@@ -6,14 +6,14 @@ public class Obstacle : MonoBehaviour, IGenerateReward
     private int RewardDropRate;
     
     [SerializeField] private GameObject rewardTable;
-    public GameObject mainObj;
+    private GameObject mainObj;
 
-    //파괴 가능
     protected virtual void DestroySelf()
     {
+        mainObj = transform.parent.gameObject;
         Destroy(mainObj);
     }
-    // 아이템 드랍
+
     public void GenerateReward()
     {
         int ran = Random.Range(1, 101);
