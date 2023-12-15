@@ -8,7 +8,7 @@ public class GameScene : MonoBehaviour
 
     [SerializeField] private Room roomPrefab;
     [SerializeField] private int roomAmount;
-    private Room[,] _roomArray = new Room[100, 100];
+    private Room[,] _roomArray = new Room[20, 20];
     //private Room _currentRoom;
 
     #endregion
@@ -87,7 +87,7 @@ public class GameScene : MonoBehaviour
 
         int x = (int)coordinate.x - _roomArray.GetLength(0) / 2;
         int y = (int)coordinate.y - _roomArray.GetLength(1) / 2;
-        newRoom.transform.position = new Vector2(y * Room.RoomWidth, x * Room.RoomHeight);
+        newRoom.transform.position = new Vector2(y * Globals.RoomWidth, x * Globals.RoomHeight);
 
         return newRoom;
     }
