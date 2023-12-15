@@ -732,8 +732,8 @@ MonoBehaviour:
   RewardDropRate: 100
   rewardTable: {fileID: 0}
   mainObj: {fileID: 0}
-  trapAttack: 1
-  TrapActiveDelay: 1
+  _trapAttack: 1
+  _trapActiveDelay: 1
 --- !u!1 &2114009921
 GameObject:
   m_ObjectHideFlags: 0
