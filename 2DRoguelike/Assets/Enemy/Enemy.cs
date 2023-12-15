@@ -9,10 +9,28 @@ public class Enemy : MonoBehaviour
     protected SpriteRenderer _spriteRenderer;
     protected Animator _animator;
 
-    protected float _speed;
-    protected int _atk;
+    public float _moveSpeed;
+    public int _atk;
+    public float _range; // 캐릭터가 얼마나 떨어져있을때 공격할 것인지.
 
-    protected Coroutine _stateCoroutine = null;
+    protected Coroutine _stateCoroutine;
+
+
+    protected enum State
+    {
+        Idle,
+        Attack,
+        Walk
+
+    }
+    protected State state;
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawSphere(transform.position, _range);
+    }
+
 
     public virtual void Awake()
     {
@@ -23,42 +41,54 @@ public class Enemy : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-
+        state = State.Walk;
+        // 초기화
     }
 
 
-
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void FixedUpdate()
     {
-        if (!collision.CompareTag(_player._tag)) return;
+        if (DistanceToTarget() < _range)
+            Attack();
+        else
+            Move();
     }
 
-    protected virtual void OnTriggerExit2D(Collider2D collision)
+    protected void OnDisable()
     {
-        if (!collision.CompareTag(_player._tag)) return;
+        StopAllCoroutines();
+        _stateCoroutine = null;
     }
 
     //---------------------------------------------------------------------------
 
-    protected void Move()
+    protected virtual void Move()
     {
+        if (state == State.Walk) return;
         if (_stateCoroutine == null) return;
 
-        StopCoroutine(_stateCoroutine);
-        _stateCoroutine = StartCoroutine(MoveCoroutin());
+        state = State.Walk;
+
     }
+
     protected virtual IEnumerator MoveCoroutin()
     {
-        yield return null;
+        while (true)
+        {
+            transform.Translate(DirectionToTarget() * _moveSpeed);
+            yield return null;
+        }
     }
 
     //---------------------------------------------------------------------------
-    protected void Attack()
+    protected virtual void Attack()
     {
+        if (state == State.Attack) return;
         if (_stateCoroutine == null) return;
 
-        StopCoroutine(_stateCoroutine);
-        _stateCoroutine = StartCoroutine(AttackCoroutin());
+
+        state = State.Attack;
+
     }
 
     protected virtual IEnumerator AttackCoroutin()
@@ -78,10 +108,5 @@ public class Enemy : MonoBehaviour
         return (_player.gameObject.transform.position - transform.position).normalized;
     }
 
-    private void OnDisable()
-    {
-        StopAllCoroutines();
-        _stateCoroutine = null;
-    }
 
 }

@@ -3,42 +3,30 @@ using UnityEngine;
 
 public class Enemy_Ranged : Enemy
 {
-    public GameObject bulletPrefab;
+    public Enemy_Bullet bulletPrefab;
 
     protected override void OnEnable()
     {
-        _speed = 0.1f;
-        _atk = 1;
+
+    }
+
+
+    protected override void Attack()
+    {
+        if (_stateCoroutine != null)
+            StopCoroutine(_stateCoroutine);
 
         _stateCoroutine = StartCoroutine(AttackCoroutin());
     }
-
-
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    protected override void Move()
     {
-     //   base.OnTriggerEnter2D(collision);
-     //   Attack();
-    }
+        if (_stateCoroutine != null)
+            StopCoroutine(_stateCoroutine);
 
-    protected override void OnTriggerExit2D(Collider2D collision)
-    {
-     //   base.OnTriggerExit2D(collision);
-     //   Move();
-
+        _stateCoroutine = StartCoroutine(MoveCoroutin());
     }
 
 
-
-    protected override IEnumerator MoveCoroutin()
-    {
-        yield return StartCoroutine(base.MoveCoroutin());
-
-        while (true)
-        {
-            transform.Translate(DirectionToTarget() * _speed);
-            yield return null;
-        }
-    }
 
     protected override IEnumerator AttackCoroutin()
     {
@@ -47,7 +35,10 @@ public class Enemy_Ranged : Enemy
         while (true)
         {
             yield return new WaitForSeconds(1f);
-            Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            Enemy_Bullet obj = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            obj.dir = DirectionToTarget();
+            obj.speed = 1f;
+            obj.atk = 1;
         }
     }
 }

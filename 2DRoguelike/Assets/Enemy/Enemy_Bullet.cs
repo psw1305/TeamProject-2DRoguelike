@@ -4,9 +4,9 @@ public class Enemy_Bullet : MonoBehaviour
 {
     protected JEH_Player _player;
 
-    float _speed = 4f;
-    int atk = 1;
-    Vector2 dir;
+   public float speed = 2f;
+   public int atk = 1;
+    public Vector2 dir;
 
     void Awake()
     {
@@ -16,13 +16,12 @@ public class Enemy_Bullet : MonoBehaviour
     void OnEnable()
     {
         Destroy(gameObject, 5f);
-        dir = (_player.gameObject.transform.position - transform.position).normalized;
     }
 
 
     void Update()
     {
-        transform.Translate(dir * _speed * Time.deltaTime);
+        transform.Translate(dir * speed * Time.deltaTime);
     }
 
     protected void OnTriggerEnter2D(Collider2D collision)

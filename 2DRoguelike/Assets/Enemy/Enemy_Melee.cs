@@ -3,41 +3,25 @@ using UnityEngine;
 
 public class Enemy_Melee : Enemy
 {
-    protected override void OnEnable()
+
+
+    protected override void Attack()
     {
-        _speed = 0.1f;
-        _atk = 1;
+
+        if (_stateCoroutine != null) 
+            StopCoroutine(_stateCoroutine);
+
+        _stateCoroutine = StartCoroutine(AttackCoroutin());
+    }
+    protected override void Move()
+    {
+        if (_stateCoroutine != null) 
+            StopCoroutine(_stateCoroutine);
 
         _stateCoroutine = StartCoroutine(MoveCoroutin());
     }
 
-    protected override void OnTriggerEnter2D(Collider2D collision)
-    {
-        base.OnTriggerEnter2D(collision);
 
-        Attack();
-    }
-
-    protected override void OnTriggerExit2D(Collider2D collision)
-    {
-        base.OnTriggerExit2D(collision);
-
-        Move();
-
-    }
-
-
-    protected override IEnumerator MoveCoroutin()
-    {
-        yield return StartCoroutine(base.MoveCoroutin());
-
-        while (true)
-        {
-            transform.Translate(DirectionToTarget() * _speed);
-            yield return null;
-        }
-      
-    }
 
     protected override IEnumerator AttackCoroutin()
     {
