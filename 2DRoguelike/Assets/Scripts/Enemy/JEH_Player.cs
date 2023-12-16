@@ -10,8 +10,6 @@ public class JEH_Player : MonoBehaviour
     public TextMeshProUGUI hpText;
     
 
-    public string _tag = "Player";
-
     int _hp = 100;
 
     private void Awake()
