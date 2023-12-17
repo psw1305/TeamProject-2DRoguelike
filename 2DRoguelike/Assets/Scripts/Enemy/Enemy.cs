@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,11 +14,14 @@ public class Enemy : MonoBehaviour
     ///  멈췄을때 레이를 쏴보고 캐릭터 잡히면 공격, 다른게 잡히면 stoppingDistance 줄여서 더 이동. 캐릭터 감지되면 stoppingDistance 기본값으로 복원
     ///  
     /// 
-    /// 근접일때만 공격하는 적, 타겟 될때까지 이동하는 적, 이동하면서 공격 동시에 하는놈,
-    /// 제자리에서 공격하는 적
-    /// 
     /// 
     /// Acceleration 을 50정도 줘야 속도 주체못하는거 잡을수있음.
+    /// 자유 이동할떈 speed 낮고 Acceleration를 5정도 줘야 자연스럽게 방향 트는걸로 보임
+    /// 
+    /// 플레이어랑 거리로 거리 좁힐지말지 보니까 겜 시작할때 게임오브젝트 만들어지는 순간에도 거리변경 뜬다.
+    /// 
+    /// 
+    /// 
     /// </summary>
 
 
@@ -26,18 +30,20 @@ public class Enemy : MonoBehaviour
     void OnDrawGizmosSelected() // 공격범위 보기
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _visibility);
+        Gizmos.DrawWireSphere(transform.position, _range);
     }
 
     #endregion
 
     #region Field
 
-    public JEH_Player _target;
-    public float _visibility; // 공격사정거리
-    public int _movingSpeed = 0;
-    public int _attackSpeed = 0;
+    private JEH_Player _target;
 
+    private int _maxHp;
+    private int _hp;
+    private float _range; // 사정거리
+    private float _movementSpeed;
+    private float _attackSpeed;
 
 
     private NavMeshAgent _agent;
@@ -49,10 +55,27 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
+
+        _maxHp = 10;
+        _movementSpeed = 2;
+        _attackSpeed = 1;
+        _range = 10;
+
+    }
+
+    private void OnEnable()
+    {
+        _target = FindObjectOfType<JEH_Player>(); // 임시
+
+        _hp = _maxHp;
+
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
-        _agent.stoppingDistance = _visibility;
+        _agent.speed = _movementSpeed;
+        _agent.stoppingDistance = _range;
     }
+
+
 
     void Update()
     {
@@ -65,29 +88,55 @@ public class Enemy : MonoBehaviour
 
         if (_agent.velocity.magnitude > 0.2f) // 움직이는 중이면 true
         {
-            if (_stateCoroutine != null)
-            {
-                StopCoroutine(_stateCoroutine);
-                _stateCoroutine = null;
-            }
+            StopStateCoroutin();
         }
         else
         {
-            if (_stateCoroutine != null)
-                return;
-
-
-            if (IsTargetStraight())
-                Attack();
-            else
-                _agent.stoppingDistance -= 1;
-
+            Attack();
         }
     }
 
-    #region Attack
 
-    bool IsTargetStraight()
+    protected void Attack()
+    {
+        if (_stateCoroutine != null)
+            return;
+
+        if (!IsTargetStraight())
+        {
+            _agent.stoppingDistance -= 1;
+            return;
+        }
+
+        _agent.stoppingDistance = _range; // 시야거리 초기화
+        _stateCoroutine = StartCoroutine(AttackCoroutin());
+        Debug.Log("적의 공격시작");
+    }
+
+    IEnumerator AttackCoroutin()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(_attackSpeed);
+            Debug.Log("적의 공격");
+
+            if (!IsTargetStraight()) // 공격중에 플레이어가 벽뒤로 갈수있으니 공격할때마다 레이 체크.
+                StopStateCoroutin();
+        }
+    }
+
+    void StopStateCoroutin()
+    {
+        if (_stateCoroutine != null)
+        {
+            StopCoroutine(_stateCoroutine);  
+            _stateCoroutine = null;
+        }
+    }
+
+
+
+    bool IsTargetStraight() // 벽에 가려지지않은 플레이어를 보고있는지 체크
     {
         _rayHit = Physics2D.Raycast(transform.position, DirectionToTarget());
 
@@ -98,25 +147,6 @@ public class Enemy : MonoBehaviour
 
         return false;
     }
-
-
-    protected void Attack()
-    {
-        _agent.stoppingDistance = _visibility;
-        _stateCoroutine = StartCoroutine(AttackCoroutin());
-        Debug.Log("공격시작");
-    }
-
-    IEnumerator AttackCoroutin()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(1f);
-            Debug.Log("적의공격");
-        }
-    }
-
-    #endregion
 
     protected float DistanceToTarget()
     {
