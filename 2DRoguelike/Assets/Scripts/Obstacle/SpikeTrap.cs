@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 public class SpikeTrap : Obstacle
@@ -8,14 +6,18 @@ public class SpikeTrap : Obstacle
 
     [SerializeField] private int trapDamage;
     [SerializeField] private float trapActiveDelay;
-    private Animator _animator;
+    [SerializeField] private float damageDelay;
 
+    private Animator _animator;
+    [SerializeField] private RuntimeAnimatorController animController;
 
     private void Start()
     {
+        gameObject.AddComponent<Animator>();
         _animator = GetComponent<Animator>();
+        _animator.runtimeAnimatorController = animController;
     }
-    
+
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         if (activeTargetLayer.value == (activeTargetLayer | (1 << collision.gameObject.layer)))
@@ -28,6 +30,7 @@ public class SpikeTrap : Obstacle
     private void ActiveTrap()
     {
         _animator.SetBool("isActive", true);
+        InvokeRepeating("GiveDamage", 0, damageDelay);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -36,4 +39,11 @@ public class SpikeTrap : Obstacle
         CancelInvoke();
     }
 
+    private void GiveDamage()
+    {
+        if (_animator.GetBool("isActive"))
+        {
+            Main.Game.Player.Damaged(trapDamage);
+        }
+    }
 }
