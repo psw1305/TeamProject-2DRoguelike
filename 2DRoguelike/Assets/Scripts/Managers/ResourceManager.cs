@@ -27,9 +27,14 @@ public class ResourceManager
         }
     }
 
-    public GameObject Instantiate(string prefabName)
+    /// <summary>
+    /// string key를 기반으로 오브젝트 가져오기
+    /// </summary>
+    /// <param name="prefabName"></param>
+    /// <returns></returns>
+    public GameObject GetObject(string prefabName)
     {
         if (!models.TryGetValue(prefabName, out GameObject prefab)) return null;
-        return GameObject.Instantiate(prefab);
+        return prefab;
     }
 }
