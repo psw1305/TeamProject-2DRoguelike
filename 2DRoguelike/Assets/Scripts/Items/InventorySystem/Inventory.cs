@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO -> UI 연결해서 현재 보유중인 아이템이 보이도록
 public class Inventory : MonoBehaviour
 {
     // Prototype.
+
     public static Inventory Instance;
 
     public int Key {get; private set;}
@@ -28,9 +30,9 @@ public class Inventory : MonoBehaviour
 
     public bool GetItem(ItemType itemType, int amount)
     {
-        // TODO => ItemType.Health
         switch(itemType)
         {
+            // TODO => ItemType.Health
             case ItemType.Coin : return GetCoin(amount);
             case ItemType.Key : return GetKey(amount);
             case ItemType.Bomb : return GetBomb(amount); 
@@ -61,15 +63,30 @@ public class Inventory : MonoBehaviour
 
     public void GetSpecial(ItemBlueprint itemBlueprint)
     {
+        InteractableItemBluePrint interactable = itemBlueprint as InteractableItemBluePrint;
+        
+        if(interactable.interactType == InteractType.Active)
+            GetActive(interactable);
+        else
+            GetPassive(interactable);
+    }
+
+    private void GetActive(InteractableItemBluePrint interactable)
+    {
         if(_currentItem != null)
         {
             RewardManager.Instance.CreateTargetReward(_currentItem.itemName, new Vector3(0,0,0));
             // TODO => 위치를 플레이어로 변경
         }
-        _currentItem = itemBlueprint;
+        _currentItem = interactable;
     }
 
-    public void UseSpecial()
+    private void GetPassive(InteractableItemBluePrint interactable)
+    {
+        // TODO => EquipManager와 연동하여 아이템을 계속 쌓아넣는 형식
+    }
+
+    public void OnUseActive()
     {
         if(_currentItem == null) return;
 

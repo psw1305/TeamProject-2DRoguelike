@@ -13,17 +13,4 @@ public class ItemBlueprint : ScriptableObject
 
     [Header("Item Type")]
     public ItemType itemType;
-    public StatusType statusType;
-
-}
-
-public enum StatusType
-{
-    None,
-    HP,
-    Damage,
-    Speed,
-    AttackRange,
-    AttackSpeed,
-    ShotSpeed
 }
