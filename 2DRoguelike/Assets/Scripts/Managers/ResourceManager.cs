@@ -67,4 +67,30 @@ public class ResourceManager
     }
 
     #endregion
+    
+    public GameObject InstantiatePrefab(string key, Transform parent = null, bool pooling = false)
+    {
+        GameObject prefab = GetObject(key);
+        if (prefab == null)
+        {
+            Debug.LogError($"[ResourceManager] Instantiate({key}): Failed to load prefab.");
+            return null;
+        }
+
+        if (pooling) return Main.Pool.Pop(prefab);
+
+        GameObject obj = UnityEngine.Object.Instantiate(prefab, parent);
+        obj.name = prefab.name;
+        return obj;
+    }
+
+    // 해당 오브젝트를 풀에 돌려놓거나 파괴한다.
+    public void Destroy(GameObject obj)
+    {
+        if (obj == null) return;
+
+        if (Main.Pool.Push(obj)) return;
+
+        UnityEngine.Object.Destroy(obj);
+    }
 }

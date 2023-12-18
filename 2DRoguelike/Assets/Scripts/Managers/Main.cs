@@ -31,8 +31,12 @@ public class Main : MonoBehaviour
     private readonly ResourceManager _resource = new();
     private readonly UIManager _ui = new();
     private readonly GameManager _game = new();
+    private readonly PoolManager _pool = new();
+    private readonly ObjectManager _object = new();
 
     public static ResourceManager Resource => Instance != null ? Instance._resource : null;
     public static UIManager UI => Instance != null ? Instance._ui : null;
     public static GameManager Game => Instance != null ? Instance._game : null;
+    public static PoolManager Pool => Instance != null ? Instance._pool : null;
+    public static ObjectManager Object => Instance != null ? Instance._object : null;
 }

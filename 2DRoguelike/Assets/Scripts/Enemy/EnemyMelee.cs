@@ -42,6 +42,7 @@ public class EnemyMelee : MonoBehaviour
         _attackSpeed = 1;
         _range = 1.2f;
 
+
     }
 
     private void OnEnable()
@@ -91,7 +92,7 @@ public class EnemyMelee : MonoBehaviour
 
         if (!IsTargetStraight())
         {
-            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance - 1, 1.2f, _range);
+            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance - 0.1f, 1.2f, _range);
             return;
         }
 
@@ -103,12 +104,14 @@ public class EnemyMelee : MonoBehaviour
     {
         while (true)
         {
+            if (!IsTargetStraight()) // 공격중에 플레이어가 벽뒤로 갈수있으니 공격할때마다 레이 체크.
+                StopStateCoroutin();
+
             yield return new WaitForSeconds(_attackSpeed);
 
             RealizeAttack();
 
-            if (!IsTargetStraight()) // 공격중에 플레이어가 벽뒤로 갈수있으니 공격할때마다 레이 체크.
-                StopStateCoroutin();
+       
         }
     }
 
