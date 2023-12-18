@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -12,8 +13,9 @@ public class PlayerInputController : CharacterController
     [SerializeField] private SpriteRenderer characterRenderer;
     [SerializeField] private Transform projectileSpawnPosition;
 
-    public GameObject testPrefab;
 
+    // 테스트용 프리팹
+    public GameObject bombPrefab;
     #endregion
 
     #region Properties
@@ -44,11 +46,11 @@ public class PlayerInputController : CharacterController
 
     protected override void Update()
     {
-        base.Update(); 
-        AttackDelay(); 
+        base.Update();
+        AttackDelay();
     }
 
-   
+
 
     #region Move
     public void OnMove(InputValue value)
@@ -124,26 +126,27 @@ public class PlayerInputController : CharacterController
 
     private void OnShoot(Vector2 direction)
     {
-        CreateProjectile();
+        CreateProjectile(direction);
     }
 
-    private void CreateProjectile()
+    private void CreateProjectile(Vector2 direction)
     {
+        
+
         // 발사 방향으로 회전된 각도 계산
-        float angle = Mathf.Atan2(_aimDirection.y, _aimDirection.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //float angle = Mathf.Atan2(_aimDirection.y, _aimDirection.x) * Mathf.Rad2Deg;
+        //Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         // 발사체 생성
-        GameObject projectile = Instantiate(testPrefab, projectileSpawnPosition.position, rotation);
+        Projectile projectile = Main.Object.Spawn<Projectile>("Projectile_Test", this.transform.position);
+        projectile.SetInfo(Main.Game.Player.Damage, Main.Game.Player.AttackRange);
+        projectile.SetVelocity(direction * Main.Game.Player.AttackSpeed);
+        projectile.gameObject.tag = "PlayerProjectile";
 
-        Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
-        if (projectileRb == null)
-        {
-            projectileRb = projectile.AddComponent<Rigidbody2D>();
-        }
-        projectileRb.velocity = _aimDirection * _player.ShotSpeed;
     }
-    
+
+   
+
     private void AttackDelay()
     {
         if (_timeSinceLastAttack <= _player.AttackSpeed)
@@ -159,10 +162,28 @@ public class PlayerInputController : CharacterController
     }
     #endregion
 
+    #region Bomb
 
-    public void OnBoom(InputValue value)
+    public void OnBoom()
     {
-        Debug.Log("OnBoom" + value.ToString());
-
+        CreateBomb();
     }
+
+    private void CreateBomb()
+    {
+        GameObject bomb = Instantiate(bombPrefab, transform.position, Quaternion.identity);
+        
+        StartCoroutine(Explosiontime(bomb, 3f)); //3초뒤 폭발
+    }
+
+    
+
+    private IEnumerator Explosiontime(GameObject bomb, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        // 폭팔에 대한 코드
+        Destroy(bomb); //일단 지우기
+    }
+
+    #endregion
 }

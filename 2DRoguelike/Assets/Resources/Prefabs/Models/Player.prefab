@@ -185,6 +185,7 @@ MonoBehaviour:
   characterRenderer: {fileID: 1899615088405746631}
   projectileSpawnPosition: {fileID: 4363092316223236387}
   testPrefab: {fileID: 2645124887727915881, guid: 92fbd77f7e7fa90449a93763c94c2c7d, type: 3}
+  bombPrefab: {fileID: 3123541676822653235, guid: b4adbb6fd05706746bfdf1d1dbda49ed, type: 3}
 --- !u!114 &3848652982911187825
 MonoBehaviour:
   m_ObjectHideFlags: 0

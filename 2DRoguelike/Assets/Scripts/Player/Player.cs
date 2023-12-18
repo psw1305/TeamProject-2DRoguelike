@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class Player : MonoBehaviour
 {
@@ -34,6 +35,33 @@ public class Player : MonoBehaviour
     public void Damaged(int damage)
     {
         HP -= damage;
+    }
+
+    #endregion
+
+    #region OnCollision
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("DoorCollider"))
+        {
+            if (collision.transform.name == "Up")
+            {
+                Main.Game.Dungeon.MoveToNextRoom(Vector2Int.up);
+            }
+            else if (collision.transform.name == "Down")
+            {
+                Main.Game.Dungeon.MoveToNextRoom(Vector2Int.down);
+            }
+            else if (collision.transform.name == "Left")
+            {
+                Main.Game.Dungeon.MoveToNextRoom(Vector2Int.left);
+            }
+            else if (collision.transform.name == "Right")
+            {
+                Main.Game.Dungeon.MoveToNextRoom(Vector2Int.right);
+            }
+        }
     }
 
     #endregion
