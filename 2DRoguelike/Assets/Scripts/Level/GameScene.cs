@@ -3,8 +3,6 @@ using UnityEngine.AI;
 
 public class GameScene : MonoBehaviour
 {
-    public GameObject nevMesh;
-
     #region Init
 
     private void Start()
@@ -21,7 +19,7 @@ public class GameScene : MonoBehaviour
         Main.UI.MinimapGenerate();
 
         // #4. NevMesh 영역생성
-        Instantiate(nevMesh);
+        Main.Resource.InstantiatePrefab("NevMesh");
 
         // 테스트 적 스폰
         Main.Game.SpawnEnemy();
