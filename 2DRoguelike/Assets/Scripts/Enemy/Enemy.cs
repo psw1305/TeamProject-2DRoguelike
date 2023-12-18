@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     ///  멈췄을때 레이를 쏴보고 캐릭터 잡히면 공격, 다른게 잡히면 stoppingDistance 줄여서 더 이동. 캐릭터 감지되면 stoppingDistance 기본값으로 복원
     ///  
     /// 
-    ///
+    /// 
     /// Acceleration 을 50정도 줘야 속도 주체못하는거 잡을수있음.
     /// 자유 이동할떈 speed 낮고 Acceleration를 5정도 줘야 자연스럽게 방향 트는걸로 보임
     /// 
@@ -36,9 +36,6 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region Field
-
-
-    public BulletTest bullet;
 
     private JEH_Player _target;
 
@@ -62,7 +59,7 @@ public class Enemy : MonoBehaviour
         _maxHp = 10;
         _movementSpeed = 2;
         _attackSpeed = 1;
-        _range = 1;
+        _range = 10;
 
     }
 
@@ -100,14 +97,14 @@ public class Enemy : MonoBehaviour
     }
 
 
-    void Attack()
+    protected void Attack()
     {
         if (_stateCoroutine != null)
             return;
 
         if (!IsTargetStraight())
         {
-            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance-1, 1, _range);
+            _agent.stoppingDistance -= 1;
             return;
         }
 
@@ -122,9 +119,6 @@ public class Enemy : MonoBehaviour
         {
             yield return new WaitForSeconds(_attackSpeed);
             Debug.Log("적의 공격");
-
-        //    Instantiate(bullet,this.gameObject.transform)._target = DirectionToTarget();
-
 
             if (!IsTargetStraight()) // 공격중에 플레이어가 벽뒤로 갈수있으니 공격할때마다 레이 체크.
                 StopStateCoroutin();
@@ -154,12 +148,12 @@ public class Enemy : MonoBehaviour
         return false;
     }
 
-    float DistanceToTarget()
+    protected float DistanceToTarget()
     {
         return Vector3.Distance(transform.position, _target.gameObject.transform.position);
     }
 
-    Vector2 DirectionToTarget()
+    protected Vector2 DirectionToTarget()
     {
         return (_target.gameObject.transform.position - transform.position).normalized;
     }

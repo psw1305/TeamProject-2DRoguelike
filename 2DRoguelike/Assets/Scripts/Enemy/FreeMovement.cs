@@ -26,7 +26,7 @@ public class FreeMovement : MonoBehaviour
     void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
-        _range =10;
+        _range = 7;
     }
 
     private void OnEnable()
@@ -44,8 +44,6 @@ public class FreeMovement : MonoBehaviour
 
         if (Vector3.Distance(transform.position, _target) < 1f)
         {
-            // 잠시 쉬었다가 이동하게 시간 추가하기
-
             _target = RandomPosition();
         }
     }
