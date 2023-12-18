@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -12,7 +13,10 @@ public class PlayerInputController : CharacterController
     [SerializeField] private SpriteRenderer characterRenderer;
     [SerializeField] private Transform projectileSpawnPosition;
 
+
+    // 테스트용 프리팹
     public GameObject testPrefab;
+    public GameObject bombPrefab;
 
     #endregion
 
@@ -44,11 +48,11 @@ public class PlayerInputController : CharacterController
 
     protected override void Update()
     {
-        base.Update(); 
-        AttackDelay(); 
+        base.Update();
+        AttackDelay();
     }
 
-   
+
 
     #region Move
     public void OnMove(InputValue value)
@@ -133,17 +137,22 @@ public class PlayerInputController : CharacterController
         float angle = Mathf.Atan2(_aimDirection.y, _aimDirection.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
+        //GameObject Projectileobj = Main.Resource.GetObject("Projectile_Test");
+        //PlayerProjectile projectile = Projectileobj;
+
+
+
+
+
+
+
         // 발사체 생성
         GameObject projectile = Instantiate(testPrefab, projectileSpawnPosition.position, rotation);
 
         Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
-        if (projectileRb == null)
-        {
-            projectileRb = projectile.AddComponent<Rigidbody2D>();
-        }
         projectileRb.velocity = _aimDirection * _player.ShotSpeed;
     }
-    
+
     private void AttackDelay()
     {
         if (_timeSinceLastAttack <= _player.AttackSpeed)
@@ -159,10 +168,28 @@ public class PlayerInputController : CharacterController
     }
     #endregion
 
+    #region Bomb
 
-    public void OnBoom(InputValue value)
+    public void OnBoom()
     {
-        Debug.Log("OnBoom" + value.ToString());
-
+        CreateBomb();
     }
+
+    private void CreateBomb()
+    {
+        GameObject bomb = Instantiate(bombPrefab, transform.position, Quaternion.identity);
+        
+        StartCoroutine(Explosiontime(bomb, 3f)); //3초뒤 폭발
+    }
+
+    
+
+    private IEnumerator Explosiontime(GameObject bomb, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        // 폭팔에 대한 코드
+        Destroy(bomb); //일단 지우기
+    }
+
+    #endregion
 }
