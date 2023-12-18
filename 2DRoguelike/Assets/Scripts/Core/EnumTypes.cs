@@ -3,7 +3,7 @@
 /// </summary>
 
 // 레벨 생성 방향
-public enum Didirection
+public enum RoomDirection
 {
     Up,
     Down,

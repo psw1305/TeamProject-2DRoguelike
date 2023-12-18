@@ -28,4 +28,13 @@ public class Player : MonoBehaviour
     }
 
     #endregion
+
+    #region Method
+
+    public void Damaged(int damage)
+    {
+        HP -= damage;
+    }
+
+    #endregion
 }
