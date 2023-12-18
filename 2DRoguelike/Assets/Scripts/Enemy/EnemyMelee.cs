@@ -40,7 +40,7 @@ public class EnemyMelee : MonoBehaviour
         _maxHp = 10;
         _movementSpeed = 1.5f;
         _attackSpeed = 1;
-        _range = 1;
+        _range = 1.2f;
 
     }
 
@@ -66,9 +66,12 @@ public class EnemyMelee : MonoBehaviour
 
     void Move()
     {
+
+        // _agent.remainingDistance 
         //transform.Translate(DirectionToTarget() * Time.deltaTime);
 
         _agent.SetDestination(_target.transform.position);
+
 
         if (_agent.velocity.magnitude > 0.2f) // 움직이는 중이면 true
         {
@@ -88,7 +91,7 @@ public class EnemyMelee : MonoBehaviour
 
         if (!IsTargetStraight())
         {
-            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance - 1, 1, _range);
+            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance - 1, 1.2f, _range);
             return;
         }
 

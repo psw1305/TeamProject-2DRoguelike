@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
     /// 플레이어랑 거리로 거리 좁힐지말지 보니까 겜 시작할때 게임오브젝트 만들어지는 순간에도 거리변경 뜬다.
     /// 
     /// 
+    /// _range 가 1 이상이여야 캐릭터와 몹이 중첩되는 문제 피할수있음. docs에서도 stoppingDistance은 정확하지 않다고한다....
+    /// 
     /// 
     /// </summary>
 
