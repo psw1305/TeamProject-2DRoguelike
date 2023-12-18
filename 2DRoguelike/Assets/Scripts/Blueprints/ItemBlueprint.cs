@@ -1,3 +1,4 @@
+using UnityEditor.Animations;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PickupItem", menuName = "Blueprint/PickupItem")]
@@ -5,15 +6,24 @@ public class ItemBlueprint : ScriptableObject
 {
     [Header("Basic")]
     public string itemName;
-    public HowItemGet howItemGet;
-    public ItemType itemType;
     public int itemAmount;
-    public Sprite itemSprite;
+    public RuntimeAnimatorController itemAnimationController;
     public float getRadius;
 
-    // 삭제 필요
-    [Header("Automatic")]
-    public float magnetRadius;
-    public float magnetSpeed;
+
+    [Header("Item Type")]
+    public ItemType itemType;
+    public StatusType statusType;
+
 }
-// Dropable, Interactable
+
+public enum StatusType
+{
+    None,
+    HP,
+    Damage,
+    Speed,
+    AttackRange,
+    AttackSpeed,
+    ShotSpeed
+}

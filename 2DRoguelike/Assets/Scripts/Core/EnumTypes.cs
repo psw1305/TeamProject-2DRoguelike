@@ -29,6 +29,7 @@ public enum ItemType
     Heart,
     Bomb,
     Key,
+    Chest,
     Special // TODO : 후순위
 }
 
