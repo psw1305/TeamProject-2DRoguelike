@@ -1244,7 +1244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!195 &1519650181
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1279,8 +1279,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ec0cb2747fbcb74786266ac3056ad01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {x: 0, y: 0, z: 0}
-  _range: 8
 --- !u!212 &1519650183
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1930,11 +1928,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 735935314432579801, guid: a711bc21b41bb904c9fa7137e1dec80f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.67
+      value: 7.76
       objectReference: {fileID: 0}
     - target: {fileID: 735935314432579801, guid: a711bc21b41bb904c9fa7137e1dec80f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.37
+      value: 3.15
       objectReference: {fileID: 0}
     - target: {fileID: 735935314432579801, guid: a711bc21b41bb904c9fa7137e1dec80f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1974,7 +1972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2801505704307688928, guid: a711bc21b41bb904c9fa7137e1dec80f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4042234424480218264, guid: a711bc21b41bb904c9fa7137e1dec80f, type: 3}
       propertyPath: m_FlipX

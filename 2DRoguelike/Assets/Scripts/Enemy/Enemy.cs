@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
         _maxHp = 10;
         _movementSpeed = 2;
         _attackSpeed = 1;
-        _range = 10;
+        _range = 1;
 
     }
 
@@ -104,7 +104,7 @@ public class Enemy : MonoBehaviour
 
         if (!IsTargetStraight())
         {
-            _agent.stoppingDistance -= 1;
+            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance - 1, 1, _range);
             return;
         }
 
