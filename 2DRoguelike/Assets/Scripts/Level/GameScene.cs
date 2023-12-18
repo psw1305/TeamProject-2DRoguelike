@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GameScene : MonoBehaviour
 {
+    public GameObject nevMesh;
+
     #region Init
 
     private void Start()
@@ -16,6 +19,12 @@ public class GameScene : MonoBehaviour
 
         // #3. 미니맵 생성
         Main.UI.MinimapGenerate();
+
+        // #4. NevMesh 영역생성
+        Instantiate(nevMesh);
+
+        // 테스트 적 스폰
+        Main.Game.SpawnEnemy();
     }
 
     #endregion

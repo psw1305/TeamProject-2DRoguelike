@@ -18,7 +18,7 @@ public class EnemyMelee : MonoBehaviour
 
     #region Field
 
-    private JEH_Player _target;
+    private Player _target;
 
     private int _maxHp;
     private int _hp;
@@ -42,12 +42,12 @@ public class EnemyMelee : MonoBehaviour
         _attackSpeed = 1;
         _range = 1.2f;
 
-
+        _target = Main.Game.Player;
     }
 
     private void OnEnable()
     {
-        _target = FindObjectOfType<JEH_Player>(); // 임시
+       // _target = FindObjectOfType<JEH_Player>(); // 임시
 
         _hp = _maxHp;
 
@@ -70,6 +70,9 @@ public class EnemyMelee : MonoBehaviour
 
         // _agent.remainingDistance 
         //transform.Translate(DirectionToTarget() * Time.deltaTime);
+
+
+        if (_target == null) return;
 
         _agent.SetDestination(_target.transform.position);
 
