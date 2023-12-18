@@ -40,7 +40,7 @@ public class EnemyRange : MonoBehaviour
         _maxHp = 10;
         _movementSpeed = 1;
         _attackSpeed = 1;
-        _range = 6;
+        _range = 7;
 
     }
 
