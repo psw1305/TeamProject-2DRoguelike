@@ -4,6 +4,7 @@ using UnityEngine;
 public class ResourceManager
 {
     private Dictionary<string, GameObject> models = new();
+    private Dictionary<string, Sprite> sprites = new();
 
     /// <summary>
     /// Resources 폴더 안 아이템 불러오기
@@ -11,13 +12,16 @@ public class ResourceManager
     public void Initialize()
     {
         LoadPrefabs("Prefabs/Models", models);
+        LoadSprites("Sprites", sprites);
     }
+
+    #region Prefab
 
     /// <summary>
     /// 지정된 경로 안에 모든 프리팹들 로드
     /// </summary>
     /// <param name="path">폴더 경로</param>
-    /// <param name="prefabs">로드할 프리팹 필드값</param>
+    /// <param name="prefabs">로드할 프리팹 값</param>
     public void LoadPrefabs(string path, Dictionary<string, GameObject> prefabs)
     {
         GameObject[] objs = Resources.LoadAll<GameObject>(path);
@@ -37,4 +41,30 @@ public class ResourceManager
         if (!models.TryGetValue(prefabName, out GameObject prefab)) return null;
         return prefab;
     }
+
+    #endregion
+
+    #region Sprite
+
+    /// <summary>
+    /// 지정된 경로 안에 모든 스프라이트 로드
+    /// </summary>
+    /// <param name="path">폴더 경로</param>
+    /// <param name="sprites">로드할 스프라이트 값</param>
+    public void LoadSprites(string path, Dictionary<string, Sprite> sprites)
+    {
+        Sprite[] objs = Resources.LoadAll<Sprite>(path);
+        foreach (Sprite obj in objs)
+        {
+            sprites[obj.name] = obj;
+        }
+    }
+
+    public Sprite GetSprite(string spriteName)
+    {
+        if (!sprites.TryGetValue(spriteName, out Sprite sprite)) return null;
+        return sprite;
+    }
+
+    #endregion
 }
