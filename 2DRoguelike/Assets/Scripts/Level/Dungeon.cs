@@ -11,7 +11,14 @@ public class Dungeon : MonoBehaviour
 
     private Room _roomPrefab;
     private Room[,] _roomArray = new Room[20, 20];
-    private Room currentRoom;
+    private Room _currentRoom;
+
+    #endregion
+
+    #region Properties
+
+    public Room[,] RoomArray => _roomArray;
+    public Room CurrentRoom => _currentRoom;
 
     #endregion
 
@@ -46,7 +53,7 @@ public class Dungeon : MonoBehaviour
         int outsetX = _roomArray.GetLength(0) / 2;
         int outsetY = _roomArray.GetLength(1) / 2;
         Room startRoom = _roomArray[outsetX, outsetY] = CreateRoom(new Vector2Int(outsetX, outsetY));
-        currentRoom = startRoom;
+        _currentRoom = startRoom;
 
         // 방 생성 델리게이트
         Action<int, int> action = (newX, newY) =>
@@ -88,11 +95,13 @@ public class Dungeon : MonoBehaviour
         // 방 문이 1개인 경우 => 특수 방으로 추가
         foreach (Room room in _roomArray)
         {
-            if (room != null && room.ActiveDoorCount == 1 && room != currentRoom)
+            if (room != null && room.ActiveDoorCount == 1 && room != _currentRoom)
             {
                 specialRoomList.Add(room);
             }
         }
+
+        SetRoomsType(specialRoomList);
     }
 
     /// <summary>
@@ -112,6 +121,9 @@ public class Dungeon : MonoBehaviour
         return newRoom;
     }
 
+    /// <summary>
+    /// 방 기준으로 상하좌우 방이 존재 시, 문 생성
+    /// </summary>
     private void LinkDoors()
     {
         foreach (Room room in _roomArray) 
@@ -144,35 +156,82 @@ public class Dungeon : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 방 타입 설정
+    /// </summary>
+    /// <param name="specialRoomList">특수방 리스트</param>
+    private void SetRoomsType(List<Room> specialRoomList)
+    {
+        foreach (Room room in _roomArray)
+        {
+            if (room != null)
+            {
+                room.SetRoomType(RoomType.Normal);
+            }
+        }
+
+        // 보스와 상점 1개씩을 제외한 나머지 특수방들은 보물방
+        for (int i = 0; i < specialRoomList.Count - 2; i++)
+        {
+            specialRoomList[i].SetRoomType(RoomType.Treasure);
+        }
+
+        // 보스 방 생성
+        specialRoomList[specialRoomList.Count - 1].SetRoomType(RoomType.Boss);
+        // 상점 방 생성
+        specialRoomList[specialRoomList.Count - 2].SetRoomType(RoomType.Shop);
+        // 시작 방 설정
+        _currentRoom.SetRoomType(RoomType.Start);
+
+        foreach (Room room in _roomArray)
+        {
+            if (room != null)
+            {
+                room.Initialize();
+            }
+        }
+    }
+
     #endregion
 
     #region Move To Room Method
 
+    /// <summary>
+    /// 맨 처음 시작 시, 방 설정
+    /// </summary>
     private void MoveToStartRoom()
     {
         StartCoroutine(MoveToDesignativetRoom(Vector2Int.zero));
     }
 
+    /// <summary>
+    /// 들어간 방향에 따라, 다음 방 활성화
+    /// </summary>
+    /// <param name="MoveDirection">들어간 방향</param>
     public void MoveToNextRoom(Vector2Int MoveDirection)
     {
         StartCoroutine(MoveToDesignativetRoom(MoveDirection));
     }
 
+    /// <summary>
+    /// 방에 진입할 시, 좌표 설정 및 문 활성화 체크
+    /// </summary>
+    /// <param name="MoveDirection">들어간 방향</param>
+    /// <returns>카메라 움직임 딜레이</returns>
     private IEnumerator MoveToDesignativetRoom(Vector2Int MoveDirection)
     {
         float delaySeconds = 0.3f;
 
-        int x = currentRoom.Coordinate.x + MoveDirection.y;
-        int y = currentRoom.Coordinate.y + MoveDirection.x;
+        int x = _currentRoom.Coordinate.x + MoveDirection.y;
+        int y = _currentRoom.Coordinate.y + MoveDirection.x;
 
-        currentRoom = _roomArray[x, y];
-        Debug.Log($"{x} : {y}");
-        currentRoom.OpenActivatedDoor();
+        _currentRoom = _roomArray[x, y];
+        _currentRoom.OpenActivatedDoor();
 
         Main.Game.Player.transform.position += new Vector3(MoveDirection.x * 5, MoveDirection.y * 5);
 
         Vector3 originPos = Camera.main.transform.position;
-        Vector3 targetPos = currentRoom.transform.position;
+        Vector3 targetPos = _currentRoom.transform.position;
         targetPos.z += Camera.main.transform.position.z;
 
         float time = 0;

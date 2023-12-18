@@ -13,6 +13,9 @@ public class GameScene : MonoBehaviour
 
         // #2. 게임 레벨 생성
         Main.Game.DungeonGenerate();
+
+        // #3. 미니맵 생성
+        Main.UI.MinimapGenerate();
     }
 
     #endregion

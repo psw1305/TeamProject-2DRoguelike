@@ -5,6 +5,7 @@ public class Room : MonoBehaviour
 {
     #region Fields
 
+    [SerializeField] private RoomType roomType;
     [SerializeField] private Vector2Int coordinate;
     [SerializeField] private List<GameObject> doorList;
 
@@ -16,9 +17,15 @@ public class Room : MonoBehaviour
 
     #region Properties
 
+    public RoomType RoomType => roomType;
     public Vector2Int Coordinate => coordinate;
     public List<GameObject> DoorList => doorList;
     public int ActiveDoorCount => activeDoorList.Count;
+
+    public void SetRoomType(RoomType roomType)
+    {
+        this.roomType = roomType;
+    }
 
     public void SetCoordinate(Vector2Int coordinate)
     {
@@ -27,7 +34,48 @@ public class Room : MonoBehaviour
 
     #endregion
 
+    #region Init
+
+    public void Initialize()
+    {
+        ChangeDoorOutWard();
+    }
+
+    #endregion
+
     #region Methods
+
+    /// <summary>
+    /// 타입에 따른 문 디자인 변경
+    /// </summary>
+    private void ChangeDoorOutWard()
+    {
+        if (roomType == RoomType.Normal || roomType == RoomType.Start) { return; }
+
+        List<GameObject> doors = new();
+        doors.AddRange(activeDoorList);
+        doors.AddRange(neighborDoorList);
+
+        foreach (var door in doors)
+        {
+            SpriteRenderer doorFrame = door.transform.GetChild(0).GetComponent<SpriteRenderer>();
+
+            switch (roomType)
+            {
+                case RoomType.Boss:
+                    doorFrame.sprite = Main.Resource.GetSprite("door-boss");
+                    break;
+                case RoomType.Treasure:
+                    doorFrame.sprite = Main.Resource.GetSprite("door-treasure");
+                    break;
+                case RoomType.Shop:
+                    doorFrame.sprite = Main.Resource.GetSprite("door-shop");
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
     /// <summary>
     /// 해당 방향에 위치한 문 활성화
