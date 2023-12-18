@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerProjectile : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     #region Properties
     public int Damage { get; private set; }
@@ -12,7 +12,7 @@ public class PlayerProjectile : MonoBehaviour
 
     #region Fields
 
-    //private SpriteRenderer _sprite;
+    private SpriteRenderer _sprite;
     private Rigidbody2D _rigidbody;
 
     #endregion
@@ -27,12 +27,12 @@ public class PlayerProjectile : MonoBehaviour
 
     public void Initialize()
     {
-    //    _sprite = GetComponent<SpriteRenderer>();
+        _sprite = GetComponent<SpriteRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
 
-    public PlayerProjectile SetInfo(int  damage, int attackRange)
+    public void SetInfo(int  damage, int attackRange)
     {
         Initialize();
         Damage = damage;
@@ -40,7 +40,7 @@ public class PlayerProjectile : MonoBehaviour
 
         if (this.gameObject.activeInHierarchy) StartCoroutine(CoCheckDestroy());
 
-        return this;
+        
     }
 
     public void SetVelocity(Vector2 velocity)
@@ -52,7 +52,7 @@ public class PlayerProjectile : MonoBehaviour
     private IEnumerator CoCheckDestroy()
     {
         yield return new WaitForSeconds(AttackRange);
-        
-        Destroy(this); //풀링 할 부분
+
+        Main.Object.Despawn(this);
     }
 }
