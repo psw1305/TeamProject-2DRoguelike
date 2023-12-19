@@ -9,11 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1750291544503180018}
-  - component: {fileID: 7736724125084243413}
   - component: {fileID: 86538849612483654}
-  - component: {fileID: 1650254450899182784}
+  - component: {fileID: 8851194245262665863}
   m_Layer: 0
-  m_Name: Pickup_Base
+  m_Name: Passive_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,33 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &7736724125084243413
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3952561783160375940}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 0.1
-  m_LinearDrag: 3
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!58 &86538849612483654
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -91,13 +63,13 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
---- !u!114 &1650254450899182784
+  m_Radius: 1
+--- !u!114 &8851194245262665863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,11 +78,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3952561783160375940}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afcf915c64962e5409c76a6e9397837a, type: 3}
+  m_Script: {fileID: 11500000, guid: f7f72ba1e8caa6a4e877449a7439567a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   blueprint: {fileID: 0}
-  animator: {fileID: 6404559719451265524}
+  animator: {fileID: 0}
 --- !u!1 &7467526538948201323
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6494535235004438876}
   - component: {fileID: 3532294725926434258}
-  - component: {fileID: 6404559719451265524}
+  - component: {fileID: 2336518912474670972}
   m_Layer: 0
   m_Name: ItemSprite
   m_TagString: Untagged
@@ -196,7 +168,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6404559719451265524
+--- !u!95 &2336518912474670972
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0

@@ -3,30 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EquipManager : MonoBehaviour
+public class EquipSystem
 {
-    // Prototype.
-    public static EquipManager Instance;
-    List<Sprite> itemSprites;
-
-    private void Awake()
+    public void GetItemStatus(InteractableItemBluePrint targetBlueprint)
     {
-        Instance = this;
-        itemSprites = new List<Sprite>();
-    }
-
-    public void GetItemStatus(ItemBlueprint itemBlueprint)
-    {
-        InteractableItemBluePrint targetBp = itemBlueprint as InteractableItemBluePrint;
-        foreach(StatusContainer data in targetBp.valueList)
+        foreach(StatusContainer data in targetBlueprint.valueList)
             AddStats(data.statusType, data.statusModType, data.value);
-    }
-
-    public void GetPassiveItem(ItemBlueprint itemBlueprint)
-    {
-        InteractableItemBluePrint targetBp = itemBlueprint as InteractableItemBluePrint;
-        GetItemStatus(itemBlueprint);
-        itemSprites.Add(targetBp.itemSprite);
     }
 
     private void AddStats(StatusType type, StatModType modType, float value)
@@ -45,7 +27,6 @@ public class EquipManager : MonoBehaviour
             case StatusType.AttackRange : return Main.Game.Player.AttackRange;
             case StatusType.ShotSpeed : return Main.Game.Player.ShotSpeed;
         }
-
         Debug.Log("Status Type mismatch");
         return null;
     }

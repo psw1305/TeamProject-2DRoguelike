@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: WoodSword
   itemAmount: 1
   itemAnimationController: {fileID: 0}
-  getRadius: 1
+  getRadius: 2
   itemType: 6
   itemCost: 10
   interactType: 2

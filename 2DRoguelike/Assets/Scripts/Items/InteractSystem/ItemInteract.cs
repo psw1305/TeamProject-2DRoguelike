@@ -5,30 +5,24 @@ using UnityEngine;
 
 public class ItemInteract : MonoBehaviour
 {
-    private CharacterController _controller;
     public InteractableItem CurrentItem { get; set;}
+    private EquipSystem _equipSystem;
+    private bool _isGet;
 
     private void Awake()
     {
-        _controller = GetComponent<CharacterController>();
+        _equipSystem = new EquipSystem();
     }
-
-    private void Start()
-    {
-        // TODO => Event 연결
-        // _controller.OnInteractEvent += GetItem;
-        // _controller.OnUseEvent += UseItem;
-    }
-
-    public void GetItem()
+    
+    public void OnInteract()
     {
         if(CurrentItem == null) return;
 
-        CurrentItem.OnInteract();
-    }
-
-    public void UseItem()
-    {
-        Inventory.Instance.UseActiveItem();
+        _isGet = CurrentItem.PlayerGetThis();
+        if (_isGet)
+        {
+            _equipSystem.GetItemStatus(CurrentItem.GetBlueprint());
+            Destroy(CurrentItem.gameObject);
+        }
     }
 }

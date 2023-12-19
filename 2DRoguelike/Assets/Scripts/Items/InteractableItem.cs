@@ -10,10 +10,10 @@ public class InteractableItem : BaseItem
         InteractableItemBluePrint target = blueprint as InteractableItemBluePrint;
         GetComponentInChildren<SpriteRenderer>().sprite = target.itemSprite;
     }
-    public void OnInteract()
+
+    public virtual bool PlayerGetThis()
     {
-        Inventory.Instance.GetSpecial(blueprint);
-        Destroy(gameObject);
+        return true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -29,5 +29,10 @@ public class InteractableItem : BaseItem
 
         ItemInteract itemInteract = other.GetComponent<ItemInteract>();
         if(itemInteract.CurrentItem == this) itemInteract.CurrentItem = null;
+    }
+
+    public InteractableItemBluePrint GetBlueprint()
+    {
+        return blueprint as InteractableItemBluePrint;
     }
 }
