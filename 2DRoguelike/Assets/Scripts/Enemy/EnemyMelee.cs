@@ -22,7 +22,7 @@ public class EnemyMelee : Enemy
 
     void Update()
     {
-        if (enemyState == EnemyState.Die) return;
+        if (enemyState != EnemyState.live) return;
 
         Move();
     }
