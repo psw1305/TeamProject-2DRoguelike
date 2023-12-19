@@ -131,15 +131,14 @@ public class PlayerInputController : CharacterController
 
     private void CreateProjectile(Vector2 direction)
     {
+        // 발사체의 Sprite 회전
         float angle = Mathf.Atan2(_aimDirection.y, _aimDirection.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         // 발사체 생성
         PlayerProjectile projectile = Main.Object.Spawn<PlayerProjectile>("Projectile_Test", projectileSpawnPosition.position);
         projectile.SetInfo((int)Main.Game.Player.Damage.Value, (int)Main.Game.Player.AttackRange.Value);
-
         projectile.transform.rotation = rotation;
-
         projectile.SetVelocity(_aimDirection * (int)Main.Game.Player.ShotSpeed.Value);
         projectile.gameObject.tag = "PlayerProjectile";
 
