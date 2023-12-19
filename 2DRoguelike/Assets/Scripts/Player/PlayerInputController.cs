@@ -135,12 +135,12 @@ public class PlayerInputController : CharacterController
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         // 발사체 생성
-        Projectile projectile = Main.Object.Spawn<Projectile>("Projectile_Test", projectileSpawnPosition.position);
+        PlayerProjectile projectile = Main.Object.Spawn<PlayerProjectile>("Projectile_Test", projectileSpawnPosition.position);
         projectile.SetInfo((int)Main.Game.Player.Damage.Value, (int)Main.Game.Player.AttackRange.Value);
 
         projectile.transform.rotation = rotation;
 
-        projectile.SetVelocity(_aimDirection * (int)Main.Game.Player.AttackSpeed.Value);
+        projectile.SetVelocity(_aimDirection * (int)Main.Game.Player.ShotSpeed.Value);
         projectile.gameObject.tag = "PlayerProjectile";
 
     }

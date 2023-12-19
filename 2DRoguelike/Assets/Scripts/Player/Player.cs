@@ -23,11 +23,11 @@ public class Player : MonoBehaviour
     public Player()
     {
         HP = new StatUnit(3);
-        Speed = new StatUnit(2);
+        Speed = new StatUnit(1f);
         Damage = new StatUnit(10);
-        AttackSpeed = new StatUnit(2);
-        AttackRange = new StatUnit(10);
-        ShotSpeed = new StatUnit(2);
+        AttackSpeed = new StatUnit(0.3f);
+        AttackRange = new StatUnit(2f);
+        ShotSpeed = new StatUnit(5);
 
         CurrentHp = (int)HP.BaseValue;
         Coin = 10;
@@ -142,25 +142,5 @@ public class Player : MonoBehaviour
 
     #endregion
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.CompareTag("EnemyProjectile") || collision.CompareTag("Enemy"))
-    //    {
-    //        if (collision.CompareTag("EnemyProjectile"))
-    //        {
-    //            Projectile projectile = collision.gameObject.GetComponent<Projectile>();
-    //            Main.Resource.Destroy(collision.gameObject);
-    //            Damaged(projectile.Damage);
-    //            //무적시간 만들어야됨
-    //        }
-    //        else
-    //        {
-    //            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-    //            Damaged(1); //임의로 1로 지정 Enemy의 Demage가 있어야함
-    //            //무적시간
-    //        }
-
-    //        //플레이어 하트 UI에 대한 작업
-    //    }
-    //}
+    
 }

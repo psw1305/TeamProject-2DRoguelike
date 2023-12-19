@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class PlayerProjectile : MonoBehaviour
 {
     #region Properties
     public int Damage { get; private set; }
@@ -21,9 +21,15 @@ public class Projectile : MonoBehaviour
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag($"Wall"))
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Obstacle"))
         {
-            Main.Object.Despawn(this);
+            if (this.IsValid()) Main.Object.Despawn(this);
+        }
+
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            //몬스터 데미지 처리 TODO
+            if (this.IsValid()) Main.Object.Despawn(this);
         }
     }
 
