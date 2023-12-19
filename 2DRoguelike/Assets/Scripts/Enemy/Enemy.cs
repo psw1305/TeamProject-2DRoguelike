@@ -19,6 +19,9 @@ public class Enemy : MonoBehaviour
 
     protected float _bulletSpeed; // 총알 속도
 
+    protected int Phase = 0; // 기술순서
+
+
     protected Player _target;
     protected NavMeshAgent _agent;
     protected Coroutine _stateCoroutine;
@@ -27,6 +30,7 @@ public class Enemy : MonoBehaviour
 
     protected enum EnemyState
     {
+        Ready, // 이벤트씬 용
         live,
         Die
     }
@@ -50,6 +54,7 @@ public class Enemy : MonoBehaviour
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
 
+        enemyState = EnemyState.Ready;
         enemyState = EnemyState.live; 
     }
 
@@ -63,7 +68,7 @@ public class Enemy : MonoBehaviour
 
     public void Damaged(int damage)
     {
-        if (enemyState == EnemyState.Die) return;
+        if (enemyState != EnemyState.live) return;
 
         _currentHp -= damage;
 
@@ -86,7 +91,7 @@ public class Enemy : MonoBehaviour
 
     #region Skill
 
-    protected void FanShape(int bulletCount, float bulletSpeed, bool isRandom) // 플레이어방향 공격
+    protected void FanShape(int bulletCount = 1, float bulletSpeed = 5f, bool isRandom = false) // 플레이어방향 공격
     {
         float minAngle = -(bulletCount / 2f) * 7 + 0.5f * 7; // z축을 7씩 벌린다
 
@@ -100,7 +105,7 @@ public class Enemy : MonoBehaviour
     }
 
 
-    protected void Circle(int bulletCount, float bulletSpeed ,bool isRandom)
+    protected void Circle(int bulletCount = 1, float bulletSpeed = 5f, bool isRandom = false)
     {
 
         float deltaAngle = 2 * Mathf.PI / bulletCount; // 360도를 Count 개수로 등분
@@ -142,7 +147,7 @@ public class Enemy : MonoBehaviour
             return true;
         }
 
-        if (_rayHit.collider.gameObject.CompareTag("Enemy") || _rayHit.collider.gameObject.CompareTag("EnemyBullet"))
+        if (_rayHit && (_rayHit.collider.gameObject.CompareTag("Enemy") || _rayHit.collider.gameObject.CompareTag("EnemyBullet")))
         {
             return true;
         }
