@@ -6,6 +6,24 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
 
+    private Transform root;
+    private Transform Root
+    {
+        get
+        {
+            if (root == null)
+            {
+                GameObject obj = new() { name = $"[Pool_Root] {bullet.name}" };
+                root = obj.transform;
+            }
+            return root;
+        }
+    }
+        
+    public EnemyBullet bullet;
+
+
+
     protected int _id;
     protected string _name;
     protected int _maxHp;
@@ -36,10 +54,6 @@ public class Enemy : MonoBehaviour
     }
     protected EnemyState enemyState;
 
-
-    public EnemyBullet bullet;
-
-
     protected virtual void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -61,7 +75,8 @@ public class Enemy : MonoBehaviour
 
     private void OnDisable()
     {
-        StopCoroutine(_stateCoroutine);
+      if(_stateCoroutine != null) StopCoroutine(_stateCoroutine);
+
         _stateCoroutine = null;
     }
 
@@ -92,28 +107,28 @@ public class Enemy : MonoBehaviour
 
     #region Skill
 
-    protected void FanShape(int bulletCount = 1, float bulletSpeed = 5f, bool isRandom = false) // 플레이어방향 공격
+
+    protected void FanShape(int bulletCount = 1, float rot = 7f, float bulletSpeed = 5f, bool isRandom = false) // 플레이어방향 부채꼴 공격
     {
-        float minAngle = -(bulletCount / 2f) * 7 + 0.5f * 7; // z축을 7씩 벌린다
+        float minAngle = -(bulletCount / 2f) * rot + 0.5f * rot;  // 탄환끼리 rot 각도로 벌린다
 
         for (int i = 0; i < bulletCount; i++)
         {
-            float angle = minAngle + 7 * i;
+            float angle = minAngle + rot * i;
             angle += AngleToTarget();
             BulletGenerator(angle, bulletSpeed);
         }
-
     }
 
-
-    protected void Circle(int bulletCount = 1, float bulletSpeed = 5f, bool isRandom = false)
+    protected void Circle(int bulletCount = 1, float bulletSpeed = 5f, bool isRandom = false) // 방사형 공격
     {
 
         float deltaAngle = 2 * Mathf.PI / bulletCount; // 360도를 Count 개수로 등분
 
         for (int i = 0; i < bulletCount; i++)
         {
-            float currentAngle = i * deltaAngle + AngleToTarget();
+            float currentAngle = i * deltaAngle;
+            currentAngle += AngleToTarget()/2f;
             float x = Mathf.Cos(currentAngle);
             float y = Mathf.Sin(currentAngle);
             Vector2 direction = new Vector2(x, y).normalized;
@@ -122,7 +137,6 @@ public class Enemy : MonoBehaviour
             BulletGenerator(angle, bulletSpeed);
 
         }
-
     }
 
    protected void BulletGenerator(float rotate, float speed)
@@ -132,6 +146,7 @@ public class Enemy : MonoBehaviour
         obj.gameObject.transform.localRotation = Quaternion.Euler(0, 0, rotate);
 
         obj._bulletSpeed = speed;
+        obj.transform.SetParent(Root);
     }
 
     #endregion

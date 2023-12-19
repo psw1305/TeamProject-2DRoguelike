@@ -8,7 +8,7 @@ public class EnemyMelee : Enemy
     {
         base.Awake();
 
-        _maxHp = 10;
+        _maxHp = 50;
         _movementSpeed = 1.5f;
         _attackSpeed = 1;
         _range = 1.2f;

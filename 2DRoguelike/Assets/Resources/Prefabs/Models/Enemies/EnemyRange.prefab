@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6344722889410809937}
   - component: {fileID: 6562509259665389027}
-  - component: {fileID: 7177073185134734793}
   - component: {fileID: 808357084373086897}
+  - component: {fileID: 7177073185134734793}
+  - component: {fileID: 8145012832159320313}
   m_Layer: 8
   m_Name: EnemyRange
   m_TagString: Enemy
@@ -57,19 +58,6 @@ NavMeshAgent:
   m_BaseOffset: -0.083
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7177073185134734793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2151391770028553009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad5b3eb6383d75345be3a62f0e1532f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 242320586937384666, guid: 463c08ec808b1064bb069fd53355c5e8, type: 3}
 --- !u!70 &808357084373086897
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -105,6 +93,31 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.07}
   m_Size: {x: 0.5, y: 0.69}
   m_Direction: 0
+--- !u!114 &7177073185134734793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2151391770028553009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad5b3eb6383d75345be3a62f0e1532f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 683310922939161249, guid: 463c08ec808b1064bb069fd53355c5e8, type: 3}
+--- !u!114 &8145012832159320313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2151391770028553009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9090a95dd5104aa46b89dbb3dfec14fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2163537015421756624
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,6 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9135571191833697967}
   - component: {fileID: 5985890027953091669}
+  - component: {fileID: 3149593122279070559}
   m_Layer: 8
   m_Name: MainSprite
   m_TagString: Untagged
@@ -177,7 +191,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -708938957, guid: 473b931ea49017840bcb83ec676866f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -189,3 +203,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &3149593122279070559
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2163537015421756624}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 90447be0d1ccbac4f8a1b65b8f3ddf79, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

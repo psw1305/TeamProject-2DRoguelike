@@ -22,7 +22,6 @@ public class EnemyBullet : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
-
             Main.Game.Player.Damaged(_damage);
             Destroy(gameObject);
             return;
@@ -34,7 +33,7 @@ public class EnemyBullet : MonoBehaviour
             return;
         }
 
-        if (collision.gameObject.CompareTag("Untagged") || collision.gameObject.CompareTag("Obstacle")) 
+        if (collision.gameObject.CompareTag("Untagged") || collision.gameObject.CompareTag("Obstacle")|| collision.gameObject.CompareTag("PlayerProjectile")) 
             return;
 
         Destroy(gameObject);
