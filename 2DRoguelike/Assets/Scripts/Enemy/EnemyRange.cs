@@ -48,7 +48,7 @@ public class EnemyRange : MonoBehaviour
 
     private void OnEnable()
     {
-        //   _target = FindObjectOfType<Player>(); // 임시
+          _target = FindObjectOfType<Player>(); // 임시
 
         _hp = _maxHp;
 
@@ -115,7 +115,10 @@ public class EnemyRange : MonoBehaviour
 
     void RealizeAttack()
     {
-        Instantiate(bullet, this.gameObject.transform)._target = DirectionToTarget();
+      
+        float rot = Mathf.Atan2(DirectionToTarget().y, DirectionToTarget().x) * Mathf.Rad2Deg;
+        Instantiate(bullet).gameObject.transform.localRotation = Quaternion.Euler(0, 0, rot); 
+         
         Debug.Log("원거리공격");
 
     }

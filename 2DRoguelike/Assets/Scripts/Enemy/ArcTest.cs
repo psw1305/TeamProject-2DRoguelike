@@ -49,7 +49,7 @@ public class ArcTest : MonoBehaviour
             {
                 Vector2 direction = new Vector2(Mathf.Cos(deltaAngle * i), Mathf.Sin(deltaAngle * i)).normalized;
 
-                Instantiate(bullet)._target = direction;
+                Instantiate(bullet);
 
             }
 
