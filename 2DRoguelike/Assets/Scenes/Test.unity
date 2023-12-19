@@ -347,6 +347,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room_Obstacle_Example
       objectReference: {fileID: 0}
+    - target: {fileID: 5442661570410977651, guid: 2a37fdf9a0d4dca43b512dea0bb3fa2e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6993302833067209661, guid: 2a37fdf9a0d4dca43b512dea0bb3fa2e, type: 3}
       propertyPath: m_RootOrder
       value: 3
