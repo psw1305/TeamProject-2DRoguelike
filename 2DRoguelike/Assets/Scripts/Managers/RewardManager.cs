@@ -13,8 +13,8 @@ public class RewardManager
     public void Initialize()
     {
         _item = Main.Resource.GetObject("Pickup_Base");
-        _pickupItems = Resources.LoadAll<ItemBlueprint>("ScriptableObjects/Items/Pickup");
-        _passiveItems = Resources.LoadAll<ItemBlueprint>("ScriptableObjects/Items/Passive");
+        _pickupItems = Main.Resource.GetItemBlueprints("ScriptableObjects/Items/Pickup");
+        _passiveItems = Main.Resource.GetItemBlueprints("ScriptableObjects/Items/Passive");
     }
 
     /// <summary>
