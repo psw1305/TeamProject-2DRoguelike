@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c09eafff079c9684681c0f1907d853d2, type: 3}
-  m_Name: YellowPotion
+  m_Name: Book
   m_EditorClassIdentifier: 
-  itemName: YellowPotion
+  itemName: Book
   itemAmount: 1
-  itemAnimationController: {fileID: 9100000, guid: 28d996d0dfe8d954fb4d1de0305421d6, type: 2}
+  itemAnimationController: {fileID: 0}
   getRadius: 1
   itemType: 6
-  itemCost: 10
-  interactType: 1
-  itemSprite: {fileID: 204960627, guid: a558c7c536679904b85a0b248e38ff9c, type: 3}
+  itemCost: 20
+  interactType: 2
+  itemSprite: {fileID: 631249909, guid: aa07ad6056a3ed0429ad7530e16488a4, type: 3}
   valueList:
   - statusType: 1
-    statusModType: 0
-    value: 1
+    statusModType: 2
+    value: 0.2

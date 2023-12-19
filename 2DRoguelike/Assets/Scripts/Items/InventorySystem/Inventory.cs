@@ -66,31 +66,30 @@ public class Inventory : MonoBehaviour
         InteractableItemBluePrint interactable = itemBlueprint as InteractableItemBluePrint;
         
         if(interactable.interactType == InteractType.Active)
-            GetActive(interactable);
+            GetActive(itemBlueprint);
         else
-            GetPassive(interactable);
+            GetPassive(itemBlueprint);
     }
 
-    private void GetActive(InteractableItemBluePrint interactable)
+    private void GetActive(ItemBlueprint itemBlueprint)
     {
         if(_currentItem != null)
         {
-            RewardManager.Instance.CreateTargetReward(_currentItem.itemName, new Vector3(0,0,0));
-            // TODO => 위치를 플레이어로 변경
+            Vector3 playerLoc = Main.Game.Player.gameObject.transform.position;
+            RewardManager.Instance.CreateReward(_currentItem, playerLoc);
         }
-        _currentItem = interactable;
+        _currentItem = itemBlueprint;
     }
 
-    private void GetPassive(InteractableItemBluePrint interactable)
+    private void GetPassive(ItemBlueprint itemBlueprint)
     {
-        // TODO => EquipManager와 연동하여 아이템을 계속 쌓아넣는 형식
+        EquipManager.Instance.GetPassiveItem(itemBlueprint);
     }
 
-    public void OnUseActive()
+    public void UseActiveItem()
     {
         if(_currentItem == null) return;
-
-        // TODO => 아이템 효과에 맞게 플레이어에게 스탯 혹은 기믹 부여
+        EquipManager.Instance.GetItemStatus(_currentItem);
         _currentItem = null;
     }
 

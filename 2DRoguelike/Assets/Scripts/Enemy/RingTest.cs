@@ -51,8 +51,8 @@ public class RingTest : MonoBehaviour
                 float y = Mathf.Sin(currentAngle);
                 Vector2 direction = new Vector2(x, y).normalized;
 
-                Instantiate(bullet)._target = direction;
-
+                float rot = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                Instantiate(bullet).gameObject.transform.localRotation = Quaternion.Euler(0, 0, rot);
             }
             yield return new WaitForSeconds(1f);
         }

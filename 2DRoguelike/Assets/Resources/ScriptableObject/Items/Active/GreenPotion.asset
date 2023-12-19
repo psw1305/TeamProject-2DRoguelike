@@ -17,9 +17,10 @@ MonoBehaviour:
   itemAnimationController: {fileID: 9100000, guid: d07d9e770285e794c922280103e1dbae, type: 2}
   getRadius: 1
   itemType: 6
+  itemCost: 10
   interactType: 1
   itemSprite: {fileID: 167109479, guid: 7f7c5c25dd5f2da4f9a7598a2e84646f, type: 3}
   valueList:
   - statusType: 3
-    statusAddType: 1
+    statusModType: 0
     value: 0.1

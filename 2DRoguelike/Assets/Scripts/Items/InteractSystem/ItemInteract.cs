@@ -17,6 +17,7 @@ public class ItemInteract : MonoBehaviour
     {
         // TODO => Event 연결
         // _controller.OnInteractEvent += GetItem;
+        // _controller.OnUseEvent += UseItem;
     }
 
     public void GetItem()
@@ -24,5 +25,10 @@ public class ItemInteract : MonoBehaviour
         if(CurrentItem == null) return;
 
         CurrentItem.OnInteract();
+    }
+
+    public void UseItem()
+    {
+        Inventory.Instance.UseActiveItem();
     }
 }

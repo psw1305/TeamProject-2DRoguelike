@@ -7,6 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "InteractableItem", menuName = "Blueprint/InteractableItem")]
 public class InteractableItemBluePrint : ItemBlueprint
 {
+    public int itemCost;
     [Header("Interact Type")]
     public InteractType interactType;
 
@@ -19,7 +20,7 @@ public class InteractableItemBluePrint : ItemBlueprint
 public class StatusContainer
 {
     public StatusType statusType;
-    public StatusAddType statusAddType;
+    public StatModType statusModType;
     public float value;
 }
 
@@ -31,15 +32,6 @@ public enum StatusType
     Speed,
     AttackRange,
     ShotSpeed
-}
-
-public enum StatusAddType
-{
-    None,
-    Add,
-    Subtract,
-    Multiply,
-    Divide
 }
 
 public enum InteractType

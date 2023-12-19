@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,7 @@ using UnityEngine;
 public class EquipManager : MonoBehaviour
 {
     // Prototype.
-    // 1. Passive Item이 들어오면 -> Sprite를 저장한다.
-    // 2. Status Data를 상황에 맞게 저장한다.
-    // 3. 스탯마다 덧셈과 곱셈을 따로 저장해놓은 뒤, Player에게 적용한다.
-
     public static EquipManager Instance;
-
     List<Sprite> itemSprites;
 
     private void Awake()
@@ -19,23 +15,38 @@ public class EquipManager : MonoBehaviour
         itemSprites = new List<Sprite>();
     }
 
+    public void GetItemStatus(ItemBlueprint itemBlueprint)
+    {
+        InteractableItemBluePrint targetBp = itemBlueprint as InteractableItemBluePrint;
+        foreach(StatusContainer data in targetBp.valueList)
+            AddStats(data.statusType, data.statusModType, data.value);
+    }
+
     public void GetPassiveItem(ItemBlueprint itemBlueprint)
     {
-        InteractableItemBluePrint passive = itemBlueprint as InteractableItemBluePrint;
-        itemSprites.Add(passive.itemSprite);
-
-        // 스탯 추가 방법
-        // Main.Game.Player.Damage.AddModifier(new StatModifier(0.2f, StatModType.Flat, object))
-
-        foreach(StatusContainer data in passive.valueList)
-        {
-            // TODO
-        }
+        InteractableItemBluePrint targetBp = itemBlueprint as InteractableItemBluePrint;
+        GetItemStatus(itemBlueprint);
+        itemSprites.Add(targetBp.itemSprite);
     }
 
-    private void InputData((float, float) statusType )
+    private void AddStats(StatusType type, StatModType modType, float value)
     {
-        // TODO
+        StatUnit target = GetStatusType(type);
+        target.AddModifier(new StatModifier(value, modType));
     }
 
+    private StatUnit GetStatusType(StatusType type)
+    {
+        switch(type)
+        {
+            case StatusType.HP : return Main.Game.Player.HP;
+            case StatusType.Damage : return Main.Game.Player.Damage;
+            case StatusType.Speed : return Main.Game.Player.Speed;
+            case StatusType.AttackRange : return Main.Game.Player.AttackRange;
+            case StatusType.ShotSpeed : return Main.Game.Player.ShotSpeed;
+        }
+
+        Debug.Log("Status Type mismatch");
+        return null;
+    }
 }

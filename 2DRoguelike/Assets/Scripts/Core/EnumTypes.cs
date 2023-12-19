@@ -30,13 +30,5 @@ public enum ItemType
     Bomb,
     Key,
     Chest,
-    Special // TODO : 후순위
-}
-
-// 아이템 상호작용 타입
-public enum HowItemGet
-{
-    None,
-    Automatic,
-    Interact // TODO : 후순위
+    Special
 }
