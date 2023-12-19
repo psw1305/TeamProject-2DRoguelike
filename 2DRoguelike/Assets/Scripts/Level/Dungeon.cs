@@ -232,7 +232,10 @@ public class Dungeon : MonoBehaviour
     /// <param name="MoveDirection">들어간 방향</param>
     public void MoveToNextRoom(Vector2Int MoveDirection)
     {
-        StartCoroutine(MoveToDesignativetRoom(MoveDirection));
+        if (_currentRoom.IsCleared)
+        {
+            StartCoroutine(MoveToDesignativetRoom(MoveDirection));
+        }
     }
 
     /// <summary>
@@ -246,9 +249,7 @@ public class Dungeon : MonoBehaviour
 
         int x = _currentRoom.Coordinate.x + MoveDirection.y;
         int y = _currentRoom.Coordinate.y + MoveDirection.x;
-
         _currentRoom = _roomArray[x, y];
-        _currentRoom.OpenActivatedDoor();
 
         // 방 도착시 => 내부의 콘텐츠 생성 [장애물, 적, 오브젝트]
         if (!_currentRoom.IsArrived)
