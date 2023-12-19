@@ -76,6 +76,7 @@ public class Enemy : MonoBehaviour
         {
             enemyState = EnemyState.Die;
             StopAllCoroutines();
+            Main.Game.Dungeon.CurrentRoom.CheckRoomClear();     // 적 사망 => 방 클리어 조건 체크
             Destroy(gameObject);
         }
     }
