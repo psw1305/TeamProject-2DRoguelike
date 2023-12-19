@@ -30,8 +30,7 @@ public class Obstacle : MonoBehaviour, IGenerateReward
     {
         if (Random.Range(1, 101) <= RewardDropRate)
         {
-            // 이곳에 보상 생성 코드 넣으면 됨.
-            Debug.Log("보상 생성됨" + transform.position.x + transform.position.y);
+            //GetComponent<RewardManager>().CreateBasicReward(gameObject.transform.position);
         }
     }
     protected virtual void OnTriggerEnter2D(Collider2D collision)

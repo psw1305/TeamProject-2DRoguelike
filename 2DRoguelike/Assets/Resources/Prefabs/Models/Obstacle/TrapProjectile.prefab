@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 9173761109508621562}
   - component: {fileID: 568642576704079306}
   - component: {fileID: -5719110388598241770}
-  - component: {fileID: 246606294915395049}
   - component: {fileID: 7509931635459025072}
+  - component: {fileID: 7034269044993807120}
   m_Layer: 0
-  m_Name: TrapBullet
-  m_TagString: Obstacle
+  m_Name: TrapProjectile
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 1345421637, guid: 473b931ea49017840bcb83ec676866f5, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -114,19 +114,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &246606294915395049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3313010071783593888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b63a0c26153c394287d2237e0199be9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
 --- !u!61 &7509931635459025072
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172,3 +159,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.29166666, y: 0.875}
   m_EdgeRadius: 0
+--- !u!114 &7034269044993807120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3313010071783593888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b63a0c26153c394287d2237e0199be9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
