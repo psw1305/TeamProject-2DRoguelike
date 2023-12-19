@@ -39,7 +39,7 @@ public class RangeTrap : MonoBehaviour
         _targetPos = Main.Game.Player.transform.position;
         
         //Instantiate(bullet, transform.position, Quaternion.identity);
-        Projectile trapProjectile = Main.Object.Spawn<Projectile>("TrapProjectile", gameObject.transform.position);
+        EnemyProjectile trapProjectile = Main.Object.Spawn<EnemyProjectile>("TrapProjectile", gameObject.transform.position);
         trapProjectile.SetInfo(bulletDamage, bulletRange);
         trapProjectile.transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(_gameObjectPos.x - _targetPos.x, _targetPos.y - _gameObjectPos.y));
         
