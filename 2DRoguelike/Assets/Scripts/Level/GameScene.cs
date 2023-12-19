@@ -6,16 +6,18 @@ public class GameScene : MonoBehaviour
 
     private void Start()
     {
+        // #1. 리소스 초기화
         Main.Resource.Initialize();
 
-        // #1. 플레이어 생성
-        Main.Game.SpawnPlayer(this.transform);
+        // #2. 오브젝트 생성 & 초기화
+        Main.UI.Initialize();
+        Main.Game.Initialize();
 
-        // #2. 게임 레벨 생성
-        Main.Game.DungeonGenerate();
+        // #2. 게임 던전 생성 & 설정
+        Main.Game.Dungeon.CreateDungeon();
 
         // #3. 미니맵 생성
-        Main.UI.MinimapGenerate();
+        Main.UI.Minimap.CreatMinimap();
     }
 
     #endregion

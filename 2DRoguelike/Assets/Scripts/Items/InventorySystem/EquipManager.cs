@@ -10,12 +10,7 @@ public class EquipManager : MonoBehaviour
     // 3. 스탯마다 덧셈과 곱셈을 따로 저장해놓은 뒤, Player에게 적용한다.
 
     public static EquipManager Instance;
-    // x => Add - Sub , y => Mult - Div
-    (float, float) HPMod = (0, 1);
-    (float, float) DamageMod = (0, 1);
-    (float, float) SpeedMod = (0, 1);
-    (float, float) AtkRangeMod = (0, 1);
-    (float, float) ShotSpeedMod = (0, 1);
+
     List<Sprite> itemSprites;
 
     private void Awake()

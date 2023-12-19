@@ -58,7 +58,7 @@ public class Room : MonoBehaviour
 
         foreach (var door in doors)
         {
-            SpriteRenderer doorFrame = door.transform.GetChild(0).GetComponent<SpriteRenderer>();
+            var doorFrame = door.transform.GetChild(0).GetComponent<SpriteRenderer>();
 
             switch (roomType)
             {
