@@ -34,7 +34,8 @@ public class EnemyBullet : MonoBehaviour
             return;
         }
 
-        if (collision.gameObject.CompareTag("Untagged")) return;
+        if (collision.gameObject.CompareTag("Untagged") || collision.gameObject.CompareTag("Obstacle")) 
+            return;
 
         Destroy(gameObject);
 

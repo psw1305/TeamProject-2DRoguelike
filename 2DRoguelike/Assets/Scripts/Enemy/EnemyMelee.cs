@@ -22,7 +22,8 @@ public class EnemyMelee : Enemy
 
     void Update()
     {
-        if (enemyState == EnemyState.Dead) return;
+        if (enemyState == EnemyState.Die) return;
+
         Move();
     }
 
@@ -67,10 +68,10 @@ public class EnemyMelee : Enemy
         }
 
         _agent.stoppingDistance = _range; // 시야거리 초기화
-        _stateCoroutine = StartCoroutine(AttackCoroutin());
+        _stateCoroutine = StartCoroutine(Attack());
     }
 
-    IEnumerator AttackCoroutin()
+    IEnumerator Attack()
     {
         while (true)
         {
@@ -79,14 +80,9 @@ public class EnemyMelee : Enemy
 
             yield return new WaitForSeconds(_attackSpeed);
 
-            Attack();
-
+            _target.Damaged(_attackDamage);
         }
     }
 
-    void Attack()
-    {
-        _target.Damaged(_attackDamage);
-    }
 
 }
