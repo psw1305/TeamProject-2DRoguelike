@@ -57,7 +57,7 @@ public class EnemyRange : Enemy
 
     protected void TakeAim()
     {
-        if (_stateCoroutine != null)
+        if (_attackCoroutine != null)
             return;
 
         if (!IsTargetStraight())
@@ -67,7 +67,7 @@ public class EnemyRange : Enemy
         }
 
         _agent.stoppingDistance = _range; // 시야거리 초기화
-        _stateCoroutine = StartCoroutine(Attack());
+        _attackCoroutine = StartCoroutine(Attack());
     }
 
     IEnumerator Attack()

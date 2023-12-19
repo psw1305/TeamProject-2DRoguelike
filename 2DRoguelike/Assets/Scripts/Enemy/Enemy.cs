@@ -19,9 +19,11 @@ public class Enemy : MonoBehaviour
             return root;
         }
     }
-        
-    public EnemyBullet bullet;
 
+
+
+
+    public EnemyBullet bullet;
 
 
     protected int _id;
@@ -31,7 +33,7 @@ public class Enemy : MonoBehaviour
     protected float _range; // 사정거리
 
     protected float _movementSpeed;
-    
+
     protected float _attackSpeed; // 공격쿨타임
     protected int _attackDamage;
 
@@ -42,8 +44,10 @@ public class Enemy : MonoBehaviour
 
     protected Player _target;
     protected NavMeshAgent _agent;
-    protected Coroutine _stateCoroutine;
+    protected Coroutine _attackCoroutine;
     protected RaycastHit2D _rayHit;
+
+    protected SpriteRenderer _spriteRenderer;
 
 
     protected enum EnemyState
@@ -56,9 +60,10 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Awake()
     {
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _agent = GetComponent<NavMeshAgent>();
-        _stateCoroutine = null;
-    
+        _attackCoroutine = null;
+
     }
 
     protected virtual void OnEnable()
@@ -69,15 +74,15 @@ public class Enemy : MonoBehaviour
         transform.rotation = Quaternion.identity;
 
         enemyState = EnemyState.Ready;
-        enemyState = EnemyState.live; 
+        enemyState = EnemyState.live;
     }
 
 
     private void OnDisable()
     {
-      if(_stateCoroutine != null) StopCoroutine(_stateCoroutine);
+        if (_attackCoroutine != null) StopCoroutine(_attackCoroutine);
 
-        _stateCoroutine = null;
+        _attackCoroutine = null;
     }
 
 
@@ -87,6 +92,8 @@ public class Enemy : MonoBehaviour
 
         _currentHp -= damage;
 
+        StartCoroutine(FlickerCharacter());
+
         if (_currentHp <= 0)
         {
             enemyState = EnemyState.Die;
@@ -95,12 +102,20 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public virtual IEnumerator FlickerCharacter()
+    {
+        _spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        _spriteRenderer.color = Color.white;
+    }
+
     protected void StopStateCoroutin()
     {
-        if (_stateCoroutine != null)
+        if (_attackCoroutine != null)
         {
-            StopCoroutine(_stateCoroutine);
-            _stateCoroutine = null;
+            StopCoroutine(_attackCoroutine);
+            _attackCoroutine = null;
         }
     }
 
@@ -128,7 +143,7 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < bulletCount; i++)
         {
             float currentAngle = i * deltaAngle;
-            currentAngle += AngleToTarget()/2f;
+            currentAngle += AngleToTarget() / 2f;
             float x = Mathf.Cos(currentAngle);
             float y = Mathf.Sin(currentAngle);
             Vector2 direction = new Vector2(x, y).normalized;
@@ -139,7 +154,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-   protected void BulletGenerator(float rotate, float speed)
+    protected void BulletGenerator(float rotate, float speed)
     {
         EnemyBullet obj = Instantiate(bullet);
         obj.gameObject.transform.SetParent(transform, false);
