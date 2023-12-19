@@ -30,7 +30,10 @@ public class Chest : PickupItem
     {
         StopAllCoroutines();
         Inventory.Instance.UseKey();
-        RewardManager.Instance.CreateRandomReward(_blueprint.itemAmount, gameObject.transform.position);
+
+        for(int i=0; i < _blueprint.itemAmount; i++)
+            RewardManager.Instance.CreateBasicReward(gameObject.transform.position);
+            
         Destroy(gameObject);
     }
 

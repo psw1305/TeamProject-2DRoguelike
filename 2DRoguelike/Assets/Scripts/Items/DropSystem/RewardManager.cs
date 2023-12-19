@@ -18,24 +18,6 @@ public class RewardManager : MonoBehaviour
         _itemTable = GetComponent<ItemTable>();
     }
 
-    public void CreateTargetReward(string name, Vector3 position)
-    {
-        ItemBlueprint targetBlueprint = _itemTable.GetTargetItem(name);
-        GameObject targetFrame = SetFrame(targetBlueprint.itemType);
-
-        BaseItem baseItem = Instantiate(targetFrame, position, Quaternion.identity).GetComponent<BaseItem>();
-        baseItem.SetItem(targetBlueprint);
-    }
-
-    public void CreateRandomReward(int quantity, Vector3 position)
-    {
-        for(int i=0; i < quantity; i++)
-        {
-            ItemBlueprint targetBluePrint = _itemTable.GetRandomItem();
-            CreateTargetReward(targetBluePrint.itemName, position);
-        }
-    }
-
     private GameObject SetFrame(ItemType itemType)
     {
         switch(itemType)
@@ -51,11 +33,53 @@ public class RewardManager : MonoBehaviour
         return null;
     }
 
-    public void testClick()
+    public void CreateReward(ItemBlueprint targetBlueprint, Vector3 position)
     {
-        int x = Random.Range(-10,10);
-        Vector3 position = new Vector3 (x,x,0);
-        CreateRandomReward(1, position);
+        GameObject targetFrame = SetFrame(targetBlueprint.itemType);
+        BaseItem baseItem = Instantiate(targetFrame, position, Quaternion.identity).GetComponent<BaseItem>();
+        baseItem.SetItem(targetBlueprint);
     }
+
+    public void CreateBasicReward(Vector3 position)
+    {
+        ItemBlueprint targetBlueprint;
+
+        int random = Random.Range(1,101);
+        if(random >= 10) targetBlueprint = _itemTable.GetRandomPickupItem();
+        else targetBlueprint = _itemTable.GetRandomActiveItem();
+
+        CreateReward(targetBlueprint, position);
+    }
+
+    public void CreateTreasureReward(Vector3 position)
+    {
+        ItemBlueprint targetBlueprint = _itemTable.GetRandomPassiveItem();
+        CreateReward(targetBlueprint, position);
+    }
+
+    public void CreateShopItem(Vector3 position)
+    {
+        // TODO => 아이템 구매 기능
+        ItemBlueprint targetBlueprint;
+
+        int random = Random.Range(1,101);
+        if(random <= 20) targetBlueprint = _itemTable.GetRandomPassiveItem();
+        else targetBlueprint = _itemTable.GetRandomActiveItem();
+
+        CreateReward(targetBlueprint, position);
+    }
+
+    public void CreateRand1()
+    {
+        int rand = Random.Range(-10,10);
+        CreateTreasureReward(new Vector3(rand,rand,0));
+    }
+
+    public void CreateRand2()
+    {
+        int rand = Random.Range(-10,10);
+        CreateBasicReward(new Vector3(rand,rand,0));
+    }
+
 
 }

@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class InteractableItem : BaseItem
 {
+    public override void SetItem(ItemBlueprint blueprint)
+    {
+        base.SetItem(blueprint);
+        InteractableItemBluePrint target = blueprint as InteractableItemBluePrint;
+        GetComponentInChildren<SpriteRenderer>().sprite = target.itemSprite;
+    }
     public void OnInteract()
     {
         Inventory.Instance.GetSpecial(_blueprint);

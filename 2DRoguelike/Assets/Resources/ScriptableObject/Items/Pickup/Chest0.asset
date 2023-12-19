@@ -17,4 +17,3 @@ MonoBehaviour:
   itemAnimationController: {fileID: 9100000, guid: b02971cef9df0bf4c82bf483c545f722, type: 2}
   getRadius: 1
   itemType: 5
-  statusType: 0
