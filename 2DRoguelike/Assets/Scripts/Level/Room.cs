@@ -8,10 +8,14 @@ public class Room : MonoBehaviour
     [SerializeField] private RoomType roomType;
     [SerializeField] private Vector2Int coordinate;
     [SerializeField] private List<GameObject> doorList;
+    [SerializeField] private Transform container;
 
-    private List<GameObject> activeDoorList = new();
-    private List<GameObject> neighborDoorList = new();
-    private List<Room> neighborRoomList = new();
+    private List<GameObject> _activeDoorList = new();
+    private List<GameObject> _neighborDoorList = new();
+    private List<Room> _neighborRoomList = new();
+
+    private RoomBlueprint _roomBlueprint;
+    private bool isArrived;
 
     #endregion
 
@@ -20,7 +24,8 @@ public class Room : MonoBehaviour
     public RoomType RoomType => roomType;
     public Vector2Int Coordinate => coordinate;
     public List<GameObject> DoorList => doorList;
-    public int ActiveDoorCount => activeDoorList.Count;
+    public int ActiveDoorCount => _activeDoorList.Count;
+    public bool IsArrived => isArrived;
 
     public void SetRoomType(RoomType roomType)
     {
@@ -38,12 +43,14 @@ public class Room : MonoBehaviour
 
     public void Initialize()
     {
+        _roomBlueprint = Main.Game.Dungeon.GetRoomBlueprint(roomType);
+
         ChangeDoorOutWard();
     }
 
     #endregion
 
-    #region Methods
+    #region Door Methods
 
     /// <summary>
     /// 타입에 따른 문 디자인 변경
@@ -53,8 +60,8 @@ public class Room : MonoBehaviour
         if (roomType == RoomType.Normal || roomType == RoomType.Start) { return; }
 
         List<GameObject> doors = new();
-        doors.AddRange(activeDoorList);
-        doors.AddRange(neighborDoorList);
+        doors.AddRange(_activeDoorList);
+        doors.AddRange(_neighborDoorList);
 
         foreach (var door in doors)
         {
@@ -92,9 +99,9 @@ public class Room : MonoBehaviour
             door.transform.GetChild(i).gameObject.SetActive(true);
         }
 
-        activeDoorList.Add(door);
-        neighborDoorList.Add(neighborDoor);
-        neighborRoomList.Add(neighborRoom);    
+        _activeDoorList.Add(door);
+        _neighborDoorList.Add(neighborDoor);
+        _neighborRoomList.Add(neighborRoom);    
     }
 
     /// <summary>
@@ -102,13 +109,53 @@ public class Room : MonoBehaviour
     /// </summary>
     public void OpenActivatedDoor()
     {
-        for (int i = 0; i < activeDoorList.Count; i++)
+        for (int i = 0; i < _activeDoorList.Count; i++)
         {
-            var door = activeDoorList[i];
+            var door = _activeDoorList[i];
             door.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 
     #endregion
 
+    #region Container Methods
+
+    /// <summary>
+    /// 방 내부의 콘텐츠 생성 => 장애물, 아이템, 적
+    /// </summary>
+    public void GenerateRoomContents()
+    {
+        isArrived = true;
+
+        for (int i = 0; i < _roomBlueprint.ObstacleList.Count; i++)
+        {
+            GenerateObject(_roomBlueprint.ObstacleList[i].value1, _roomBlueprint.ObstacleList[i].value2, container);
+        }
+
+        for (int i = 0; i < _roomBlueprint.ItemList.Count; i++)
+        {
+            GenerateObject(_roomBlueprint.ItemList[i].value1, _roomBlueprint.ItemList[i].value2, container);
+        }
+
+        for (int i = 0; i < _roomBlueprint.EnemyList.Count; i++)
+        {
+            GenerateObject(_roomBlueprint.EnemyList[i].value1, _roomBlueprint.EnemyList[i].value2, container);
+        }
+    }
+
+    private void GenerateRewards()
+    {
+
+    }
+
+    public GameObject GenerateObject(GameObject prefab, Vector2 position, Transform container)
+    {
+        if (prefab == null) { return null; }
+
+        GameObject go = Instantiate(prefab, container);
+        go.transform.localPosition = position;
+        return go;
+    }
+
+    #endregion
 }

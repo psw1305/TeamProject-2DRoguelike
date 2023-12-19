@@ -1,21 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class RewardManager : MonoBehaviour
+public class RewardManager
 {
-    // Prototype.
-    public static RewardManager Instance;
-    [SerializeField] private GameObject _pickupFrame;
-    [SerializeField] private GameObject _interactableFrame;
-    [SerializeField] private GameObject _chestFrame;
+    #region Fields
 
+    private GameObject _pickupFrame;
+    private GameObject _interactableFrame;
+    private GameObject _chestFrame;
     private ItemTable _itemTable;
 
-    private void Awake()
+    #endregion
+
+    public void Initialize()
     {
-        Instance = this;
-        _itemTable = GetComponent<ItemTable>();
+        _itemTable = GameObject.FindObjectOfType<ItemTable>();
     }
 
     private GameObject SetFrame(ItemType itemType)
@@ -35,8 +33,8 @@ public class RewardManager : MonoBehaviour
 
     public void CreateReward(ItemBlueprint targetBlueprint, Vector3 position)
     {
-        GameObject targetFrame = SetFrame(targetBlueprint.itemType);
-        BaseItem baseItem = Instantiate(targetFrame, position, Quaternion.identity).GetComponent<BaseItem>();
+        GameObject targetFrame = SetFrame(targetBlueprint.ItemType);
+        BaseItem baseItem = GameObject.Instantiate(targetFrame, position, Quaternion.identity).GetComponent<BaseItem>();
         baseItem.SetItem(targetBlueprint);
     }
 

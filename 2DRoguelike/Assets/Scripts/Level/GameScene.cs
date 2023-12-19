@@ -1,8 +1,13 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class GameScene : MonoBehaviour
 {
+    #region Field
+
+    [SerializeField] private Transform inGameCanvas;
+
+    #endregion
+
     #region Init
 
     private void Start()
@@ -11,7 +16,8 @@ public class GameScene : MonoBehaviour
         Main.Resource.Initialize();
 
         // #2. 오브젝트 생성 & 초기화
-        Main.UI.Initialize();
+        Main.Reward.Initialize();
+        Main.UI.Initialize(inGameCanvas);
         Main.Game.Initialize();
 
         // #3. 게임 던전 생성 & 설정
@@ -24,7 +30,7 @@ public class GameScene : MonoBehaviour
         Main.Resource.InstantiatePrefab("NevMesh");
 
         // 테스트 적 스폰
-        Main.Game.SpawnEnemy();
+        //Main.Game.SpawnEnemy();
     }
 
     #endregion

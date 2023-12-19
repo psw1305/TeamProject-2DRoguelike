@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8886976370866887053
 MonoBehaviour:
@@ -44,4 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87e6a892e78623468048522d176ceb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startRoom: {fileID: 11400000, guid: d3d77a25db499bc43b8c80fabcfb8f70, type: 2}
+  normalRoom: {fileID: 11400000, guid: 50bad3228fa2aa74e8a86ec4ed424371, type: 2}
+  treasureRoom: {fileID: 11400000, guid: 50bad3228fa2aa74e8a86ec4ed424371, type: 2}
+  shopRoom: {fileID: 11400000, guid: 50bad3228fa2aa74e8a86ec4ed424371, type: 2}
+  bossRoom: {fileID: 11400000, guid: 50bad3228fa2aa74e8a86ec4ed424371, type: 2}
   roomAmount: 10
