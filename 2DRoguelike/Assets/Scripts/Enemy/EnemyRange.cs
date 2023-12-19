@@ -18,7 +18,7 @@ public class EnemyRange : MonoBehaviour
 
     #region Field
 
-    private JEH_Player _target;
+    private Player _target;
 
     private int _maxHp;
     private int _hp;
@@ -42,11 +42,13 @@ public class EnemyRange : MonoBehaviour
         _attackSpeed = 1;
         _range = 7;
 
+        _target = Main.Game.Player;
+
     }
 
     private void OnEnable()
     {
-        _target = FindObjectOfType<JEH_Player>(); // 임시
+        //   _target = FindObjectOfType<Player>(); // 임시
 
         _hp = _maxHp;
 
@@ -65,6 +67,9 @@ public class EnemyRange : MonoBehaviour
 
     void Move()
     {
+        if(_target == null) return;
+
+
         _agent.SetDestination(_target.transform.position);
 
         if (_agent.velocity.magnitude > 0.2f) // 움직이는 중이면 true
