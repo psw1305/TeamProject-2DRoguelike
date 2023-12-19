@@ -7,28 +7,29 @@ public class Projectile : MonoBehaviour
     #region Properties
     public int Damage { get; private set; }
     public int AttackRange { get; private set; }
-
     #endregion
 
     #region Fields
 
-    private SpriteRenderer _sprite;
     private Rigidbody2D _rigidbody;
 
     #endregion
 
+    /// <summary>
+    /// 벽에 닿으면 Projectile 제거
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag($"Wall"))
         {
-            Destroy(this); //풀링 할 부분
+            Main.Object.Despawn(this);
         }
     }
 
     public void Initialize()
     {
-        _sprite = GetComponent<SpriteRenderer>();
-        _rigidbody = GetComponent<Rigidbody2D>();
+        _rigidbody = this.GetComponent<Rigidbody2D>();
     }
 
 
@@ -37,7 +38,6 @@ public class Projectile : MonoBehaviour
         Initialize();
         Damage = damage;
         AttackRange = attackRange;
-
         if (this.gameObject.activeInHierarchy) StartCoroutine(CoCheckDestroy());
 
         
