@@ -7,7 +7,6 @@ public class ItemBlueprint : ScriptableObject
     [SerializeField] private string itemName;
     [SerializeField] private int itemAmount;
     [SerializeField] private RuntimeAnimatorController itemAnimationController;
-    [SerializeField] private float getRadius;
 
     [Header("Item Type")]
     [SerializeField] private ItemType itemType;
@@ -17,7 +16,6 @@ public class ItemBlueprint : ScriptableObject
     public string ItemName => itemName;
     public int ItemAmount => itemAmount;
     public RuntimeAnimatorController ItemAnimationController => itemAnimationController;
-    public float GetRadius => getRadius;
     public ItemType ItemType => itemType;
 
     #endregion

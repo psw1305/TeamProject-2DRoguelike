@@ -10,11 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc09b90ae7c8b114fb045e795332e336, type: 3}
-  m_Name: Heart0
+  m_Name: Chest
   m_EditorClassIdentifier: 
-  itemName: Heart0
+  itemName: Chest
   itemAmount: 1
-  itemAnimationController: {fileID: 9100000, guid: 8dadf70d6a276c74a85bdc0daa8cd419, type: 2}
-  getRadius: 1
-  itemType: 2
-  statusType: 0
+  itemAnimationController: {fileID: 9100000, guid: b02971cef9df0bf4c82bf483c545f722, type: 2}
+  itemType: 5

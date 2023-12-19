@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Chest : PickupItem
 {
+    [SerializeField] private int amount;
     private Animator _animator;
     private bool isAnimationPlaying;
 
@@ -29,11 +30,11 @@ public class Chest : PickupItem
     {
         StopAllCoroutines();
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < amount; i++)
         {
-            Main.Reward.CreateBasicReward(gameObject.transform.position);
+            Main.Reward.ChestReward(Main.Game.Dungeon.CurrentRoom.Container);
         }
-            
+
         Destroy(gameObject);
     }
 
