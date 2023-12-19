@@ -4,12 +4,13 @@ public class Player : MonoBehaviour
 {
     #region Properties
 
-    public int HP { get; private set; }
-    public int Damage { get; private set; }
-    public int Speed { get; private set; }
-    public int AttackRange { get; private set; }
-    public int AttackSpeed { get; private set; }
-    public int ShotSpeed { get; private set; }
+    public StatUnit HP { get; private set; }
+    public StatUnit Damage { get; private set; }
+    public StatUnit Speed { get; private set; }
+    public StatUnit AttackRange { get; private set; }
+    public StatUnit AttackSpeed { get; private set; }
+    public StatUnit ShotSpeed { get; private set; }
+    public float CurrentHp { get; private set; }
 
     #endregion
 
@@ -17,12 +18,14 @@ public class Player : MonoBehaviour
 
     public Player()
     {
-        HP = 3;
-        Damage = 10;
-        Speed = 2;
-        AttackRange = 10;
-        AttackSpeed = 2;
-        ShotSpeed = 2;
+        HP = new StatUnit(3);
+        Damage = new StatUnit(10);
+        Speed = new StatUnit(2);
+        AttackRange = new StatUnit(10);
+        AttackSpeed = new StatUnit(2);
+        ShotSpeed = new StatUnit(2);
+
+        CurrentHp = HP.BaseValue;
     }
 
     #endregion
@@ -31,13 +34,17 @@ public class Player : MonoBehaviour
 
     public void Damaged(int damage)
     {
-        HP -= damage;
+        CurrentHp -= damage;
     }
 
     #endregion
 
     #region OnCollision
 
+    /// <summary>
+    /// 문 접촉시 해당 방향에 맞는 다음방으로 이동
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("DoorCollider"))

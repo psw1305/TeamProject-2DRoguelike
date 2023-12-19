@@ -139,8 +139,8 @@ public class PlayerInputController : CharacterController
 
         // 발사체 생성
         Projectile projectile = Main.Object.Spawn<Projectile>("Projectile_Test", this.transform.position);
-        projectile.SetInfo(Main.Game.Player.Damage, Main.Game.Player.AttackRange);
-        projectile.SetVelocity(direction * Main.Game.Player.AttackSpeed);
+        projectile.SetInfo((int)Main.Game.Player.Damage.Value, (int)Main.Game.Player.AttackRange.Value);
+        projectile.SetVelocity(direction * (int)Main.Game.Player.AttackSpeed.Value);
         projectile.gameObject.tag = "PlayerProjectile";
 
     }
@@ -149,12 +149,12 @@ public class PlayerInputController : CharacterController
 
     private void AttackDelay()
     {
-        if (_timeSinceLastAttack <= _player.AttackSpeed)
+        if (_timeSinceLastAttack <= _player.AttackSpeed.Value)
         {
             _timeSinceLastAttack += Time.deltaTime;
         }
 
-        if (IsAttacking && _timeSinceLastAttack > _player.AttackSpeed)
+        if (IsAttacking && _timeSinceLastAttack > _player.AttackSpeed.Value)
         {
             _timeSinceLastAttack = 0;
             CallAttackEvent(Vector2.zero);

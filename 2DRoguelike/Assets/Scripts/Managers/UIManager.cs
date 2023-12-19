@@ -1,7 +1,5 @@
 using UnityEngine;
-/// <summary>
-/// UI 매니저
-/// </summary>
+
 public class UIManager 
 {
     #region Properties
@@ -12,11 +10,10 @@ public class UIManager
 
     #region Init
 
-    public void MinimapGenerate()
+    public void Initialize()
     {
         var minimapPrefab = GameObject.Instantiate(Main.Resource.GetObject("UI_Minimap"));
         Minimap = minimapPrefab.GetComponent<UI_Minimap>();
-        Minimap.CreatMinimap();
     }
 
     #endregion

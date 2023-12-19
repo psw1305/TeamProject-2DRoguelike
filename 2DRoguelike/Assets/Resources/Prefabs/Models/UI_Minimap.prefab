@@ -160,7 +160,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7253599338813703970
 CanvasRenderer:
@@ -330,7 +330,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   miniRoomNode: {fileID: 3436981056194077419}
-  miniRoomPrefab: {fileID: 5354287442162998107, guid: 417f6e4c2a16fe74bb46de0490754176, type: 3}
-  miniIconBoss: {fileID: 7290428538574376799, guid: e9cdfc34d1cf52546b4ecda1e718263e, type: 3}
-  miniIconTreasure: {fileID: 1286647313045274996, guid: 12fbbf035c58fd84b9cf94f2653184bf, type: 3}
-  miniIconShop: {fileID: 2467281539024300032, guid: 1eb413db40e32d0459f41ec97cd88a5a, type: 3}

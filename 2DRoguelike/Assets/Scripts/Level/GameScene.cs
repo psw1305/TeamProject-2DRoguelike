@@ -7,18 +7,20 @@ public class GameScene : MonoBehaviour
 
     private void Start()
     {
+        // #1. 리소스 초기화
         Main.Resource.Initialize();
 
-        // #1. 플레이어 생성
-        Main.Game.SpawnPlayer(this.transform);
+        // #2. 오브젝트 생성 & 초기화
+        Main.UI.Initialize();
+        Main.Game.Initialize();
 
-        // #2. 게임 레벨 생성
-        Main.Game.DungeonGenerate();
+        // #3. 게임 던전 생성 & 설정
+        Main.Game.Dungeon.CreateDungeon();
 
-        // #3. 미니맵 생성
-        Main.UI.MinimapGenerate();
+        // #4. 미니맵 생성
+        Main.UI.Minimap.CreatMinimap();
 
-        // #4. NevMesh 영역생성
+        // #5. NevMesh 영역생성
         Main.Resource.InstantiatePrefab("NevMesh");
 
         // 테스트 적 스폰

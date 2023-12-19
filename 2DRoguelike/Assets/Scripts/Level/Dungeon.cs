@@ -24,11 +24,11 @@ public class Dungeon : MonoBehaviour
 
     #region Init
 
-    public void Initialize()
+    public void CreateDungeon()
     {
         // 던전 생성
         _roomPrefab = Main.Resource.GetObject("Room").GetComponent<Room>();
-        CreateDungeon();
+        CreateRooms();
 
         // 시작 방 세팅
         MoveToStartRoom();
@@ -39,9 +39,9 @@ public class Dungeon : MonoBehaviour
     #region Room Create Method
 
     /// <summary>
-    /// 던전 생성
+    /// 던전 방 배열 생성
     /// </summary>
-    private void CreateDungeon()
+    private void CreateRooms()
     {
         // 방 생성을 위한 좌표 리스트
         List<Vector2Int> alternativeRoomList = new();
@@ -227,6 +227,9 @@ public class Dungeon : MonoBehaviour
 
         _currentRoom = _roomArray[x, y];
         _currentRoom.OpenActivatedDoor();
+
+        // UI 미니맵 업데이트
+        Main.UI.Minimap.UpdateMinimap(MoveDirection);
 
         Main.Game.Player.transform.position += new Vector3(MoveDirection.x * 5, MoveDirection.y * 5);
 
