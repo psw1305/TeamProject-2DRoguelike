@@ -14,7 +14,6 @@ public class EnemyMelee : Enemy
         _range = 1.2f;
 
     }
-
     protected override void OnEnable()
     {
         base.OnEnable();

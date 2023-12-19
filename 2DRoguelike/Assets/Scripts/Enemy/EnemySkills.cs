@@ -14,14 +14,13 @@ public class EnemySkills : MonoBehaviour
 
     public EnemyBullet bullet;
     public int count;
-    public float StartAngle;
+    float startAngle;
 
 
-    void OnEnable()
-    {
-        transform.position = Vector3.zero;
-        transform.rotation = Quaternion.identity;
-    }
+    public Transform _target;
+
+    public float attackAngle;
+
 
 
     public void UseSkills(EnemySkillType type)
@@ -29,9 +28,10 @@ public class EnemySkills : MonoBehaviour
         switch (type)
         {
             case EnemySkillType.방사형:
-                StartCoroutine(Circle());
+                Circle();
                 break;
             case EnemySkillType.플레이어방향:
+
                 break;
         }
 
@@ -39,15 +39,82 @@ public class EnemySkills : MonoBehaviour
 
 
 
-    IEnumerator Circle()
+    private void OnEnable()
+    {
+
+
+        //  StartCoroutine(AttackCoroutin());
+    }
+
+    protected Vector2 DirectionToTarget()
+    {
+        return (_target.gameObject.transform.position - transform.position).normalized;
+    }
+    protected float AngleToTarget()
+    {
+        return Mathf.Atan2(DirectionToTarget().y, DirectionToTarget().x) * Mathf.Rad2Deg;
+    }
+
+
+
+    void PlayerDirStraight() 
+    {
+
+        float minAngle = -(count / 2f) * 7 + 0.5f * 7; // z축을 7씩 벌린다
+
+        for (int i = 0; i < count; i++)
+        {
+            float angle = minAngle + 7 * i;
+            angle += AngleToTarget();
+            BulletGenerator(angle);
+        }
+
+
+    }
+
+
+    void Circle()
+    {
+        startAngle = AngleToTarget();
+
+
+
+        float deltaAngle = 2 * Mathf.PI / count; // 360도를 Count 개수로 등분
+
+        for (int i = 0; i < count; i++)
+        {
+            float currentAngle = i * deltaAngle + startAngle;
+            float x = Mathf.Cos(currentAngle);
+            float y = Mathf.Sin(currentAngle);
+            Vector2 direction = new Vector2(x, y).normalized;
+
+            float rot = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            BulletGenerator(rot);
+
+        }
+
+    }
+
+
+    void BulletGenerator(float rotate)
+    {
+        EnemyBullet obj = Instantiate(bullet);
+        obj.gameObject.transform.SetParent(transform, false);
+        obj.gameObject.transform.localRotation = Quaternion.Euler(0, 0, rotate);
+        obj._bulletSpeed = 5;
+    }
+
+
+    IEnumerator AttackCoroutin()
     {
         while (true)
         {
-            float deltaAngle = 2 * Mathf.PI / count; // 360도를 Count 개수로 등분
+            float deltaAngle = attackAngle / count;
 
             for (int i = 0; i < count; i++)
             {
-                float currentAngle = i * deltaAngle + StartAngle;
+                float currentAngle = i * deltaAngle + startAngle;
                 float x = Mathf.Cos(currentAngle);
                 float y = Mathf.Sin(currentAngle);
                 Vector2 direction = new Vector2(x, y).normalized;
@@ -61,51 +128,5 @@ public class EnemySkills : MonoBehaviour
     }
 
 
-
-    public void SkillStop()
-    {
-        StopAllCoroutines();
-    }
-
-
-    private void OnDisable()
-    {
-        SkillStop();
-    }
-
 }
 
-
-/*
-
-public int Count;
-public float attackAngle;
-
-
-void OnEnable()
-{
-    _target = Main.Game.Player;
-    StartCoroutine(AttackCoroutin());
-}
-
-IEnumerator AttackCoroutin()
-{
-    while (true)
-    {
-        var rad = attackAngle * Mathf.Deg2Rad;
-
-        float deltaAngle = rad / Count;
-
-        for (int i = 0; i < Count; i++)
-        {
-            Vector2 direction = new Vector2(Mathf.Cos(deltaAngle * i), Mathf.Sin(deltaAngle * i)).normalized;
-
-            Instantiate(bullet);
-
-        }
-
-        yield return new WaitForSeconds(1f);
-    }
-}
-
- */
