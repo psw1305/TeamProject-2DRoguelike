@@ -4,7 +4,6 @@ using UnityEngine;
 public class EnemyMelee : Enemy
 {
 
-
     protected override void Awake()
     {
         base.Awake();
@@ -14,22 +13,30 @@ public class EnemyMelee : Enemy
         _attackSpeed = 1;
         _range = 1.2f;
 
-        _target = Main.Game.Player;
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-
-
+        Initialize();
     }
-
-
 
     void Update()
     {
+        if (enemyState == EnemyState.Dead) return;
         Move();
     }
+
+    void Initialize()
+    {
+        _currentHp = _maxHp;
+
+        _agent.updateRotation = false;
+        _agent.updateUpAxis = false;
+        _agent.speed = _movementSpeed;
+        _agent.stoppingDistance = _range;
+    }
+
 
     void Move()
     {
@@ -44,12 +51,12 @@ public class EnemyMelee : Enemy
         }
         else
         {
-            Attack();
+            TakeAim();
         }
     }
 
 
-    protected void Attack()
+    protected void TakeAim()
     {
         if (_stateCoroutine != null)
             return;
@@ -68,31 +75,19 @@ public class EnemyMelee : Enemy
     {
         while (true)
         {
-            if (!IsTargetStraight()) // 공격중에 플레이어가 벽뒤로 갈수있으니 공격할때마다 레이 체크.
+            if (!IsTargetStraight())
                 StopStateCoroutin();
 
             yield return new WaitForSeconds(_attackSpeed);
 
-            RealizeAttack();
+            Attack();
 
-       
         }
     }
 
-    void RealizeAttack()
+    void Attack()
     {
-        Debug.Log("물리공격");
+        _target.Damaged(_attackDamage);
     }
-
-
-    void StopStateCoroutin()
-    {
-        if (_stateCoroutine != null)
-        {
-            StopCoroutine(_stateCoroutine);
-            _stateCoroutine = null;
-        }
-    }
-
 
 }
