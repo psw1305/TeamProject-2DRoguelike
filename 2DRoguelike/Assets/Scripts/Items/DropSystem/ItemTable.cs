@@ -27,7 +27,7 @@ public class ItemTable : MonoBehaviour
         ItemBlueprint[] itemBlueprints = Resources.LoadAll<ItemBlueprint>("ScriptableObject/Items/Pickup");
         foreach (ItemBlueprint blueprint in itemBlueprints)
         {
-            _pickupTable.Add(blueprint.itemName, blueprint);
+            _pickupTable.Add(blueprint.ItemName, blueprint);
         }
     }
 
@@ -37,7 +37,7 @@ public class ItemTable : MonoBehaviour
         ItemBlueprint[] itemBlueprints = Resources.LoadAll<ItemBlueprint>("ScriptableObject/Items/Active");
         foreach (ItemBlueprint blueprint in itemBlueprints)
         {
-            _activeTable.Add(blueprint.itemName, blueprint);
+            _activeTable.Add(blueprint.ItemName, blueprint);
         }
     }
 
@@ -47,7 +47,7 @@ public class ItemTable : MonoBehaviour
         ItemBlueprint[] itemBlueprints = Resources.LoadAll<ItemBlueprint>("ScriptableObject/Items/Passive");
         foreach (ItemBlueprint blueprint in itemBlueprints)
         {
-            _passiveTable.Add(blueprint.itemName, blueprint);
+            _passiveTable.Add(blueprint.ItemName, blueprint);
         }
     }
     public ItemBlueprint GetTargetItem(string name)

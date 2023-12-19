@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc09b90ae7c8b114fb045e795332e336, type: 3}
-  m_Name: Coin1
+  m_Script: {fileID: 11500000, guid: 97af6ed5199939f478c049ba1aefb535, type: 3}
+  m_Name: Start
   m_EditorClassIdentifier: 
-  itemName: Coin1
-  itemAmount: 2
-  itemAnimationController: {fileID: 9100000, guid: de5e2b8259e47a64eb78601ee5907a74, type: 2}
-  getRadius: 1
-  itemType: 1
-  statusType: 0
+  floor: {fileID: 0}
+  isReward: 0
+  rewardPosition: {x: 0, y: 0}
+  obstacleList: []
+  itemList: []
+  enemyList: []

@@ -4,13 +4,17 @@ public class Player : MonoBehaviour
 {
     #region Properties
 
+    public int CurrentHp { get; private set; }
+    public int Coin { get; private set; }
+    public int Key { get; private set; }
+    public int Bomb { get; private set; }
+
     public StatUnit HP { get; private set; }
-    public StatUnit Damage { get; private set; }
     public StatUnit Speed { get; private set; }
-    public StatUnit AttackRange { get; private set; }
+    public StatUnit Damage { get; private set; }
     public StatUnit AttackSpeed { get; private set; }
+    public StatUnit AttackRange { get; private set; }
     public StatUnit ShotSpeed { get; private set; }
-    public float CurrentHp { get; private set; }
 
     #endregion
 
@@ -19,22 +23,90 @@ public class Player : MonoBehaviour
     public Player()
     {
         HP = new StatUnit(3);
-        Damage = new StatUnit(10);
         Speed = new StatUnit(2);
-        AttackRange = new StatUnit(10);
+        Damage = new StatUnit(10);
         AttackSpeed = new StatUnit(2);
+        AttackRange = new StatUnit(10);
         ShotSpeed = new StatUnit(2);
 
-        CurrentHp = HP.BaseValue;
+        CurrentHp = (int)HP.BaseValue;
+        Coin = 10;
+        Key = 10;
+        Bomb = 10;
+    }
+
+    public void Initialize()
+    {
+        Main.UI.PlayerUI.Initialize(this);
     }
 
     #endregion
 
-    #region Method
+    #region Inventory Method
+
+    /// <summary>
+    /// [정용태] 인벤토리 클래스
+    /// </summary>
+
+    public bool GetCoin(int amount)
+    {
+        if (Coin + amount > Globals.MaxCoinStock) return false;
+        Coin += amount;
+        Main.UI.PlayerUI.SetCoin(Coin.ToString());
+        return true;
+    }
+
+    public bool GetKey(int amount)
+    {
+        if (Key + amount > Globals.MaxKeyStock) return false;
+        Key += amount;
+        Main.UI.PlayerUI.SetKey(Key.ToString());
+        return true;
+    }
+
+    public bool GetBomb(int amount)
+    {
+        if (Bomb + amount > Globals.MaxBombStock) return false;
+        Bomb += amount;
+        Main.UI.PlayerUI.SetBomb(Bomb.ToString());
+        return true;
+    }
+
+    public bool UseCoin(int amount)
+    {
+        if (Coin - amount < 0) return false;
+
+        Coin -= amount;
+        Main.UI.PlayerUI.SetCoin(Coin.ToString());
+        return true;
+    }
+
+    public bool UseKey()
+    {
+        if (Key - 1 < 0) return false;
+
+        Key -= 1;
+        Main.UI.PlayerUI.SetKey(Key.ToString());
+        return true;
+    }
+
+    public bool UseBomb()
+    {
+        if (Bomb - 1 < 0) return false;
+
+        Bomb -= 1;
+        Main.UI.PlayerUI.SetBomb(Bomb.ToString());
+        return true;
+    }
+
+    #endregion
+
+    #region Attribute Method
 
     public void Damaged(int damage)
     {
         CurrentHp -= damage;
+        Main.UI.PlayerUI.SetCurrentHP(CurrentHp.ToString());
     }
 
     #endregion

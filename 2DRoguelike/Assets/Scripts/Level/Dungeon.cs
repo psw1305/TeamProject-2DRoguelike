@@ -9,6 +9,14 @@ public class Dungeon : MonoBehaviour
 
     [SerializeField] private int roomAmount;
 
+    // 방 설계도 테스트
+    [Header("임시 테스트 설계도")]
+    [SerializeField] private RoomBlueprint startRoom;
+    [SerializeField] private RoomBlueprint normalRoom;
+    [SerializeField] private RoomBlueprint treasureRoom;
+    [SerializeField] private RoomBlueprint shopRoom;
+    [SerializeField] private RoomBlueprint bossRoom;
+
     private Room _roomPrefab;
     private Room[,] _roomArray = new Room[20, 20];
     private Room _currentRoom;
@@ -192,6 +200,20 @@ public class Dungeon : MonoBehaviour
         }
     }
 
+    // TODO => 임시로 만든 방 설계도 부여
+    public RoomBlueprint GetRoomBlueprint(RoomType type)
+    {
+        return type switch
+        {
+            RoomType.Start => startRoom,
+            RoomType.Normal => normalRoom,
+            RoomType.Treasure => treasureRoom,
+            RoomType.Shop => shopRoom,
+            RoomType.Boss => bossRoom,
+            _ => null,
+        };
+    }
+
     #endregion
 
     #region Move To Room Method
@@ -227,6 +249,12 @@ public class Dungeon : MonoBehaviour
 
         _currentRoom = _roomArray[x, y];
         _currentRoom.OpenActivatedDoor();
+
+        // 방 도착시 => 내부의 콘텐츠 생성 [장애물, 적, 오브젝트]
+        if (!_currentRoom.IsArrived)
+        {
+            _currentRoom.GenerateRoomContents();
+        }
 
         // UI 미니맵 업데이트
         Main.UI.Minimap.UpdateMinimap(MoveDirection);

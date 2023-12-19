@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc09b90ae7c8b114fb045e795332e336, type: 3}
-  m_Name: Coin2
+  m_Name: Chest
   m_EditorClassIdentifier: 
-  itemName: Coin2
-  itemAmount: 2
-  itemAnimationController: {fileID: 9100000, guid: de5e2b8259e47a64eb78601ee5907a74, type: 2}
+  itemName: Chest0
+  itemAmount: 3
+  itemAnimationController: {fileID: 9100000, guid: b02971cef9df0bf4c82bf483c545f722, type: 2}
   getRadius: 1
-  itemType: 1
-  statusType: 0
+  itemType: 5

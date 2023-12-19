@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class Chest : PickupItem
@@ -15,31 +13,33 @@ public class Chest : PickupItem
 
     private IEnumerator WaitingAnimationEnd()
     {
-        while(isAnimationPlaying)
+        while (isAnimationPlaying)
         {
-            if(_animator.GetCurrentAnimatorStateInfo(0).IsName("End"))
+            if (_animator.GetCurrentAnimatorStateInfo(0).IsName("End"))
             {
                 isAnimationPlaying = false;
             }
             yield return null;
         }
+
         OpenChest();
     }
 
     public void OpenChest()
     {
         StopAllCoroutines();
-        Inventory.Instance.UseKey();
 
-        for(int i=0; i < _blueprint.itemAmount; i++)
-            RewardManager.Instance.CreateBasicReward(gameObject.transform.position);
+        for (int i = 0; i < 3; i++)
+        {
+            Main.Reward.CreateBasicReward(gameObject.transform.position);
+        }
             
         Destroy(gameObject);
     }
 
-    protected override void PlayerGet()
+    protected override void PlayerItemPickup()
     {
-        if(Inventory.Instance.Key >= 1)
+        if (Main.Game.Player.UseKey())
         {
             _animator.SetTrigger("Open");
             isAnimationPlaying = true;
