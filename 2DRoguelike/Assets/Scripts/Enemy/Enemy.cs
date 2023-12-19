@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    protected void Damaged(int damage)
+    public void Damaged(int damage)
     {
         _currentHp -= damage;
 
@@ -61,14 +61,9 @@ public class Enemy : MonoBehaviour
         {
             enemyState = EnemyState.Dead;
             StopAllCoroutines();
-
             Destroy(gameObject);
-
-            Debug.Log("주금");
         }
-
     }
-
 
     #region Util
 

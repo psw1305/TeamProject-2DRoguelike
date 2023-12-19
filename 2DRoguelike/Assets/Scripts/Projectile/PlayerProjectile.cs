@@ -30,6 +30,8 @@ public class PlayerProjectile : MonoBehaviour
         {
             //몬스터 데미지 처리 TODO
             if (this.IsValid()) Main.Object.Despawn(this);
+
+            collision.GetComponent<Enemy>().Damaged(Damage);
         }
     }
 
@@ -39,14 +41,12 @@ public class PlayerProjectile : MonoBehaviour
     }
 
 
-    public void SetInfo(int  damage, int attackRange)
+    public void SetInfo(int damage, int attackRange)
     {
         Initialize();
         Damage = damage;
         AttackRange = attackRange;
         if (this.gameObject.activeInHierarchy) StartCoroutine(CoCheckDestroy());
-
-        
     }
 
     public void SetVelocity(Vector2 velocity)

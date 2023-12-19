@@ -6,8 +6,6 @@ public class ResourceManager
 {
     private Dictionary<string, GameObject> models = new();
     private Dictionary<string, Sprite> sprites = new();
-    private Dictionary<string, ItemBlueprint> pickupItems;
-    private Dictionary<string, ItemBlueprint> passiveItems;
 
     /// <summary>
     /// Resources 폴더 안 아이템 불러오기
@@ -16,8 +14,6 @@ public class ResourceManager
     {
         LoadPrefabs("Prefabs/Models", models);
         LoadSprites("Sprites", sprites);
-        //LoadBlueprints("ScriptableObjects/Pickup", pickupItems);
-        //LoadBlueprints("ScriptableObjects/Passive", passiveItems);
     }
 
     #region Prefab
@@ -69,6 +65,15 @@ public class ResourceManager
     {
         if (!sprites.TryGetValue(spriteName, out Sprite sprite)) return null;
         return sprite;
+    }
+
+    #endregion
+
+    #region ScriptableObject
+
+    public ItemBlueprint[] GetItemBlueprints(string path)
+    {
+        return Resources.LoadAll<ItemBlueprint>(path);
     }
 
     #endregion
