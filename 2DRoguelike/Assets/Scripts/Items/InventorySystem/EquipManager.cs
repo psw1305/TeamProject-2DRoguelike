@@ -24,6 +24,9 @@ public class EquipManager : MonoBehaviour
         InteractableItemBluePrint passive = itemBlueprint as InteractableItemBluePrint;
         itemSprites.Add(passive.itemSprite);
 
+        // 스탯 추가 방법
+        // Main.Game.Player.Damage.AddModifier(new StatModifier(0.2f, StatModType.Flat, object))
+
         foreach(StatusContainer data in passive.valueList)
         {
             // TODO
