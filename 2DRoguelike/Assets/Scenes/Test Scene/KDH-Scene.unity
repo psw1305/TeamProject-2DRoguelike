@@ -596,6 +596,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8015963625852228647, guid: 6f13016fb187a2347a2617499a2826ee, type: 3}
+      propertyPath: bulletRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015963625852228647, guid: 6f13016fb187a2347a2617499a2826ee, type: 3}
+      propertyPath: bulletSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015963625852228647, guid: 6f13016fb187a2347a2617499a2826ee, type: 3}
+      propertyPath: bulletDamage
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

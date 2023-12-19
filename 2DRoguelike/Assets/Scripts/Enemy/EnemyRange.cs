@@ -3,19 +3,15 @@ using UnityEngine;
 
 public class EnemyRange : Enemy
 {
-
-    public EnemyBullet bullet;
-
     protected override void Awake()
     {
         base.Awake();
 
-        // 자기 공격정보 넣어주기
         _maxHp = 10;
         _movementSpeed = 1;
         _attackSpeed = 1;
         _range = 7;
-
+        _bulletSpeed = 5;
     }
 
     protected override void OnEnable()
@@ -38,14 +34,13 @@ public class EnemyRange : Enemy
 
     void Update()
     {
-        if (enemyState == EnemyState.Dead) return;
+        if (enemyState == EnemyState.Die) return;
+
         Move();
     }
 
     void Move()
     {
-        if (_target == null) return;
-
 
         _agent.SetDestination(_target.transform.position);
 
@@ -72,10 +67,10 @@ public class EnemyRange : Enemy
         }
 
         _agent.stoppingDistance = _range; // 시야거리 초기화
-        _stateCoroutine = StartCoroutine(AttackCoroutin());
+        _stateCoroutine = StartCoroutine(Attack());
     }
 
-    IEnumerator AttackCoroutin()
+    IEnumerator Attack()
     {
         while (true)
         {
@@ -84,22 +79,32 @@ public class EnemyRange : Enemy
 
             yield return new WaitForSeconds(_attackSpeed);
 
-            Attack();
+            FanShape(1, _bulletSpeed, false);
 
-        }
-    }
 
+            yield return new WaitForSeconds(_attackSpeed);
 
     void Attack()
     {
-        EnemyBullet obj = Instantiate(bullet);
-        obj.gameObject.transform.SetParent(transform, false);
-        obj.gameObject.transform.localRotation = Quaternion.Euler(0, 0, AngleToTarget());
+        //EnemyBullet obj = Instantiate(bullet);
+        //obj.gameObject.transform.SetParent(transform, false);
+        //obj.gameObject.transform.localRotation = Quaternion.Euler(0, 0, AngleToTarget());
 
-        obj._bulletSpeed = 5;
-        obj._damage = _attackDamage;
+        //obj._bulletSpeed = 5;
+        //obj._damage = _attackDamage;
 
+       
+
+            FanShape(3, _bulletSpeed, false);
+
+        EnemyProjectile enemyProjectile = Main.Object.Spawn<EnemyProjectile>("EenmyBullet", gameObject.transform.position);
+        enemyProjectile.SetInfo(1, 7);//float 값이라 임의로 넣음
+        enemyProjectile.transform.rotation = Quaternion.Euler(0, 0, AngleToTarget());
+
+        enemyProjectile.SetVelocity(DirectionToTarget() * 5); //5에 발사체 스피드 넣어주시면 됩니다
+        enemyProjectile.gameObject.tag = "EnemyProjectile";
     }
-
+        }
+    }
 
 }
