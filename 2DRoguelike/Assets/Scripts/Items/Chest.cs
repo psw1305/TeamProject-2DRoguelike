@@ -32,7 +32,7 @@ public class Chest : PickupItem
 
         for (int i = 0; i < amount; i++)
         {
-            Main.Reward.ChestReward(Main.Game.Dungeon.CurrentRoom.Container);
+            Main.Reward.ChestReward(Main.Game.Dungeon.CurrentRoom.ObjectContainer);
         }
 
         Destroy(gameObject);
