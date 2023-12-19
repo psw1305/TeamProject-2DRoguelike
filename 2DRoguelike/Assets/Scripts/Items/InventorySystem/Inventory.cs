@@ -27,7 +27,7 @@ public class Inventory : MonoBehaviour
         if(_currentItem != null)
         {
             Vector3 playerLoc = Main.Game.Player.gameObject.transform.position;
-            Main.Reward.CreateReward(_currentItem, playerLoc);
+            //Main.Reward.CreateReward(_currentItem, transform);
         }
         _currentItem = itemBlueprint;
     }

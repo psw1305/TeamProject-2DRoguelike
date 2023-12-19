@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 5910579015163716703}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &6924606967762885200
 CircleCollider2D:
@@ -68,7 +68,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.5
 --- !u!114 &8123343323605058334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,6 +82,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blueprint: {fileID: 11400000, guid: abccead358a9d94459614c78250259c5, type: 2}
+  animator: {fileID: 6565190217000346990}
+  amount: 5
 --- !u!1 &8641515084884429418
 GameObject:
   m_ObjectHideFlags: 0

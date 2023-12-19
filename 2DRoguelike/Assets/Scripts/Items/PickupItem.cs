@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PickupItem : BaseItem
 {
-    [SerializeField] private ItemBlueprint blueprint;
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))

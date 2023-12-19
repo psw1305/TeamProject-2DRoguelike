@@ -1,10 +1,13 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ResourceManager
 {
     private Dictionary<string, GameObject> models = new();
     private Dictionary<string, Sprite> sprites = new();
+    private Dictionary<string, ItemBlueprint> pickupItems;
+    private Dictionary<string, ItemBlueprint> passiveItems;
 
     /// <summary>
     /// Resources 폴더 안 아이템 불러오기
@@ -13,6 +16,8 @@ public class ResourceManager
     {
         LoadPrefabs("Prefabs/Models", models);
         LoadSprites("Sprites", sprites);
+        //LoadBlueprints("ScriptableObjects/Pickup", pickupItems);
+        //LoadBlueprints("ScriptableObjects/Passive", passiveItems);
     }
 
     #region Prefab
@@ -22,7 +27,7 @@ public class ResourceManager
     /// </summary>
     /// <param name="path">폴더 경로</param>
     /// <param name="prefabs">로드할 프리팹 값</param>
-    public void LoadPrefabs(string path, Dictionary<string, GameObject> prefabs)
+    private void LoadPrefabs(string path, Dictionary<string, GameObject> prefabs)
     {
         GameObject[] objs = Resources.LoadAll<GameObject>(path);
         foreach (GameObject obj in objs)
@@ -51,7 +56,7 @@ public class ResourceManager
     /// </summary>
     /// <param name="path">폴더 경로</param>
     /// <param name="sprites">로드할 스프라이트 값</param>
-    public void LoadSprites(string path, Dictionary<string, Sprite> sprites)
+    private void LoadSprites(string path, Dictionary<string, Sprite> sprites)
     {
         Sprite[] objs = Resources.LoadAll<Sprite>(path);
         foreach (Sprite obj in objs)
@@ -67,7 +72,7 @@ public class ResourceManager
     }
 
     #endregion
-    
+
     public GameObject InstantiatePrefab(string key, Transform parent = null, bool pooling = false)
     {
         GameObject prefab = GetObject(key);

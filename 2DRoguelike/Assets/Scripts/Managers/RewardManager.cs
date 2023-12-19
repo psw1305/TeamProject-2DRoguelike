@@ -4,80 +4,59 @@ public class RewardManager
 {
     #region Fields
 
-    private GameObject _pickupFrame;
-    private GameObject _interactableFrame;
-    private GameObject _chestFrame;
-    private ItemTable _itemTable;
+    private GameObject _item;
+    private ItemBlueprint[] _pickupItems;
+    private ItemBlueprint[] _passiveItems;
 
     #endregion
 
     public void Initialize()
     {
-        _itemTable = GameObject.FindObjectOfType<ItemTable>();
+        _item = Main.Resource.GetObject("Pickup_Base");
+        _pickupItems = Resources.LoadAll<ItemBlueprint>("ScriptableObjects/Items/Pickup");
+        _passiveItems = Resources.LoadAll<ItemBlueprint>("ScriptableObjects/Items/Passive");
     }
 
-    private GameObject SetFrame(ItemType itemType)
+    /// <summary>
+    /// 랜덤으로 픽업 아이템 드랍
+    /// </summary>
+    /// <returns>랜덤 픽업 아이템</returns>
+    public ItemBlueprint GetRandomPickupBlueprint()
     {
-        switch(itemType)
+        int rand = Random.Range(0, _pickupItems.Length);
+        return _pickupItems[rand];
+    }
+
+    /// <summary>
+    /// 상자 보상
+    /// </summary>
+    /// <param name="parent"></param>
+    public void ChestReward(Transform parent)
+    {
+        var pickupItem = GameObject.Instantiate(_item, parent).GetComponent<PickupItem>();
+        pickupItem.SetItem(GetRandomPickupBlueprint());
+        
+        // 상자 오픈시, 튀어나오는 연출
+        Vector2 force = Random.insideUnitCircle * 30;     
+        if (pickupItem.GetComponent<Rigidbody2D>())
         {
-            case ItemType.Coin : case ItemType.Heart :
-            case ItemType.Bomb : case ItemType.Key : 
-                return _pickupFrame;
-            case ItemType.Chest :
-                return _chestFrame;
-            case ItemType.Special :
-                return _interactableFrame;
+            pickupItem.GetComponent<Rigidbody2D>().AddForce(force);
         }
-        return null;
     }
 
-    public void CreateReward(ItemBlueprint targetBlueprint, Vector3 position)
+    /// <summary>
+    /// 보물방 전시
+    /// </summary>
+    /// <param name="position"></param>
+    public void DisplayTreasures(Vector2 position)
     {
-        GameObject targetFrame = SetFrame(targetBlueprint.ItemType);
-        BaseItem baseItem = GameObject.Instantiate(targetFrame, position, Quaternion.identity).GetComponent<BaseItem>();
-        baseItem.SetItem(targetBlueprint);
     }
 
-    public void CreateBasicReward(Vector3 position)
+    /// <summary>
+    /// 상점방 전시
+    /// </summary>
+    /// <param name="position"></param>
+    public void DisplayProducts(Vector2 position)
     {
-        ItemBlueprint targetBlueprint;
-
-        int random = Random.Range(1,101);
-        if(random >= 10) targetBlueprint = _itemTable.GetRandomPickupItem();
-        else targetBlueprint = _itemTable.GetRandomActiveItem();
-
-        CreateReward(targetBlueprint, position);
     }
-
-    public void CreateTreasureReward(Vector3 position)
-    {
-        ItemBlueprint targetBlueprint = _itemTable.GetRandomPassiveItem();
-        CreateReward(targetBlueprint, position);
-    }
-
-    public void CreateShopItem(Vector3 position)
-    {
-        // TODO => 아이템 구매 기능
-        ItemBlueprint targetBlueprint;
-
-        int random = Random.Range(1,101);
-        if(random <= 20) targetBlueprint = _itemTable.GetRandomPassiveItem();
-        else targetBlueprint = _itemTable.GetRandomActiveItem();
-
-        CreateReward(targetBlueprint, position);
-    }
-
-    public void CreateRand1()
-    {
-        int rand = Random.Range(-10,10);
-        CreateTreasureReward(new Vector3(rand,rand,0));
-    }
-
-    public void CreateRand2()
-    {
-        int rand = Random.Range(-10,10);
-        CreateBasicReward(new Vector3(rand,rand,0));
-    }
-
-
 }

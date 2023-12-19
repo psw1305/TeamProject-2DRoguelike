@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1750291544503180018}
+  - component: {fileID: 7736724125084243413}
   - component: {fileID: 86538849612483654}
   - component: {fileID: 1650254450899182784}
   m_Layer: 0
-  m_Name: PickupItem
+  m_Name: Pickup_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,6 +35,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &7736724125084243413
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3952561783160375940}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.1
+  m_LinearDrag: 3
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!58 &86538849612483654
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -68,7 +96,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.0001
+  m_Radius: 0.5
 --- !u!114 &1650254450899182784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afcf915c64962e5409c76a6e9397837a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blueprint: {fileID: 0}
+  animator: {fileID: 6404559719451265524}
 --- !u!1 &7467526538948201323
 GameObject:
   m_ObjectHideFlags: 0

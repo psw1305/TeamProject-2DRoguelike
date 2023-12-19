@@ -24,6 +24,7 @@ public class Room : MonoBehaviour
     public RoomType RoomType => roomType;
     public Vector2Int Coordinate => coordinate;
     public List<GameObject> DoorList => doorList;
+    public Transform Container => container;
     public int ActiveDoorCount => _activeDoorList.Count;
     public bool IsArrived => isArrived;
 

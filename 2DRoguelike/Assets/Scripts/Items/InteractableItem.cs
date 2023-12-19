@@ -12,7 +12,7 @@ public class InteractableItem : BaseItem
     }
     public void OnInteract()
     {
-        Inventory.Instance.GetSpecial(_blueprint);
+        Inventory.Instance.GetSpecial(blueprint);
         Destroy(gameObject);
     }
 

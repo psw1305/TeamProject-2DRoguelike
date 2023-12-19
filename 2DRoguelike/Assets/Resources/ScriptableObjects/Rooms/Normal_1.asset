@@ -29,8 +29,6 @@ MonoBehaviour:
     value2: {x: 4, y: 1}
   - value1: {fileID: 1826933904923367474, guid: f0dbbc372e118ef46b3df2c131db9304, type: 3}
     value2: {x: 4, y: 2}
-  enemyList:
-  - value1: {fileID: 5264915059859455069, guid: 5ab97952199b3e248aef23ba977789eb, type: 3}
-    value2: {x: -7, y: 4}
-  - value1: {fileID: 2151391770028553009, guid: 5df07e1f56f1a344d906ce48cdf0a0bd, type: 3}
-    value2: {x: 7, y: 4}
+  - value1: {fileID: 7543223595214573595, guid: c4876801e92656a4883d224dc9623f3c, type: 3}
+    value2: {x: 0, y: 0}
+  enemyList: []
