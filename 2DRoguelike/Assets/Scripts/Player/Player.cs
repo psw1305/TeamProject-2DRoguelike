@@ -138,6 +138,11 @@ public class Player : MonoBehaviour
                 Main.Game.Dungeon.MoveToNextRoom(Vector2Int.right);
             }
         }
+
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Damaged(1);
+        }
     }
 
     #endregion
