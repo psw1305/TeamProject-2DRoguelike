@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 6344722889410809937}
   - component: {fileID: 6562509259665389027}
   - component: {fileID: 7177073185134734793}
-  m_Layer: 0
+  - component: {fileID: 808357084373086897}
+  m_Layer: 8
   m_Name: EnemyRange
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 9135571191833697967}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &6562509259665389027
 NavMeshAgent:
@@ -69,6 +70,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 242320586937384666, guid: 463c08ec808b1064bb069fd53355c5e8, type: 3}
+--- !u!70 &808357084373086897
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2151391770028553009}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.07}
+  m_Size: {x: 0.5, y: 0.69}
+  m_Direction: 0
 --- !u!1 &2163537015421756624
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9135571191833697967}
   - component: {fileID: 5985890027953091669}
-  m_Layer: 4
+  m_Layer: 8
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

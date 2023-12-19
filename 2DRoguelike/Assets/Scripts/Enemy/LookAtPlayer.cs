@@ -7,7 +7,7 @@ public class LookAtPlayer : MonoBehaviour
     /// </summary>
 
 
-    private JEH_Player _target;
+    private Player _target;
     private SpriteRenderer _spriteRenderer;
 
     private void Awake()
@@ -16,7 +16,7 @@ public class LookAtPlayer : MonoBehaviour
     }
     private void OnEnable()
     {
-        _target = FindObjectOfType<JEH_Player>();
+        _target = Main.Game.Player;
     }
 
     private void Update()
