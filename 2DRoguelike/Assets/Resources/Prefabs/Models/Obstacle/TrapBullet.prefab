@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7509931635459025072}
   m_Layer: 0
   m_Name: TrapBullet
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,7 +127,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  Damage: 1
 --- !u!61 &7509931635459025072
 BoxCollider2D:
   m_ObjectHideFlags: 0

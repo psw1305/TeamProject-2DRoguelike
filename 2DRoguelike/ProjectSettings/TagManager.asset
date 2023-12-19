@@ -7,6 +7,7 @@ TagManager:
   - DoorCollider
   - PlayerProjectile
   - Wall
+  - Obstacle
   layers:
   - Default
   - TransparentFX
