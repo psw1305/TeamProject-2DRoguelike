@@ -170,9 +170,9 @@ MonoBehaviour:
     m_Bits: 64
   trapShootDelay: 1
   bullet: {fileID: 3313010071783593888, guid: dc02976c0c61f3a42bd5a9f6149b7866, type: 3}
-  bulletDamage: 0
-  bulletRange: 0
-  bulletSpeed: 0
+  bulletDamage: 1
+  bulletRange: 5
+  bulletSpeed: 5
 --- !u!1 &3324684773631383341
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 602497217059687531}
   m_Layer: 0
   m_Name: RangeTrap
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,7 +207,7 @@ Transform:
   - {fileID: 4708375518741909887}
   - {fileID: 5577588080436169278}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &-8805669588890722547
 Rigidbody2D:
