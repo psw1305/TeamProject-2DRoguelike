@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 1923978673433894447}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 951868183902b7b4fb3590b7212d007c, type: 2}
+  m_Controller: {fileID: 22100000, guid: 7f5f9e8f49b24a64cb28d541f190f2b1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 3947778597382946851}
   - component: {fileID: 6715465236113501022}
   m_Layer: 8
-  m_Name: Melee1
+  m_Name: Enemy_Goblin
   m_TagString: Enemy
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -225,7 +225,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 0.61}
+  m_Size: {x: 0.44, y: 0.55}
   m_Direction: 0
 --- !u!114 &3947778597382946851
 MonoBehaviour:
@@ -240,6 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 683310922939161249, guid: 463c08ec808b1064bb069fd53355c5e8, type: 3}
+  enemySO: {fileID: 11400000, guid: f87825f638bbe694ab2ecb1d647a9bec, type: 2}
 --- !u!114 &6715465236113501022
 MonoBehaviour:
   m_ObjectHideFlags: 0

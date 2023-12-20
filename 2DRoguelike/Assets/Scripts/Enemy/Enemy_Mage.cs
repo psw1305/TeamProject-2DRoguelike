@@ -1,18 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyRange : Enemy
+public class Enemy_Mage : Enemy
 {
-    protected override void Awake()
-    {
-        base.Awake();
-
-        _maxHp = 30;
-        _movementSpeed = 1;
-        _attackSpeed = 1;
-        _range = 7;
-        _bulletSpeed = 5;
-    }
 
     protected override void OnEnable()
     {
@@ -23,18 +13,16 @@ public class EnemyRange : Enemy
 
     void Initialize()
     {
-        _currentHp = _maxHp;
-
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
-        _agent.speed = _movementSpeed;
-        _agent.stoppingDistance = _range;
+        _agent.speed = enemySO._movementSpeed;
+        _agent.stoppingDistance = enemySO._range;
     }
 
 
     void Update()
     {
-        if (enemyState != EnemyState.live) return;
+        if (enemySO.enemyState != EnemySO.EnemyState.live) return;
 
         Move();
     }
@@ -62,11 +50,11 @@ public class EnemyRange : Enemy
 
         if (!IsTargetStraight())
         {
-            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance - 0.1f, 1, _range);
+            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance - 0.1f, 1, enemySO._range);
             return;
         }
 
-        _agent.stoppingDistance = _range; // 시야거리 초기화
+        _agent.stoppingDistance = enemySO._range; // 시야거리 초기화
         _attackCoroutine = StartCoroutine(Attack());
     }
 
@@ -77,22 +65,13 @@ public class EnemyRange : Enemy
             if (!IsTargetStraight())
                 StopStateCoroutin();
 
-            yield return new WaitForSeconds(_attackSpeed);
 
 
-            FanShape(1, _bulletSpeed);
+            yield return new WaitForSeconds(enemySO._attackSpeed);
 
-            yield return new WaitForSeconds(_attackSpeed);
+            FanShape(1, enemySO._bulletSpeed);
 
-            FanShape(3, _bulletSpeed);
 
-            yield return new WaitForSeconds(_attackSpeed);
-
-          Circle(12, _bulletSpeed);
-
-            yield return new WaitForSeconds(_attackSpeed);
-
-            Circle(4, _bulletSpeed);
         }
     }
 
