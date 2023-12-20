@@ -1,7 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 using static EnemySO;
@@ -25,7 +23,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public EnemyBullet bullet;
      public EnemySO enemySO;
 
     protected Player _target;
@@ -53,7 +50,8 @@ public class Enemy : MonoBehaviour
 
     protected EnemyState _enemyState;
 
-
+    protected Action dieAction;
+    protected Action damagedAction;
 
     #endregion
 
@@ -95,6 +93,7 @@ public class Enemy : MonoBehaviour
         if (_attackCoroutine != null) StopCoroutine(_attackCoroutine);
 
         _attackCoroutine = null;
+        CancelInvoke();
     }
 
     protected void StopStateCoroutin()
@@ -114,6 +113,8 @@ public class Enemy : MonoBehaviour
 
         _currentHp -= damage;
 
+        damagedAction?.Invoke();
+
         StartCoroutine(FlickerCharacter());
 
         if (_currentHp <= 0)
@@ -123,6 +124,9 @@ public class Enemy : MonoBehaviour
             Main.Game.Dungeon.CurrentRoom.CheckRoomClear();     // 적 사망 => 방 클리어 조건 체크
 
             _animator?.SetTrigger(DieHash);
+
+            dieAction?.Invoke();
+
             // 사라지는 이펙트 추가
             Destroy(gameObject);
 
@@ -154,7 +158,7 @@ public class Enemy : MonoBehaviour
             float angle = minAngle + rot * i;
 
             if (isRandom)
-                angle += Random.Range(-AngleToTarget(), AngleToTarget() * 2);
+                angle += UnityEngine.Random.Range(-AngleToTarget(), AngleToTarget() * 2);
             else
                 angle += AngleToTarget();
 
@@ -186,7 +190,7 @@ public class Enemy : MonoBehaviour
 
     protected void BulletGenerator(float rotate, float speed)
     {
-        EnemyBullet obj = Instantiate(bullet);
+        EnemyBullet obj = Instantiate(enemySO.bullet);
         obj.gameObject.transform.SetParent(transform, false);
         obj.gameObject.transform.localRotation = Quaternion.Euler(0, 0, rotate);
 

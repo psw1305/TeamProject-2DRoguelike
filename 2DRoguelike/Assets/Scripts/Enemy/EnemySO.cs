@@ -25,4 +25,5 @@ public class EnemySO : ScriptableObject
     }
     [HideInInspector] public EnemyState enemyState;
 
+    public EnemyBullet bullet;
 }

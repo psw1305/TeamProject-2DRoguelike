@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Enemy_Boss1
   m_EditorClassIdentifier: 
   _maxHp: 300
-  _currentHp: 30
-  _range: 40
+  _range: 20
   _movementSpeed: 3
   _attackSpeed: 1.1
   _attackDamage: 1
   _bulletSpeed: 7
   Phase: 0
   enemyState: 1
+  bullet: {fileID: 683310922939161249, guid: 463c08ec808b1064bb069fd53355c5e8, type: 3}

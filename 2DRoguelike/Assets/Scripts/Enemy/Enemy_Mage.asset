@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Enemy_Mage
   m_EditorClassIdentifier: 
   _maxHp: 30
-  _currentHp: 30
   _range: 7
   _movementSpeed: 1
   _attackSpeed: 1.4
@@ -21,3 +20,4 @@ MonoBehaviour:
   _bulletSpeed: 7
   Phase: 0
   enemyState: 1
+  bullet: {fileID: 683310922939161249, guid: 463c08ec808b1064bb069fd53355c5e8, type: 3}

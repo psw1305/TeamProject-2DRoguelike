@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Enemy_Goblin
   m_EditorClassIdentifier: 
   _maxHp: 40
-  _currentHp: 0
   _range: 1.2
   _movementSpeed: 1.5
   _attackSpeed: 1
@@ -21,3 +20,4 @@ MonoBehaviour:
   _bulletSpeed: 0
   Phase: 0
   enemyState: 0
+  bullet: {fileID: 683310922939161249, guid: 463c08ec808b1064bb069fd53355c5e8, type: 3}

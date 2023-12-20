@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Enemy_Horse
   m_EditorClassIdentifier: 
   _maxHp: 20
-  _currentHp: 20
   _range: 3
   _movementSpeed: 4
   _attackSpeed: 1
@@ -21,3 +20,4 @@ MonoBehaviour:
   _bulletSpeed: 0
   Phase: 0
   enemyState: 1
+  bullet: {fileID: 683310922939161249, guid: 463c08ec808b1064bb069fd53355c5e8, type: 3}

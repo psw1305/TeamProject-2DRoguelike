@@ -251,6 +251,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc0b421d2a86d1a4aa7818fd765d4efb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 683310922939161249, guid: 463c08ec808b1064bb069fd53355c5e8, type: 3}
   enemySO: {fileID: 11400000, guid: c973d96e7c0fa70488a8eba28dadc93d, type: 2}
+  hpSlider: {fileID: 3302892206433361109, guid: 7647aab0154154147852fa46c50b06af, type: 3}
   introAnim: {fileID: 5045337486307785425, guid: 6f99b9bf96f34fe418d80afd9ad56870, type: 3}

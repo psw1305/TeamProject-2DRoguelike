@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Enemy_Plus
   m_EditorClassIdentifier: 
   _maxHp: 30
-  _currentHp: 30
   _range: 15
   _movementSpeed: 0.5
   _attackSpeed: 1.5
@@ -21,3 +20,4 @@ MonoBehaviour:
   _bulletSpeed: 4
   Phase: 0
   enemyState: 1
+  bullet: {fileID: 683310922939161249, guid: 463c08ec808b1064bb069fd53355c5e8, type: 3}
