@@ -13,6 +13,7 @@ public class SpikeTrap : Obstacle
 
     private void Start()
     {
+        
         gameObject.AddComponent<Animator>();
         _animator = GetComponent<Animator>();
         _animator.runtimeAnimatorController = animController;
@@ -20,7 +21,7 @@ public class SpikeTrap : Obstacle
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        if (activeTargetLayer.value == (activeTargetLayer | (1 << collision.gameObject.layer)))
+        if (collision.CompareTag("Player"))
         {
             Invoke("ActiveTrap", trapActiveDelay);
         }
@@ -35,8 +36,12 @@ public class SpikeTrap : Obstacle
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _animator.SetBool("isActive", false);
-        CancelInvoke();
+        if (collision.CompareTag("Player"))
+        {
+            _animator.SetBool("isActive", false);
+            CancelInvoke();
+        }
+
     }
 
     private void GiveDamage()

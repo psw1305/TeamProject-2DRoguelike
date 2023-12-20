@@ -297,7 +297,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &693660942
 Rigidbody2D:
@@ -436,7 +436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3657339099826883981, guid: 711422058f154d749944f7faa383e796, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.79
       objectReference: {fileID: 0}
     - target: {fileID: 3657339099826883981, guid: 711422058f154d749944f7faa383e796, type: 3}
       propertyPath: m_LocalPosition.y
@@ -501,7 +501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 539530117500703728, guid: e562994d0d5997a489b3f689f69493b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.078
       objectReference: {fileID: 0}
     - target: {fileID: 539530117500703728, guid: e562994d0d5997a489b3f689f69493b9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -554,7 +554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6240011525851717391, guid: 6f13016fb187a2347a2617499a2826ee, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6240011525851717391, guid: 6f13016fb187a2347a2617499a2826ee, type: 3}
       propertyPath: m_LocalPosition.x
@@ -595,18 +595,6 @@ PrefabInstance:
     - target: {fileID: 6240011525851717391, guid: 6f13016fb187a2347a2617499a2826ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8015963625852228647, guid: 6f13016fb187a2347a2617499a2826ee, type: 3}
-      propertyPath: bulletRange
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8015963625852228647, guid: 6f13016fb187a2347a2617499a2826ee, type: 3}
-      propertyPath: bulletSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8015963625852228647, guid: 6f13016fb187a2347a2617499a2826ee, type: 3}
-      propertyPath: bulletDamage
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
