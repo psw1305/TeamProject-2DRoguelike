@@ -24,23 +24,7 @@ public class Enemy : MonoBehaviour
     }
 
     public EnemyBullet bullet;
-    
-
-    protected int _id;
-    protected string _name;
-    protected int _maxHp;
-    protected int _currentHp;
-    protected float _range; // 사정거리
-
-    protected float _movementSpeed;
-
-    protected float _attackSpeed; // 공격쿨타임
-    protected int _attackDamage;
-
-    protected float _bulletSpeed; // 총알 속도
-
-    protected int Phase = 0; // 기술순서
-
+    public EnemySO enemySO;
 
     protected Player _target;
     protected NavMeshAgent _agent;
@@ -50,15 +34,6 @@ public class Enemy : MonoBehaviour
     protected SpriteRenderer _spriteRenderer;
     protected Animator _animator;
 
-    protected enum EnemyState
-    {
-        Ready, // 이벤트씬 용
-        live,
-        Die
-    }
-    protected EnemyState enemyState;
-
-
     protected readonly int isWalkHash = Animator.StringToHash("isWalk");
     protected readonly int AttackHash = Animator.StringToHash("Attack");
     protected readonly int DieHash = Animator.StringToHash("Die");
@@ -67,7 +42,7 @@ public class Enemy : MonoBehaviour
     #endregion
 
 
-    protected virtual void Awake()
+    protected void Awake()
     {
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _animator = GetComponentInChildren<Animator>();
@@ -83,8 +58,12 @@ public class Enemy : MonoBehaviour
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
 
-        enemyState = EnemyState.Ready;
-        enemyState = EnemyState.live;
+        enemySO.enemyState = EnemySO.EnemyState.Ready;
+        enemySO.enemyState = EnemySO.EnemyState.live;
+
+
+        enemySO._currentHp = enemySO._maxHp;
+
     }
 
 
@@ -108,19 +87,19 @@ public class Enemy : MonoBehaviour
 
     public void Damaged(int damage)
     {
-        if (enemyState != EnemyState.live) return;
+        if (enemySO.enemyState != EnemySO.EnemyState.live) return;
 
-        _currentHp -= damage;
+        enemySO._currentHp -= damage;
 
         StartCoroutine(FlickerCharacter());
 
-        if (_currentHp <= 0)
+        if (enemySO._currentHp <= 0)
         {
-            enemyState = EnemyState.Die;
+            enemySO.enemyState = EnemySO.EnemyState.Die;
             StopAllCoroutines();
             Main.Game.Dungeon.CurrentRoom.CheckRoomClear();     // 적 사망 => 방 클리어 조건 체크
 
-            _animator.SetTrigger(DieHash);
+            _animator?.SetTrigger(DieHash);
             // 사라지는 이펙트 추가
             Destroy(gameObject);
             
@@ -141,6 +120,10 @@ public class Enemy : MonoBehaviour
 
     protected void FanShape(int bulletCount = 1, float rot = 7f, float bulletSpeed = 5f, bool isRandom = false) // 플레이어방향 부채꼴 공격
     {
+        _animator?.SetBool(isWalkHash, false);
+        _animator?.SetTrigger(AttackHash);
+
+
         float minAngle = -(bulletCount / 2f) * rot + 0.5f * rot;  // 탄환끼리 rot 각도로 벌린다
 
         for (int i = 0; i < bulletCount; i++)
@@ -153,13 +136,15 @@ public class Enemy : MonoBehaviour
 
     protected void Circle(int bulletCount = 1, float bulletSpeed = 5f, bool isRandom = false) // 방사형 공격
     {
+        _animator?.SetBool(isWalkHash, false);
+        _animator?.SetTrigger(AttackHash);
 
         float deltaAngle = 2 * Mathf.PI / bulletCount; // 360도를 Count 개수로 등분
 
         for (int i = 0; i < bulletCount; i++)
         {
             float currentAngle = i * deltaAngle;
-            currentAngle += AngleToTarget() / 2f;
+         //   currentAngle += AngleToTarget() / 2f;
             float x = Mathf.Cos(currentAngle);
             float y = Mathf.Sin(currentAngle);
             Vector2 direction = new Vector2(x, y).normalized;
@@ -220,7 +205,7 @@ public class Enemy : MonoBehaviour
     void OnDrawGizmosSelected() // 사정거리보기
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _range);
+        Gizmos.DrawWireSphere(transform.position, enemySO._range);
     }
 
 
