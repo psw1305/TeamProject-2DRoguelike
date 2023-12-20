@@ -224,9 +224,7 @@ public class Dungeon : MonoBehaviour
     {
         int index = UnityEngine.Random.Range(0, _normalRooms.Count);
         var normalRoom = _normalRooms[index];
-        // 임시 주석 처리
-        //_normalRooms.RemoveAt(index);
-
+        _normalRooms.RemoveAt(index);
         return normalRoom;
     }
 
@@ -270,7 +268,7 @@ public class Dungeon : MonoBehaviour
         // 방 도착시 => 내부의 콘텐츠 생성 [장애물, 적, 오브젝트]
         if (!_currentRoom.IsArrived)
         {
-            _currentRoom.GenerateRoomContents();
+            _currentRoom.GenerateRoomContents(delaySeconds);
         }
 
         // UI 미니맵 업데이트

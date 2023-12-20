@@ -113,6 +113,8 @@ public class PlayerInputController : CharacterController
 
     private void CreateProjectile(Vector2 direction)
     {
+        SFX.Instance.PlayOneShot(SFX.Instance.playerAtk);
+
         // 발사체의 Sprite 회전
         float angle = Mathf.Atan2(_aimDirection.y, _aimDirection.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -123,7 +125,6 @@ public class PlayerInputController : CharacterController
         projectile.transform.rotation = rotation;
         projectile.SetVelocity(_aimDirection * (int)Main.Game.Player.ShotSpeed.Value);
         projectile.gameObject.tag = "PlayerProjectile";
-
     }
 
    

@@ -143,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 462699daa0223b3448030b41ad4f5244, type: 2}
   bgm: {fileID: 8300000, guid: 24873e1a38f88be49a78eb37c09f56e1, type: 3}
+  boss: {fileID: 8300000, guid: d4657bedfa71e1d43bd26fe8af6ef7e6, type: 3}
 --- !u!1 &5427125117502161968
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,6 +299,7 @@ MonoBehaviour:
   useBomb: {fileID: 8300000, guid: 79bf8e596f4c28c4ba758dc7b1513878, type: 3}
   explodeBomb: {fileID: 8300000, guid: b297de45db5f5bf4b8280b4b23b7a4b7, type: 3}
   enemyAtk: {fileID: 8300000, guid: 1e415df681b56c040ad2750f69213c07, type: 3}
+  bossIntro: {fileID: 8300000, guid: c3abe3d305ddc034a87089ef87f452cf, type: 3}
 --- !u!1 &7580983574363506155
 GameObject:
   m_ObjectHideFlags: 0

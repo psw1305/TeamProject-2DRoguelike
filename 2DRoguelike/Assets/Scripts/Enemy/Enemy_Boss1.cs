@@ -61,6 +61,10 @@ public class Enemy_Boss1 : Enemy
         _enemyState = EnemySO.EnemyState.Ready;
 
         _intro = Instantiate(introAnim);
+
+        BGM.Instance.Stop();
+        SFX.Instance.PlayOneShot(SFX.Instance.bossIntro);
+
         Invoke("BattleBegen", 2.467f);
 
     }
@@ -70,6 +74,8 @@ public class Enemy_Boss1 : Enemy
     {
         Destroy(_intro.gameObject);
         _enemyState = EnemySO.EnemyState.live;
+
+        BGM.Instance.Play(BGM.Instance.boss, true);
     }
 
 

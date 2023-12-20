@@ -53,6 +53,7 @@ public class SFX : AudioSystem<SFX>
 
     [Header("Enemy")]
     public AudioClip enemyAtk;
+    public AudioClip bossIntro;
 
     public void PlayOneShot(AudioClip clip, float volumeScale = 1.0f)
     {
