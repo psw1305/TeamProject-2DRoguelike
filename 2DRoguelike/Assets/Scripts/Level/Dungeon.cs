@@ -10,7 +10,7 @@ public class Dungeon : MonoBehaviour
     [SerializeField] private int roomAmount;
 
     // 방 설계도 테스트
-    [Header("임시 테스트 설계도")]
+    [Header("Test Blueprint")]
     [SerializeField] private RoomBlueprint startRoom;
     [SerializeField] private RoomBlueprint normalRoom;
     [SerializeField] private RoomBlueprint treasureRoom;

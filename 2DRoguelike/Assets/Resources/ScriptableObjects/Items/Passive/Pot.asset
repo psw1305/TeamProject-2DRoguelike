@@ -15,9 +15,8 @@ MonoBehaviour:
   itemName: Pot
   itemAmount: 1
   itemAnimationController: {fileID: 0}
-  getRadius: 2
   itemType: 6
-  itemCost: 50
+  itemCost: 15
   interactType: 2
   itemSprite: {fileID: -1918498691, guid: aa07ad6056a3ed0429ad7530e16488a4, type: 3}
   valueList:

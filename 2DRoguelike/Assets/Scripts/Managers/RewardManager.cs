@@ -100,11 +100,12 @@ public class RewardManager
     /// <param name="position"></param>
     public void DisplayProducts(Vector2 position)
     {
-        float[] x = {-5,0,5};
-        for(int i=0; i<3; i++)
+        float x = 5;
+
+        for (int i = 0; i < 3; i++)
         {
             var shopItem = GameObject.Instantiate(_shopBase).GetComponent<ShopItem>();
-            shopItem.gameObject.transform.position = position + new Vector2(x[i] , 0);
+            shopItem.gameObject.transform.position = position + new Vector2((i * x) - 5, 0);
             shopItem.SetItem(GetRandomPassiveBlueprint());
         }
     }

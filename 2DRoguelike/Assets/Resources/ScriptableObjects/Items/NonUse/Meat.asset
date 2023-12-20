@@ -16,7 +16,7 @@ MonoBehaviour:
   itemAmount: 0
   itemAnimationController: {fileID: 0}
   itemType: 0
-  itemCost: 0
+  itemCost: 15
   interactType: 0
   itemSprite: {fileID: 0}
   valueList: []

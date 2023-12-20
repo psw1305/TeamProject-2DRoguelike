@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomAmount: 10
   startRoom: {fileID: 11400000, guid: d3d77a25db499bc43b8c80fabcfb8f70, type: 2}
-  normalRoom: {fileID: 11400000, guid: d9bb8dea043baf44a8b4d6ad61138b54, type: 2}
-  treasureRoom: {fileID: 11400000, guid: 50bad3228fa2aa74e8a86ec4ed424371, type: 2}
-  shopRoom: {fileID: 11400000, guid: 50bad3228fa2aa74e8a86ec4ed424371, type: 2}
-  bossRoom: {fileID: 11400000, guid: 50bad3228fa2aa74e8a86ec4ed424371, type: 2}
+  normalRoom: {fileID: 11400000, guid: 50bad3228fa2aa74e8a86ec4ed424371, type: 2}
+  treasureRoom: {fileID: 11400000, guid: 960f7f3b9b39c5544bd45f2fd5d6b0e4, type: 2}
+  shopRoom: {fileID: 11400000, guid: b5edd83a7cc291e43be3c18b96916077, type: 2}
+  bossRoom: {fileID: 11400000, guid: d542b48126199584084ce9b56da9dc84, type: 2}
