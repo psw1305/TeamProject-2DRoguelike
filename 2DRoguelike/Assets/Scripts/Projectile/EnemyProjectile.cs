@@ -29,6 +29,7 @@ public class EnemyProjectile : MonoBehaviour
         else if (collision.gameObject.CompareTag("Player"))
         {
             Main.Game.Player.Damaged(1);
+            Main.Game.Player.Invincible = true;
             if (this.IsValid()) Main.Object.Despawn(this);
         }
     }
