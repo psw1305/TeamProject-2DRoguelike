@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     public Player()
     {
-        HP = new StatUnit(3);
+        HP = new StatUnit(6);
         Speed = new StatUnit(1f);
         Damage = new StatUnit(10);
         AttackSpeed = new StatUnit(0.3f);
@@ -30,9 +30,9 @@ public class Player : MonoBehaviour
         ShotSpeed = new StatUnit(5);
 
         CurrentHp = (int)HP.BaseValue;
-        Coin = 99;
-        Key = 99;
-        Bomb = 99;
+        Coin = 10;
+        Key = 0;
+        Bomb = 1;
     }
 
     public void Initialize()
@@ -112,14 +112,6 @@ public class Player : MonoBehaviour
 
     #region Attribute Method
 
-    public void Heal(int heal)
-    {
-        if (CurrentHp + heal > HP.Value)
-        {
-
-        }
-    }
-
     public void Damaged(int damage)
     {
         CurrentHp -= damage;
@@ -127,7 +119,7 @@ public class Player : MonoBehaviour
         if (CurrentHp <= 0)
         {
             CurrentHp = 0;
-            // TODO => 사망 처리
+            Main.Game.GameStop();
         }
 
         Main.UI.PlayerUI.SetCurrentHP(CurrentHp.ToString());

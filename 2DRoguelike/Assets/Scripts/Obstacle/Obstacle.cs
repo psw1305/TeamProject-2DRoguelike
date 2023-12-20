@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
 public class Obstacle : MonoBehaviour, IGenerateReward
@@ -11,26 +9,24 @@ public class Obstacle : MonoBehaviour, IGenerateReward
 
     [SerializeField] private LayerMask canDestroyLayer;
 
-    private GameObject _mainObj;
-
-    protected virtual void DestroySelf()
+    public virtual void DestroySelf()
     {
         //1. 파티클 생성 및 재생
-        Instantiate(destroyParticle, gameObject.transform.position, Quaternion.identity);
+        Instantiate(destroyParticle, transform.position, Quaternion.identity);
         destroyParticle.Play();
+        
         //2. 보상 생성 판정
         GenerateReward();
 
         //3. 객체 파괴
-        _mainObj = transform.parent.gameObject;
-        Destroy(_mainObj);
+        Destroy(gameObject);
     }
 
     public void GenerateReward()
     {
         if (Random.Range(1, 101) <= RewardDropRate)
         {
-            //GetComponent<RewardManager>().CreateBasicReward(gameObject.transform.position);
+            Main.Reward.PickupItemDrop(this.transform.position, Main.Game.Dungeon.CurrentRoom.ObjectContainer, 0);
         }
     }
     protected virtual void OnTriggerEnter2D(Collider2D collision)

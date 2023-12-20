@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Cinemachine.DocumentationSortingAttribute;
 
 public class Room : MonoBehaviour
 {
@@ -174,7 +173,7 @@ public class Room : MonoBehaviour
             
             if (_roomBlueprint.IsReward) 
             {
-                GenerateRoomClearingReward(); 
+                RoomClearReward(); 
             }
             
             isCleared = true;
@@ -184,9 +183,9 @@ public class Room : MonoBehaviour
     /// <summary>
     /// 방 클리어시, 보상 획득
     /// </summary>
-    private void GenerateRoomClearingReward()
+    private void RoomClearReward()
     {
-        // TODO => 보상 체크
+        Main.Reward.GenerateReward(_roomBlueprint.RewardPosition, ObjectContainer);
     }
 
     public GameObject GenerateObject(GameObject prefab, Vector2 position, Transform container)

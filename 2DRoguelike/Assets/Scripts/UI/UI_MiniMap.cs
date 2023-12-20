@@ -24,6 +24,8 @@ public class UI_Minimap : MonoBehaviour
 
     #endregion
 
+    #region Minimap Methods
+
     public void CreatMinimap()
     {
         _miniRoomPrefab = Main.Resource.GetObject("MinimapCell");
@@ -32,7 +34,6 @@ public class UI_Minimap : MonoBehaviour
 
         var roomArray = Main.Game.Dungeon.RoomArray;
         _miniRoomArray = new GameObject[roomArray.GetLength(0), roomArray.GetLength(1)];
-        Debug.Log(Main.Game.Dungeon.RoomArray.Length);
 
         foreach (Room room in roomArray)
         {
@@ -111,4 +112,6 @@ public class UI_Minimap : MonoBehaviour
 
         UpdateMinimap(Vector2Int.zero);
     }
+
+    #endregion
 }

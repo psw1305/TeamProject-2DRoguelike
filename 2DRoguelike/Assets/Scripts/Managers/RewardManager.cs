@@ -11,6 +11,9 @@ public class RewardManager
     private ItemBlueprint[] _pickupItems;
     private ItemBlueprint[] _passiveItems;
 
+    private GameObject _normalChest;
+    private GameObject _goldenChest;
+
     #endregion
 
     public void Initialize()
@@ -20,6 +23,9 @@ public class RewardManager
         _shopBase = Main.Resource.GetObject("Shop_Base");
         _pickupItems = Resources.LoadAll<ItemBlueprint>("ScriptableObjects/Items/Pickup");
         _passiveItems = Main.Resource.GetItemBlueprints("ScriptableObjects/Items/Passive");
+
+        _normalChest = Main.Resource.GetObject("Pickup_Chest");
+        _goldenChest = Main.Resource.GetObject("Pickup_GoldenChest");
     }
 
     /// <summary>
@@ -39,20 +45,41 @@ public class RewardManager
     }
 
     /// <summary>
-    /// 상자 보상
+    /// 랜덤 상자 생성
     /// </summary>
-    /// <param name="parent"></param>
-    public void ChestReward(Vector2 position, Transform parent)
+    /// <param name="container"></param>
+    public void GenerateReward(Vector2 position, Transform container)
+    {
+        GameObject chest;
+
+        if (Random.Range(1, 101) <= 50)
+        {
+            chest = GameObject.Instantiate(_normalChest);
+        }
+        else
+        {
+            chest = GameObject.Instantiate(_goldenChest);
+        }
+
+        chest.transform.SetParent(container);
+        chest.transform.localPosition = position;
+    }
+
+    /// <summary>
+    /// 랜덤 픽업 아이템 드랍
+    /// </summary>
+    /// <param name="container"></param>
+    public void PickupItemDrop(Vector2 position, Transform container, float force = 30)
     {
         var pickupItem = GameObject.Instantiate(_pickupBase, position, Quaternion.identity).GetComponent<PickupItem>();
-        pickupItem.transform.SetParent(parent);
+        pickupItem.transform.SetParent(container);
         pickupItem.SetItem(GetRandomPickupBlueprint());
         
         // 상자 오픈시, 튀어나오는 연출
-        Vector2 force = Random.insideUnitCircle * 30;     
+        Vector2 knockbackForce = Random.insideUnitCircle * force;     
         if (pickupItem.GetComponent<Rigidbody2D>())
         {
-            pickupItem.GetComponent<Rigidbody2D>().AddForce(force);
+            pickupItem.GetComponent<Rigidbody2D>().AddForce(knockbackForce);
         }
     }
 

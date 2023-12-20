@@ -22,7 +22,7 @@ public class Chest : PickupItem
 
     private IEnumerator OpenChest()
     {
-        if (isKey && !Main.Game.Player.UseKey()) yield return null;
+        if (isKey && !Main.Game.Player.UseKey()) yield break;
 
         _isOpen = true;
         yield return new WaitForSeconds(0.2f);
@@ -30,7 +30,7 @@ public class Chest : PickupItem
 
         for (int i = 0; i < amount; i++)
         {
-            Main.Reward.ChestReward(this.transform.position, Main.Game.Dungeon.CurrentRoom.ObjectContainer);
+            Main.Reward.PickupItemDrop(this.transform.position, Main.Game.Dungeon.CurrentRoom.ObjectContainer);
         }
     }
 }

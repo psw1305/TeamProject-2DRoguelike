@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2423842967923055433}
   - component: {fileID: 8123343323605058334}
   m_Layer: 0
-  m_Name: Pickup_GoldChest
+  m_Name: Pickup_GoldenChest
   m_TagString: PickupItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

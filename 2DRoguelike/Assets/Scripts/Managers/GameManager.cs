@@ -4,6 +4,11 @@ public class GameManager
 {
     #region Properties
 
+    public IGameState CurrentState { get; private set; }
+    public PlayingState Playing { get; private set; }
+    public PausedState Paused { get; private set; }
+    public StopState Stop { get; private set; }
+
     public Dungeon Dungeon { get; private set; }
     public Player Player { get; private set; }
 
@@ -19,6 +24,35 @@ public class GameManager
         var playerObj = GameObject.Instantiate(Main.Resource.GetObject("Player"));
         Player = playerObj.GetComponent<Player>();
         Player.Initialize();
+
+        Playing = new PlayingState(this);
+        Paused = new PausedState(this);
+        Stop = new StopState(this);
+
+        ChangeState(Playing);
+    }
+
+    #endregion
+
+    #region Progress
+
+    /// <summary>
+    /// 게임 상태 변환 => 일시정지, 플레이
+    /// </summary>
+    /// <param name="newState">새로 주어질 상태</param>
+    public void ChangeState(IGameState newState)
+    {
+        CurrentState?.ExitState();
+        CurrentState = newState;
+        CurrentState?.EnterState();
+    }
+
+    /// <summary>
+    /// 게임 정지 => 플레이어 사망
+    /// </summary>
+    public void GameStop()
+    {
+        ChangeState(Stop);
     }
 
     #endregion
