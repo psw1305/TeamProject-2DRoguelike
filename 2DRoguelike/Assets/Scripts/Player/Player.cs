@@ -34,10 +34,12 @@ public class Player : MonoBehaviour
 
     #region Fields
 
+    private Rigidbody2D _rigidbody;
     private SpriteRenderer _sprite;
     private bool _invincible = false;
     private Coroutine _coInvincible;
     [SerializeField] private float _invincibilityTime = 1f;
+    private PlayerInputController _playerInputController;
 
     #endregion
 
@@ -45,11 +47,11 @@ public class Player : MonoBehaviour
 
     public Player()
     {
-        HP = new StatUnit(6);
-        Speed = new StatUnit(1f);
+        HP = new StatUnit(5);
+        Speed = new StatUnit(5);
         Damage = new StatUnit(10);
-        AttackSpeed = new StatUnit(0.3f);
-        AttackRange = new StatUnit(2f);
+        AttackSpeed = new StatUnit(0.7f);
+        AttackRange = new StatUnit(1);
         ShotSpeed = new StatUnit(5);
 
         CurrentHp = (int)HP.BaseValue;
@@ -66,6 +68,8 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         _sprite = GetComponentInChildren<SpriteRenderer>();
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _playerInputController = GetComponentInChildren<PlayerInputController>();
     }
 
     #endregion
@@ -150,12 +154,13 @@ public class Player : MonoBehaviour
 
     #region Attribute Method
 
-    public void Damaged(int damage)
+    public void Damaged(Transform target, int damage)
     {
         CurrentHp -= damage;
         SFX.Instance.PlayOneShot(SFX.Instance.playerHit);
 
         StartCoroutine(AlphaModifyAfterCollision());
+        PlayerKnockback(target, damage);
 
         if (CurrentHp <= 0)
         {
@@ -164,6 +169,24 @@ public class Player : MonoBehaviour
         }
 
         Main.UI.PlayerUI.SetCurrentHP(CurrentHp.ToString());
+    }
+
+
+    private void PlayerKnockback(Transform target, int damage)
+    {
+        //target.transform.position - transform.position;
+        Vector2 direction = -(target.transform.position - transform.position).normalized;
+        Vector2 knockbackForce = direction * damage;
+
+        _playerInputController.KnockbackDirection = knockbackForce;
+
+        StartCoroutine(ResetKnockback());
+    }
+
+    private IEnumerator ResetKnockback()
+    {
+        yield return new WaitForSeconds(0.1f);
+        _playerInputController.KnockbackDirection = Vector2.zero;
     }
 
     #endregion
@@ -195,10 +218,10 @@ public class Player : MonoBehaviour
                 Main.Game.Dungeon.MoveToNextRoom(Vector2Int.right);
             }
         }
-
+        if (Invincible && collision.gameObject.CompareTag("Enemy")) return;
         else if (collision.gameObject.CompareTag("Enemy"))
         {
-            Damaged(1);
+            Damaged(collision.transform,1);
             Invincible = true;
         }
     }
@@ -218,13 +241,13 @@ public class Player : MonoBehaviour
         float targetRed = 0.1f;
 
         Color startColor = _sprite.color;
-        Color targetColor = new Color(startColor.a, targetRed, targetRed, startColor.a);
+        Color targetColor = new Color(startColor.a, targetRed, targetRed, targetRed);
 
-        for (int i = 0; i < 1; ++i)
+        for (int i = 0; i < 3; ++i)
         {
-            yield return FadeColor(startColor, targetColor, _invincibilityTime / 5);
+            yield return FadeColor(startColor, targetColor, _invincibilityTime / 6);
             _sprite.color = targetColor;
-            yield return FadeColor(targetColor, startColor, _invincibilityTime / 5);
+            yield return FadeColor(targetColor, startColor, _invincibilityTime / 6);
             _sprite.color = startColor;
         }
 

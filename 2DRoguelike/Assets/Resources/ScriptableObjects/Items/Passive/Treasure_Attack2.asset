@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09eafff079c9684681c0f1907d853d2, type: 3}
+  m_Name: Treasure_Attack2
+  m_EditorClassIdentifier: 
+  itemName: Power Attack2
+  itemAmount: 1
+  itemAnimationController: {fileID: 0}
+  itemType: 6
+  itemCost: 10
+  interactType: 2
+  itemSprite: {fileID: -853828404, guid: aa07ad6056a3ed0429ad7530e16488a4, type: 3}
+  valueList:
+  - statusType: 2
+    statusModType: 0
+    value: 90
+  - statusType: 5
+    statusModType: 0
+    value: 0.5

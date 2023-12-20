@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97af6ed5199939f478c049ba1aefb535, type: 3}
+  m_Name: Normal_5
+  m_EditorClassIdentifier: 
+  floor: {fileID: 21300012, guid: 6b28a663d85beb14fb46c9dd0fbd0cde, type: 3}
+  isReward: 1
+  rewardPosition: {x: 0, y: 0}
+  obstacleList:
+  - value1: {fileID: 2377632366193899140, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
+    value2: {x: 8, y: 2}
+  - value1: {fileID: 2377632366193899140, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
+    value2: {x: 9, y: 2}
+  - value1: {fileID: 2377632366193899140, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
+    value2: {x: 6, y: 4}
+  - value1: {fileID: 2377632366193899140, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
+    value2: {x: 6, y: 5}
+  - value1: {fileID: 2377632366193899140, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
+    value2: {x: 7, y: 3}
+  - value1: {fileID: 2377632366193899140, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
+    value2: {x: -9, y: -2}
+  - value1: {fileID: 2377632366193899140, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
+    value2: {x: -8, y: -2}
+  - value1: {fileID: 2377632366193899140, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
+    value2: {x: -6, y: -4}
+  - value1: {fileID: 2377632366193899140, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
+    value2: {x: -6, y: -5}
+  - value1: {fileID: 2377632366193899140, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
+    value2: {x: -7, y: -3}
+  itemList:
+  - value1: {fileID: 3437956414104297837, guid: 53279f307c6d3c94d8f4dd5125477d27, type: 3}
+    value2: {x: 8, y: 4}
+  - value1: {fileID: 2183345084584570627, guid: 1fb649f4c42735745a86f4ca45936adc, type: 3}
+    value2: {x: -8, y: -4}
+  enemyList:
+  - value1: {fileID: 753507385331679419, guid: bc1293231d6abcb418b7c9315ba51717, type: 3}
+    value2: {x: 2, y: 2}
+  - value1: {fileID: 5264915059859455069, guid: 5ab97952199b3e248aef23ba977789eb, type: 3}
+    value2: {x: 1, y: 1}
+  - value1: {fileID: 5264915059859455069, guid: 5ab97952199b3e248aef23ba977789eb, type: 3}
+    value2: {x: -1, y: -1}
+  - value1: {fileID: 753507385331679419, guid: bc1293231d6abcb418b7c9315ba51717, type: 3}
+    value2: {x: -2, y: -2}

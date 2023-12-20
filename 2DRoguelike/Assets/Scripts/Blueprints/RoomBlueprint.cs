@@ -13,6 +13,7 @@ public class RoomBlueprint : ScriptableObject
     [SerializeField] private List<PairWithObjectVector2> itemList = new();
     [SerializeField] private List<PairWithObjectVector2> enemyList = new();
 
+    public Sprite Floor => floor;
     public bool IsReward => isReward;
     public Vector2 RewardPosition => rewardPosition;
     public List<PairWithObjectVector2> ObstacleList => obstacleList;

@@ -21,17 +21,25 @@ public class EnemyProjectile : MonoBehaviour
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Obstacle"))
+        string targetLayerName = "Obstacle";
+
+        if (collision.gameObject.CompareTag("Wall") || IsLayer(collision.gameObject.layer, targetLayerName))
         {
             if (this.IsValid()) Main.Object.Despawn(this);
         }
 
+        if (Main.Game.Player.Invincible && collision.gameObject.CompareTag("Player")) return;
         else if (collision.gameObject.CompareTag("Player"))
         {
-            Main.Game.Player.Damaged(1);
+            Main.Game.Player.Damaged(transform, 1);
             Main.Game.Player.Invincible = true;
             if (this.IsValid()) Main.Object.Despawn(this);
         }
+    }
+    private bool IsLayer(int layer, string layerName)
+    {
+        int targetLayer = LayerMask.NameToLayer(layerName);
+        return layer == targetLayer;
     }
 
     public void Initialize()
