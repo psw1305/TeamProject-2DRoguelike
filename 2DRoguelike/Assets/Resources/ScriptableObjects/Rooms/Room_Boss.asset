@@ -19,4 +19,4 @@ MonoBehaviour:
   itemList: []
   enemyList:
   - value1: {fileID: 6681543838097874795, guid: da2d595c182fdc44abc8233437b062ba, type: 3}
-    value2: {x: 0, y: 0}
+    value2: {x: 0, y: 3}
