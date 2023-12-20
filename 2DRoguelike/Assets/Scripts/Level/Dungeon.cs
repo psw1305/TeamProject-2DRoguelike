@@ -224,7 +224,8 @@ public class Dungeon : MonoBehaviour
     {
         int index = UnityEngine.Random.Range(0, _normalRooms.Count);
         var normalRoom = _normalRooms[index];
-        _normalRooms.RemoveAt(index);
+        // 임시 주석 처리
+        //_normalRooms.RemoveAt(index);
 
         return normalRoom;
     }
