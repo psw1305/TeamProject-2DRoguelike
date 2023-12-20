@@ -8,7 +8,7 @@ public class EnemyMelee : Enemy
     {
         base.Awake();
 
-        _maxHp = 10;
+        _maxHp = 50;
         _movementSpeed = 1.5f;
         _attackSpeed = 1;
         _range = 1.2f;
@@ -22,7 +22,7 @@ public class EnemyMelee : Enemy
 
     void Update()
     {
-        if (enemyState == EnemyState.Die) return;
+        if (enemyState != EnemyState.live) return;
 
         Move();
     }
@@ -43,10 +43,11 @@ public class EnemyMelee : Enemy
         if (_target == null) return;
 
         _agent.SetDestination(_target.transform.position);
-
+     
 
         if (_agent.velocity.magnitude > 0.2f) // 움직이는 중이면 true
         {
+            _animator.SetBool(isWalkHash, true);
             StopStateCoroutin();
         }
         else
@@ -58,7 +59,7 @@ public class EnemyMelee : Enemy
 
     protected void TakeAim()
     {
-        if (_stateCoroutine != null)
+        if (_attackCoroutine != null)
             return;
 
         if (!IsTargetStraight())
@@ -68,7 +69,7 @@ public class EnemyMelee : Enemy
         }
 
         _agent.stoppingDistance = _range; // 시야거리 초기화
-        _stateCoroutine = StartCoroutine(Attack());
+        _attackCoroutine = StartCoroutine(Attack());
     }
 
     IEnumerator Attack()
@@ -77,8 +78,11 @@ public class EnemyMelee : Enemy
         {
             if (!IsTargetStraight())
                 StopStateCoroutin();
-
+         
             yield return new WaitForSeconds(_attackSpeed);
+
+            _animator.SetBool(isWalkHash, false);
+            _animator.SetTrigger(AttackHash);
 
             _target.Damaged(_attackDamage);
         }

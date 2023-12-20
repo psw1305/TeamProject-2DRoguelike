@@ -78,6 +78,8 @@ public class ResourceManager
 
     #endregion
 
+    #region Pool
+
     public GameObject InstantiatePrefab(string key, Transform parent = null, bool pooling = false)
     {
         GameObject prefab = GetObject(key);
@@ -101,6 +103,28 @@ public class ResourceManager
 
         if (Main.Pool.Push(obj)) return;
 
-        UnityEngine.Object.Destroy(obj);
+        Object.Destroy(obj);
     }
+
+    #endregion
+
+    #region InitOnLoad
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void InitApplication()
+    {
+        GameObject[] prefabs = Resources.LoadAll<GameObject>("InitOnLoad");
+
+        if (prefabs.Length > 0)
+        {
+            foreach (var prefab in prefabs)
+            {
+                GameObject go = Object.Instantiate(prefab);
+                go.name = prefab.name;
+                Object.DontDestroyOnLoad(go);
+            }
+        }
+    }
+
+    #endregion
 }

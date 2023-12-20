@@ -7,7 +7,7 @@ public class EnemyRange : Enemy
     {
         base.Awake();
 
-        _maxHp = 10;
+        _maxHp = 30;
         _movementSpeed = 1;
         _attackSpeed = 1;
         _range = 7;
@@ -34,7 +34,7 @@ public class EnemyRange : Enemy
 
     void Update()
     {
-        if (enemyState == EnemyState.Die) return;
+        if (enemyState != EnemyState.live) return;
 
         Move();
     }
@@ -57,7 +57,7 @@ public class EnemyRange : Enemy
 
     protected void TakeAim()
     {
-        if (_stateCoroutine != null)
+        if (_attackCoroutine != null)
             return;
 
         if (!IsTargetStraight())
@@ -67,7 +67,7 @@ public class EnemyRange : Enemy
         }
 
         _agent.stoppingDistance = _range; // 시야거리 초기화
-        _stateCoroutine = StartCoroutine(Attack());
+        _attackCoroutine = StartCoroutine(Attack());
     }
 
     IEnumerator Attack()
@@ -79,16 +79,37 @@ public class EnemyRange : Enemy
 
             yield return new WaitForSeconds(_attackSpeed);
 
-            FanShape(1, _bulletSpeed, false);
 
+            FanShape(1, _bulletSpeed);
 
             yield return new WaitForSeconds(_attackSpeed);
 
+            FanShape(3, _bulletSpeed);
 
-            FanShape(3, _bulletSpeed, false);
+            yield return new WaitForSeconds(_attackSpeed);
 
+          Circle(12, _bulletSpeed);
 
+            yield return new WaitForSeconds(_attackSpeed);
+
+            Circle(4, _bulletSpeed);
         }
     }
 
 }
+
+
+/*
+ 풀링 부분 백업
+
+        FanShape(3, _bulletSpeed, false);
+
+        EnemyProjectile enemyProjectile = Main.Object.Spawn<EnemyProjectile>("EenmyBullet", gameObject.transform.position);
+        enemyProjectile.SetInfo(1, 7);//float 값이라 임의로 넣음
+        enemyProjectile.transform.rotation = Quaternion.Euler(0, 0, AngleToTarget());
+
+        enemyProjectile.SetVelocity(DirectionToTarget() * 5); //5에 발사체 스피드 넣어주시면 됩니다
+        enemyProjectile.gameObject.tag = "EnemyProjectile";
+ 
+ 
+ */

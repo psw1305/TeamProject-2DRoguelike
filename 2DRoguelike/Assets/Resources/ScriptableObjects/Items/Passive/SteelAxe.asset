@@ -15,9 +15,8 @@ MonoBehaviour:
   itemName: SteelAxe
   itemAmount: 1
   itemAnimationController: {fileID: 0}
-  getRadius: 1
   itemType: 6
-  itemCost: 30
+  itemCost: 5
   interactType: 2
   itemSprite: {fileID: -853828404, guid: aa07ad6056a3ed0429ad7530e16488a4, type: 3}
   valueList:

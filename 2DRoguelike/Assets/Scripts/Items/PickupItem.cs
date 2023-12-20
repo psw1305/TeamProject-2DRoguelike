@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PickupItem : BaseItem
 {
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -12,21 +13,24 @@ public class PickupItem : BaseItem
 
     protected virtual void PlayerItemPickup()
     {
+        bool isPickup = false;
+
         switch (blueprint.ItemType)
         {
             case ItemType.Heart:
+                isPickup = Main.Game.Player.GetHeart(blueprint.ItemAmount);
                 break;
             case ItemType.Coin:
-                Main.Game.Player.GetCoin(blueprint.ItemAmount);
+                isPickup = Main.Game.Player.GetCoin(blueprint.ItemAmount);
                 break;
             case ItemType.Key:
-                Main.Game.Player.GetKey(blueprint.ItemAmount);
+                isPickup = Main.Game.Player.GetKey(blueprint.ItemAmount);
                 break;
             case ItemType.Bomb:
-                Main.Game.Player.GetBomb(blueprint.ItemAmount);
+                isPickup = Main.Game.Player.GetBomb(blueprint.ItemAmount);
                 break;
         }
 
-        Destroy(gameObject);
+        if (isPickup) Destroy(gameObject);
     }
 }

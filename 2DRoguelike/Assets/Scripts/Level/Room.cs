@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class Room : MonoBehaviour
 {
@@ -8,7 +10,8 @@ public class Room : MonoBehaviour
     [SerializeField] private RoomType roomType;
     [SerializeField] private Vector2Int coordinate;
     [SerializeField] private List<GameObject> doorList;
-    [SerializeField] private Transform container;
+    [SerializeField] private Transform objectContainer;
+    [SerializeField] private Transform enemyContainer;
 
     private List<GameObject> _activeDoorList = new();
     private List<GameObject> _neighborDoorList = new();
@@ -16,6 +19,7 @@ public class Room : MonoBehaviour
 
     private RoomBlueprint _roomBlueprint;
     private bool isArrived;
+    private bool isCleared;
 
     #endregion
 
@@ -24,9 +28,11 @@ public class Room : MonoBehaviour
     public RoomType RoomType => roomType;
     public Vector2Int Coordinate => coordinate;
     public List<GameObject> DoorList => doorList;
-    public Transform Container => container;
+    public Transform ObjectContainer => objectContainer;
+    public Transform EnemyContainer => enemyContainer;
     public int ActiveDoorCount => _activeDoorList.Count;
     public bool IsArrived => isArrived;
+    public bool IsCleared => isCleared;
 
     public void SetRoomType(RoomType roomType)
     {
@@ -44,6 +50,8 @@ public class Room : MonoBehaviour
 
     public void Initialize()
     {
+        isArrived = false;
+        isCleared = false;
         _roomBlueprint = Main.Game.Dungeon.GetRoomBlueprint(roomType);
 
         ChangeDoorOutWard();
@@ -58,7 +66,7 @@ public class Room : MonoBehaviour
     /// </summary>
     private void ChangeDoorOutWard()
     {
-        if (roomType == RoomType.Normal || roomType == RoomType.Start) { return; }
+        if (roomType == RoomType.Normal || roomType == RoomType.Start) return;
 
         List<GameObject> doors = new();
         doors.AddRange(_activeDoorList);
@@ -130,23 +138,55 @@ public class Room : MonoBehaviour
 
         for (int i = 0; i < _roomBlueprint.ObstacleList.Count; i++)
         {
-            GenerateObject(_roomBlueprint.ObstacleList[i].value1, _roomBlueprint.ObstacleList[i].value2, container);
+            GenerateObject(_roomBlueprint.ObstacleList[i].value1, _roomBlueprint.ObstacleList[i].value2, objectContainer);
         }
 
         for (int i = 0; i < _roomBlueprint.ItemList.Count; i++)
         {
-            GenerateObject(_roomBlueprint.ItemList[i].value1, _roomBlueprint.ItemList[i].value2, container);
+            GenerateObject(_roomBlueprint.ItemList[i].value1, _roomBlueprint.ItemList[i].value2, objectContainer);
         }
 
         for (int i = 0; i < _roomBlueprint.EnemyList.Count; i++)
         {
-            GenerateObject(_roomBlueprint.EnemyList[i].value1, _roomBlueprint.EnemyList[i].value2, container);
+            GenerateObject(_roomBlueprint.EnemyList[i].value1, _roomBlueprint.EnemyList[i].value2, enemyContainer);
         }
+
+        CheckRoomClear();
     }
 
-    private void GenerateRewards()
+    /// <summary>
+    /// 방 클리어 조건 체크
+    /// </summary>
+    public void CheckRoomClear()
     {
+        StartCoroutine(DelayCheck());
+    }
 
+    private IEnumerator DelayCheck()
+    {
+        yield return null;
+
+        // 적이 없고, 방이 클리어가 아닌 상태일 경우
+        // 잠겨있던 문 활성화, 체크시 보상까지 추가
+        if (enemyContainer.childCount == 0 && !isCleared)
+        {
+            OpenActivatedDoor();
+            
+            if (_roomBlueprint.IsReward) 
+            {
+                GenerateRoomClearingReward(); 
+            }
+            
+            isCleared = true;
+        }
+    }
+    
+    /// <summary>
+    /// 방 클리어시, 보상 획득
+    /// </summary>
+    private void GenerateRoomClearingReward()
+    {
+        // TODO => 보상 체크
     }
 
     public GameObject GenerateObject(GameObject prefab, Vector2 position, Transform container)

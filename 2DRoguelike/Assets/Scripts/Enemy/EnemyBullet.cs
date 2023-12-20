@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-   public float _bulletSpeed = 5f;
-   public int _damage = 1;
+  [HideInInspector] public float _bulletSpeed = 5f;
+    [HideInInspector] public int _damage = 1;
 
     private void OnEnable()
     {
@@ -22,7 +22,6 @@ public class EnemyBullet : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
-
             Main.Game.Player.Damaged(_damage);
             Destroy(gameObject);
             return;
@@ -34,7 +33,7 @@ public class EnemyBullet : MonoBehaviour
             return;
         }
 
-        if (collision.gameObject.CompareTag("Untagged") || collision.gameObject.CompareTag("Obstacle")) 
+        if (collision.gameObject.CompareTag("Untagged") || collision.gameObject.CompareTag("Obstacle")|| collision.gameObject.CompareTag("PlayerProjectile")) 
             return;
 
         Destroy(gameObject);

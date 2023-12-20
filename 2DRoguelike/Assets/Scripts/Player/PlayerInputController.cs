@@ -1,10 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Claims;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
 
 public class PlayerInputController : CharacterController
 {
@@ -13,9 +9,9 @@ public class PlayerInputController : CharacterController
     [SerializeField] private SpriteRenderer characterRenderer;
     [SerializeField] private Transform projectileSpawnPosition;
 
-
     // 테스트용 프리팹
     public GameObject bombPrefab;
+
     #endregion
 
     #region Properties
@@ -29,6 +25,8 @@ public class PlayerInputController : CharacterController
     protected bool IsAttacking { get; set; }
 
     #endregion
+
+    #region MonoBehaviour
 
     private void Awake()
     {
@@ -50,7 +48,7 @@ public class PlayerInputController : CharacterController
         AttackDelay();
     }
 
-
+    #endregion
 
     #region Move
     public void OnMove(InputValue value)
@@ -131,15 +129,14 @@ public class PlayerInputController : CharacterController
 
     private void CreateProjectile(Vector2 direction)
     {
+        // 발사체의 Sprite 회전
         float angle = Mathf.Atan2(_aimDirection.y, _aimDirection.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         // 발사체 생성
         PlayerProjectile projectile = Main.Object.Spawn<PlayerProjectile>("Projectile_Test", projectileSpawnPosition.position);
         projectile.SetInfo((int)Main.Game.Player.Damage.Value, (int)Main.Game.Player.AttackRange.Value);
-
         projectile.transform.rotation = rotation;
-
         projectile.SetVelocity(_aimDirection * (int)Main.Game.Player.ShotSpeed.Value);
         projectile.gameObject.tag = "PlayerProjectile";
 
@@ -166,23 +163,23 @@ public class PlayerInputController : CharacterController
 
     public void OnBoom()
     {
-        CreateBomb();
+        if (Main.Game.Player.UseBomb())
+        {
+            CreateBomb();
+        }
     }
 
     private void CreateBomb()
     {
-        GameObject bomb = Instantiate(bombPrefab, transform.position, Quaternion.identity);
-        
-        StartCoroutine(Explosiontime(bomb, 3f)); //3초뒤 폭발
+        GameObject bomb = Instantiate(bombPrefab, transform.position, Quaternion.identity);     
+        //StartCoroutine(Explosiontime(bomb, 3f)); //3초뒤 폭발
     }
-
-    
 
     private IEnumerator Explosiontime(GameObject bomb, float delay)
     {
         yield return new WaitForSeconds(delay);
         // 폭팔에 대한 코드
-        Destroy(bomb); //일단 지우기
+        //Destroy(bomb); //일단 지우기
     }
 
     #endregion

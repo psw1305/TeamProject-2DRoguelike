@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Chest
   itemAmount: 1
-  itemAnimationController: {fileID: 9100000, guid: b02971cef9df0bf4c82bf483c545f722, type: 2}
+  itemAnimationController: {fileID: 0}
   itemType: 5

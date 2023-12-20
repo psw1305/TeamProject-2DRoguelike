@@ -4,7 +4,10 @@ public class RewardManager
 {
     #region Fields
 
-    private GameObject _item;
+    private GameObject _pickupBase;
+    private GameObject _passiveBase;
+    private GameObject _shopBase;
+
     private ItemBlueprint[] _pickupItems;
     private ItemBlueprint[] _passiveItems;
 
@@ -12,8 +15,10 @@ public class RewardManager
 
     public void Initialize()
     {
-        _item = Main.Resource.GetObject("Pickup_Base");
-        _pickupItems = Main.Resource.GetItemBlueprints("ScriptableObjects/Items/Pickup");
+        _pickupBase = Main.Resource.GetObject("Pickup_Base");
+        _passiveBase = Main.Resource.GetObject("Passive_Base");
+        _shopBase = Main.Resource.GetObject("Shop_Base");
+        _pickupItems = Resources.LoadAll<ItemBlueprint>("ScriptableObjects/Items/Pickup");
         _passiveItems = Main.Resource.GetItemBlueprints("ScriptableObjects/Items/Passive");
     }
 
@@ -27,13 +32,20 @@ public class RewardManager
         return _pickupItems[rand];
     }
 
+    public ItemBlueprint GetRandomPassiveBlueprint()
+    {
+        int rand = Random.Range(0, _passiveItems.Length);
+        return _passiveItems[rand];
+    }
+
     /// <summary>
     /// 상자 보상
     /// </summary>
     /// <param name="parent"></param>
-    public void ChestReward(Transform parent)
+    public void ChestReward(Vector2 position, Transform parent)
     {
-        var pickupItem = GameObject.Instantiate(_item, parent).GetComponent<PickupItem>();
+        var pickupItem = GameObject.Instantiate(_pickupBase, position, Quaternion.identity).GetComponent<PickupItem>();
+        pickupItem.transform.SetParent(parent);
         pickupItem.SetItem(GetRandomPickupBlueprint());
         
         // 상자 오픈시, 튀어나오는 연출
@@ -50,6 +62,9 @@ public class RewardManager
     /// <param name="position"></param>
     public void DisplayTreasures(Vector2 position)
     {
+        var interactableItem = GameObject.Instantiate(_passiveBase).GetComponent<InteractableItem>();
+        interactableItem.gameObject.transform.position = position;
+        interactableItem.SetItem(GetRandomPassiveBlueprint());
     }
 
     /// <summary>
@@ -58,5 +73,12 @@ public class RewardManager
     /// <param name="position"></param>
     public void DisplayProducts(Vector2 position)
     {
+        float[] x = {-5,0,5};
+        for(int i=0; i<3; i++)
+        {
+            var shopItem = GameObject.Instantiate(_shopBase).GetComponent<ShopItem>();
+            shopItem.gameObject.transform.position = position + new Vector2(x[i] , 0);
+            shopItem.SetItem(GetRandomPassiveBlueprint());
+        }
     }
 }

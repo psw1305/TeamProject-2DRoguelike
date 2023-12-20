@@ -1,38 +1,54 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
-    private Animator _animator;
+    [SerializeField] private float explosionForce;
+    [SerializeField] private Animator _animator;
     private CircleCollider2D _collider;
 
     private void Awake()
     {
-        _animator = GetComponentInChildren<Animator>();
         _collider = GetComponent<CircleCollider2D>();
     }
 
     private void Start()
     {
+        StartCoroutine(Explosion());
+    }
+
+    private IEnumerator Explosion()
+    {
         _animator.SetTrigger("Explode");
-        Invoke("ExplodeArea", 170/60f);
-        Invoke("End", 210/60f);
-    }
 
-    private void ExplodeArea()
-    {
+        yield return new WaitForSeconds(2f);
+
         _collider.isTrigger = true;
-        _collider.radius = 2;
-    }
+        _collider.radius = 1.5f;
 
-    private void End()
-    {
+        yield return new WaitForSeconds(0.25f); ;
+
         Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // TODO => 적, 구조물, 플레이어에게 데미지
+        if (!_collider.isTrigger) return;
+
+        if (other.CompareTag("Obstacle"))
+        {
+            Destroy(other);
+        }
+
+        if (other.CompareTag("PickupItem") || other.CompareTag("Bomb") || other.CompareTag("Enemy"))
+        {
+            Vector2 direction = other.transform.position - transform.position;
+            Vector2 knockbackForce = direction.normalized * explosionForce;
+
+            if (other.TryGetComponent<Rigidbody2D>(out var targetRigidbody))
+            {
+                targetRigidbody.AddForce(knockbackForce, ForceMode2D.Impulse);
+            }
+        }
     }
 }

@@ -38,7 +38,7 @@ public class BGM : AudioSystem<BGM>
 
     private void Start()
     {
-        Play(bgm, true);
+        //Play(bgm, true);
     }
 
     public void Play(AudioClip clip, bool isLoop)
