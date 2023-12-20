@@ -61,11 +61,11 @@ public class Bomb : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            TargetKnockback(other.transform);
+            //TargetKnockback(other.transform);
 
             if (other.TryGetComponent<Player>(out var player))
             {
-                player.Damaged(2);
+                player.Damaged(transform, 2);
             }
         }
     }

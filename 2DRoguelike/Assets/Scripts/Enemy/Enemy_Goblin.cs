@@ -72,7 +72,7 @@ public class Enemy_Goblin : Enemy
             _animator?.SetBool(isWalkHash, false);
             _animator?.SetTrigger(AttackHash);
 
-            _target.Damaged(_attackDamage);
+            _target.Damaged(transform, _attackDamage);
         }
     }
 
