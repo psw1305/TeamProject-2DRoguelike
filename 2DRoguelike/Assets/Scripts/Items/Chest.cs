@@ -3,48 +3,34 @@ using UnityEngine;
 
 public class Chest : PickupItem
 {
+    [Header("Field")]
     [SerializeField] private int amount;
-    private Animator _animator;
-    private bool isAnimationPlaying;
+    [SerializeField] private bool isKey;
+    private bool _isOpen = false;
 
-    private void Awake()
-    {
-        _animator = GetComponentInChildren<Animator>();
-    }
-
-    private IEnumerator WaitingAnimationEnd()
-    {
-        while (isAnimationPlaying)
-        {
-            if (_animator.GetCurrentAnimatorStateInfo(0).IsName("End"))
-            {
-                isAnimationPlaying = false;
-            }
-            yield return null;
-        }
-
-        OpenChest();
-    }
-
-    public void OpenChest()
-    {
-        StopAllCoroutines();
-
-        for (int i = 0; i < amount; i++)
-        {
-            Main.Reward.ChestReward(Main.Game.Dungeon.CurrentRoom.ObjectContainer);
-        }
-
-        Destroy(gameObject);
-    }
+    [Header("Sprite")]
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Sprite chestCloseSprite;
 
     protected override void PlayerItemPickup()
     {
-        if (Main.Game.Player.UseKey())
+        if (!_isOpen)
         {
-            _animator.SetTrigger("Open");
-            isAnimationPlaying = true;
-            StartCoroutine(WaitingAnimationEnd());
+            StartCoroutine(OpenChest());
+        }
+    }
+
+    private IEnumerator OpenChest()
+    {
+        if (isKey && !Main.Game.Player.UseKey()) yield return null;
+
+        _isOpen = true;
+        yield return new WaitForSeconds(0.2f);
+        spriteRenderer.sprite = chestCloseSprite;
+
+        for (int i = 0; i < amount; i++)
+        {
+            Main.Reward.ChestReward(this.transform.position, Main.Game.Dungeon.CurrentRoom.ObjectContainer);
         }
     }
 }

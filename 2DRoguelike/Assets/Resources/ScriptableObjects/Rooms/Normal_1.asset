@@ -17,22 +17,16 @@ MonoBehaviour:
   rewardPosition: {x: 13, y: 7}
   obstacleList:
   - value1: {fileID: 8028431702945169106, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
+    value2: {x: -4, y: -2}
+  - value1: {fileID: 2402240875340394692, guid: 711422058f154d749944f7faa383e796, type: 3}
     value2: {x: -4, y: 0}
-  - value1: {fileID: 8028431702945169106, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
-    value2: {x: -4, y: 1}
-  - value1: {fileID: 8028431702945169106, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
+  - value1: {fileID: 207654240137252809, guid: e562994d0d5997a489b3f689f69493b9, type: 3}
     value2: {x: -4, y: 2}
   itemList:
-  - value1: {fileID: 3437956414104297837, guid: 53279f307c6d3c94d8f4dd5125477d27, type: 3}
-    value2: {x: 4, y: 0}
-  - value1: {fileID: 9041000999714307878, guid: 1ad9af3c5c77af24285d2050b4a92d85, type: 3}
-    value2: {x: 4, y: 1}
-  - value1: {fileID: 1826933904923367474, guid: f0dbbc372e118ef46b3df2c131db9304, type: 3}
-    value2: {x: 4, y: 2}
   - value1: {fileID: 7543223595214573595, guid: c4876801e92656a4883d224dc9623f3c, type: 3}
-    value2: {x: 0, y: 0}
+    value2: {x: 4, y: 2}
+  - value1: {fileID: 7543223595214573595, guid: 9cc4f821193b46940a5489100ce4803b, type: 3}
+    value2: {x: 4, y: -2}
   enemyList:
   - value1: {fileID: 5264915059859455069, guid: 5ab97952199b3e248aef23ba977789eb, type: 3}
     value2: {x: 7, y: 4}
-  - value1: {fileID: 2151391770028553009, guid: 5df07e1f56f1a344d906ce48cdf0a0bd, type: 3}
-    value2: {x: -7, y: 4}

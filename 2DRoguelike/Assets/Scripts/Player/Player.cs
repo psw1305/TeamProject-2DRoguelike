@@ -30,9 +30,9 @@ public class Player : MonoBehaviour
         ShotSpeed = new StatUnit(5);
 
         CurrentHp = (int)HP.BaseValue;
-        Coin = 10;
-        Key = 10;
-        Bomb = 10;
+        Coin = 99;
+        Key = 99;
+        Bomb = 99;
     }
 
     public void Initialize()
@@ -48,9 +48,18 @@ public class Player : MonoBehaviour
     /// [정용태] 인벤토리 클래스
     /// </summary>
 
+    public bool GetHeart(int amount)
+    {
+        if (CurrentHp + amount > HP.Value) return false;
+        CurrentHp += amount;
+        Main.UI.PlayerUI.SetCurrentHP(CurrentHp.ToString());
+        return true;
+    }
+
+    // 코인은 한도 초과를 넘겨도 오브젝트 파괴 가능
     public bool GetCoin(int amount)
     {
-        if (Coin + amount > Globals.MaxCoinStock) return false;
+        if (Coin + amount > Globals.MaxCoinStock) return true;
         Coin += amount;
         Main.UI.PlayerUI.SetCoin(Coin.ToString());
         return true;
@@ -103,9 +112,24 @@ public class Player : MonoBehaviour
 
     #region Attribute Method
 
+    public void Heal(int heal)
+    {
+        if (CurrentHp + heal > HP.Value)
+        {
+
+        }
+    }
+
     public void Damaged(int damage)
     {
         CurrentHp -= damage;
+
+        if (CurrentHp <= 0)
+        {
+            CurrentHp = 0;
+            // TODO => 사망 처리
+        }
+
         Main.UI.PlayerUI.SetCurrentHP(CurrentHp.ToString());
     }
 
