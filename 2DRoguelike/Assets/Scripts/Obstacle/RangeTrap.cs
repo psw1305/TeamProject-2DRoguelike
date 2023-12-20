@@ -44,7 +44,7 @@ public class RangeTrap : MonoBehaviour
         trapProjectile.transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(_gameObjectPos.x - _targetPos.x, _targetPos.y - _gameObjectPos.y));
         
         trapProjectile.SetVelocity((_targetPos - _gameObjectPos).normalized * bulletSpeed);
-        trapProjectile.gameObject.tag = "EnemyProjectile";
+        trapProjectile.gameObject.tag = "ObstacleProjectile";
     }
 
     private void SeeTarget()

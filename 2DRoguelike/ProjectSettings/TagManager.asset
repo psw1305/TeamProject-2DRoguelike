@@ -12,6 +12,7 @@ TagManager:
   - EnemyBullet
   - PickupItem
   - Bomb
+  - ObstacleProjectile
   layers:
   - Default
   - TransparentFX
