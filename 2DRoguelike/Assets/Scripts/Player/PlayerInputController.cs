@@ -69,10 +69,12 @@ public class PlayerInputController : CharacterController
 
     private void ApplyMovment(Vector2 direction)
     {
-        direction = direction * 5;  //플레이어 speed
-
+        direction = direction * (int)Main.Game.Player.Speed.Value; //플레이어 speed
+        direction += KnockbackDirection;
         _rigidbody.velocity = direction;
     }
+
+    public Vector2 KnockbackDirection = Vector2.zero;
     #endregion
 
     #region Look

@@ -43,7 +43,7 @@ public class SpikeTrap : Obstacle
     {
         if (_animator.GetBool("isActive"))
         {
-            Main.Game.Player.Damaged(trapDamage);
+            Main.Game.Player.Damaged(transform, trapDamage);
         }
     }
 }
