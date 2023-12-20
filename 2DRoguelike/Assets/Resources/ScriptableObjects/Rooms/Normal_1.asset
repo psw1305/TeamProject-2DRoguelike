@@ -30,7 +30,5 @@ MonoBehaviour:
     value2: {x: 4, y: 1}
   itemList: []
   enemyList:
-  - value1: {fileID: 1711403224026450714, guid: c90812d57eb5b85418f77d666974308d, type: 3}
+  - value1: {fileID: 6681543838097874795, guid: da2d595c182fdc44abc8233437b062ba, type: 3}
     value2: {x: 7, y: 4}
-  - value1: {fileID: 753507385331679419, guid: bc1293231d6abcb418b7c9315ba51717, type: 3}
-    value2: {x: 0, y: 0}

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.PlayerSettings;
 
 public class Enemy_Horse : Enemy
 {
@@ -11,6 +10,9 @@ public class Enemy_Horse : Enemy
         base.OnEnable();
         Initialize();
     }
+
+    float runTime = 0;
+    Vector3 pos;
 
     void Update()
     {
@@ -30,8 +32,6 @@ public class Enemy_Horse : Enemy
     }
 
 
-    float runTime = 0;
-    Vector3 pos;
 
     void Move()
     {
@@ -55,19 +55,6 @@ public class Enemy_Horse : Enemy
             // 말 공격은 몸통박치기
         }
 
-        Vector3 RandomPosition()
-        {
-            Vector3 randomDirection = transform.position + Random.insideUnitSphere * enemySO._range;
-
-            // randomDirection.z = 0f;
-            if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, enemySO._range, NavMesh.AllAreas)) // 위치가 NavMesh 안이라면 true
-            {
-                Debug.Log("충돌");
-                return hit.position;
-            }
-
-            return transform.position;
-        }
 
     }
 }

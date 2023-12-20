@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -102,7 +103,7 @@ public class Enemy : MonoBehaviour
             _animator?.SetTrigger(DieHash);
             // 사라지는 이펙트 추가
             Destroy(gameObject);
-            
+
         }
     }
 
@@ -129,7 +130,12 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < bulletCount; i++)
         {
             float angle = minAngle + rot * i;
-            angle += AngleToTarget();
+
+            if (isRandom)
+                angle += Random.Range(-AngleToTarget(), AngleToTarget() * 2);
+            else
+                angle += AngleToTarget();
+
             BulletGenerator(angle, bulletSpeed);
         }
     }
@@ -144,7 +150,7 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < bulletCount; i++)
         {
             float currentAngle = i * deltaAngle;
-         //   currentAngle += AngleToTarget() / 2f;
+            //   currentAngle += AngleToTarget() / 2f;
             float x = Mathf.Cos(currentAngle);
             float y = Mathf.Sin(currentAngle);
             Vector2 direction = new Vector2(x, y).normalized;
@@ -154,6 +160,8 @@ public class Enemy : MonoBehaviour
 
         }
     }
+
+
 
     protected void BulletGenerator(float rotate, float speed)
     {
