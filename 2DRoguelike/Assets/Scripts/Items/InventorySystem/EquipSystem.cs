@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class EquipSystem
 {
     public void GetItemStatus(InteractableItemBluePrint targetBlueprint)
@@ -15,6 +10,9 @@ public class EquipSystem
     {
         StatUnit target = GetStatusType(type);
         target.AddModifier(new StatModifier(value, modType));
+
+        // UI Stat 반영
+        Main.UI.PlayerUI.SetAttribute(Main.Game.Player);
     }
 
     private StatUnit GetStatusType(StatusType type)
@@ -25,9 +23,10 @@ public class EquipSystem
             case StatusType.Damage : return Main.Game.Player.Damage;
             case StatusType.Speed : return Main.Game.Player.Speed;
             case StatusType.AttackRange : return Main.Game.Player.AttackRange;
+            case StatusType.AttackSpeed: return Main.Game.Player.AttackSpeed;
             case StatusType.ShotSpeed : return Main.Game.Player.ShotSpeed;
         }
-        Debug.Log("Status Type mismatch");
+
         return null;
     }
 }

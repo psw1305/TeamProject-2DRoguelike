@@ -47,11 +47,11 @@ public class Player : MonoBehaviour
 
     public Player()
     {
-        HP = new StatUnit(6);
-        Speed = new StatUnit(5f);
+        HP = new StatUnit(5);
+        Speed = new StatUnit(5);
         Damage = new StatUnit(10);
-        AttackSpeed = new StatUnit(0.3f);
-        AttackRange = new StatUnit(2f);
+        AttackSpeed = new StatUnit(0.7f);
+        AttackRange = new StatUnit(1);
         ShotSpeed = new StatUnit(5);
 
         CurrentHp = (int)HP.BaseValue;
