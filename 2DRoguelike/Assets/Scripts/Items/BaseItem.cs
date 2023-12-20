@@ -15,7 +15,7 @@ public abstract class BaseItem : MonoBehaviour
     {
         this.blueprint = blueprint;
 
-        if (this.blueprint.ItemAnimationController != null)
+        if (animator != null)
         {
             animator.runtimeAnimatorController = this.blueprint.ItemAnimationController;
         }

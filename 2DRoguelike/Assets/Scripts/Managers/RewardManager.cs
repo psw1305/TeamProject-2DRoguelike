@@ -42,9 +42,10 @@ public class RewardManager
     /// 상자 보상
     /// </summary>
     /// <param name="parent"></param>
-    public void ChestReward(Transform parent)
+    public void ChestReward(Vector2 position, Transform parent)
     {
-        var pickupItem = GameObject.Instantiate(_pickupBase, parent).GetComponent<PickupItem>();
+        var pickupItem = GameObject.Instantiate(_pickupBase, position, Quaternion.identity).GetComponent<PickupItem>();
+        pickupItem.transform.SetParent(parent);
         pickupItem.SetItem(GetRandomPickupBlueprint());
         
         // 상자 오픈시, 튀어나오는 연출

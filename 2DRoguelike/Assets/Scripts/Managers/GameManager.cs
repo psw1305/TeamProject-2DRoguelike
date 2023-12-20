@@ -18,22 +18,7 @@ public class GameManager
 
         var playerObj = GameObject.Instantiate(Main.Resource.GetObject("Player"));
         Player = playerObj.GetComponent<Player>();
-    }
-
-
-    /// <summary>
-    /// 몬스터 소환 실험용
-    /// </summary>
-
-    public void SpawnEnemy()
-    {
-        var enemyObj1 = GameObject.Instantiate(Main.Resource.GetObject("EnemyMelee"));
-        enemyObj1.transform.localPosition = Vector3.zero;
-
-        var enemyObj2 = GameObject.Instantiate(Main.Resource.GetObject("EnemyRange"));
-        enemyObj2.transform.localPosition = Vector3.zero;
-
-       
+        Player.Initialize();
     }
 
     #endregion
