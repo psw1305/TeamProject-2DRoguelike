@@ -12,7 +12,7 @@ public class LookAtPlayer : MonoBehaviour
 
     private void Awake()
     {
-        TryGetComponent<SpriteRenderer>(out _spriteRenderer);
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
     private void OnEnable()
     {

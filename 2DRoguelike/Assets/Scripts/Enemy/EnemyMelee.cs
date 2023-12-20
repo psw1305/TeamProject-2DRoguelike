@@ -43,10 +43,11 @@ public class EnemyMelee : Enemy
         if (_target == null) return;
 
         _agent.SetDestination(_target.transform.position);
-
+     
 
         if (_agent.velocity.magnitude > 0.2f) // 움직이는 중이면 true
         {
+            _animator.SetBool(isWalkHash, true);
             StopStateCoroutin();
         }
         else
@@ -77,8 +78,11 @@ public class EnemyMelee : Enemy
         {
             if (!IsTargetStraight())
                 StopStateCoroutin();
-
+         
             yield return new WaitForSeconds(_attackSpeed);
+
+            _animator.SetBool(isWalkHash, false);
+            _animator.SetTrigger(AttackHash);
 
             _target.Damaged(_attackDamage);
         }

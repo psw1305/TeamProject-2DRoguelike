@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Enemy_Attack
+  m_Name: Melee1_Attack
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,11 +21,11 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 569020939, guid: 473b931ea49017840bcb83ec676866f5, type: 3}
+      value: {fileID: 1474986586, guid: 473b931ea49017840bcb83ec676866f5, type: 3}
     - time: 0.11666667
-      value: {fileID: 1792669426, guid: 473b931ea49017840bcb83ec676866f5, type: 3}
+      value: {fileID: 2115500064, guid: 473b931ea49017840bcb83ec676866f5, type: 3}
     - time: 0.23333333
-      value: {fileID: 1792669426, guid: 473b931ea49017840bcb83ec676866f5, type: 3}
+      value: {fileID: 1474986586, guid: 473b931ea49017840bcb83ec676866f5, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,9 +48,9 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 569020939, guid: 473b931ea49017840bcb83ec676866f5, type: 3}
-    - {fileID: 1792669426, guid: 473b931ea49017840bcb83ec676866f5, type: 3}
-    - {fileID: 1792669426, guid: 473b931ea49017840bcb83ec676866f5, type: 3}
+    - {fileID: 1474986586, guid: 473b931ea49017840bcb83ec676866f5, type: 3}
+    - {fileID: 2115500064, guid: 473b931ea49017840bcb83ec676866f5, type: 3}
+    - {fileID: 1474986586, guid: 473b931ea49017840bcb83ec676866f5, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

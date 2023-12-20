@@ -1,30 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
 
-    private Transform root;
-    private Transform Root
+    #region Fileds
+
+    static Transform root;
+    static Transform Root
     {
         get
         {
             if (root == null)
             {
-                GameObject obj = new() { name = $"[Pool_Root] {bullet.name}" };
+                GameObject obj = new() { name = $"[Pool_Root] Enemy Bullet" };
                 root = obj.transform;
             }
             return root;
         }
     }
 
-
-
-
     public EnemyBullet bullet;
-
+    
 
     protected int _id;
     protected string _name;
@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
     protected RaycastHit2D _rayHit;
 
     protected SpriteRenderer _spriteRenderer;
-
+    protected Animator _animator;
 
     protected enum EnemyState
     {
@@ -58,9 +58,19 @@ public class Enemy : MonoBehaviour
     }
     protected EnemyState enemyState;
 
+
+    protected readonly int isWalkHash = Animator.StringToHash("isWalk");
+    protected readonly int AttackHash = Animator.StringToHash("Attack");
+    protected readonly int DieHash = Animator.StringToHash("Die");
+
+
+    #endregion
+
+
     protected virtual void Awake()
     {
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _animator = GetComponentInChildren<Animator>();
         _agent = GetComponent<NavMeshAgent>();
         _attackCoroutine = null;
 
@@ -85,6 +95,16 @@ public class Enemy : MonoBehaviour
         _attackCoroutine = null;
     }
 
+    protected void StopStateCoroutin()
+    {
+        if (_attackCoroutine != null)
+        {
+            StopCoroutine(_attackCoroutine);
+            _attackCoroutine = null;
+        }
+    }
+
+    #region Damaged
 
     public void Damaged(int damage)
     {
@@ -99,7 +119,11 @@ public class Enemy : MonoBehaviour
             enemyState = EnemyState.Die;
             StopAllCoroutines();
             Main.Game.Dungeon.CurrentRoom.CheckRoomClear();     // 적 사망 => 방 클리어 조건 체크
+
+            _animator.SetTrigger(DieHash);
+            // 사라지는 이펙트 추가
             Destroy(gameObject);
+            
         }
     }
 
@@ -110,15 +134,7 @@ public class Enemy : MonoBehaviour
         _spriteRenderer.color = Color.white;
     }
 
-    protected void StopStateCoroutin()
-    {
-        if (_attackCoroutine != null)
-        {
-            StopCoroutine(_attackCoroutine);
-            _attackCoroutine = null;
-        }
-    }
-
+    #endregion
 
     #region Skill
 
