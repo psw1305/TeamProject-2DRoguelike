@@ -6,7 +6,10 @@ public class PlayerInputController : CharacterController
 {
     #region Fileds
 
-    [SerializeField] private SpriteRenderer characterRenderer;
+    [SerializeField] private SpriteRenderer headSprite;
+    [SerializeField] private SpriteRenderer bodySprite;
+    [SerializeField] private Animator headAnimator;
+    [SerializeField] private Animator bodyAnimator;
     [SerializeField] private Transform projectileSpawnPosition;
 
     // 테스트용 프리팹
@@ -65,6 +68,7 @@ public class PlayerInputController : CharacterController
     private void Move(Vector2 direction)
     {
         _movementDirection = direction;
+        BodyChange(direction);
     }
 
     private void ApplyMovment(Vector2 direction)
@@ -87,33 +91,6 @@ public class PlayerInputController : CharacterController
     public void OnAim(Vector2 newAimDirection)
     {
         _aimDirection = newAimDirection.normalized;
-        RotatePlayer(newAimDirection);
-    }
-
-    private void RotatePlayer(Vector2 direction)
-    {
-        if (direction.x > 0)
-        {
-            // 오른쪽 방향일 때
-            characterRenderer.flipX = false;
-        }
-        else if (direction.x < 0)
-        {
-            // 왼쪽 방향일 때
-            characterRenderer.flipX = true;
-        }
-
-        // 방향에 따라 스프라이트를 수직으로 뒤집거나 되돌립니다.
-        if (direction.y > 0)
-        {
-            // 위쪽 방향일 때
-            characterRenderer.flipY = false;
-        }
-        else if (direction.y < 0)
-        {
-            // 아래쪽 방향일 때
-            characterRenderer.flipY = true;
-        }
     }
     #endregion
 
@@ -122,10 +99,15 @@ public class PlayerInputController : CharacterController
     {
         Vector2 fireValue = value.Get<Vector2>();
         IsAttacking = fireValue.magnitude > 0f;
+        headChange(fireValue);
     }
 
     private void OnShoot(Vector2 direction)
     {
+        if (IsAttacking)
+        {
+            headAnimator.SetTrigger("Attack");
+        }
         CreateProjectile(direction);
     }
 
@@ -182,6 +164,66 @@ public class PlayerInputController : CharacterController
         yield return new WaitForSeconds(delay);
         // 폭팔에 대한 코드
         //Destroy(bomb); //일단 지우기
+    }
+
+    #endregion
+
+        #region ChangeSprite
+
+    private void headChange(Vector2 fireValue)
+    {
+        if (fireValue.x >= 0.9f)
+        {
+            headAnimator.SetTrigger("Side");
+            headSprite.flipX = false;
+        }
+        else if (fireValue.x <= -0.9f)
+        {
+            headAnimator.SetTrigger("Side");
+            headSprite.flipX = true;
+        }
+        else if (fireValue.y >= 0.4f)
+        {
+            headAnimator.SetTrigger("Back");
+        }
+        else if (fireValue.y <= -0.4f)
+        {
+            headAnimator.SetTrigger("Front");
+        }
+
+    }
+
+    private void BodyChange(Vector2 direction)
+    {
+        if (direction == Vector2.zero)
+        {
+            bodyAnimator.SetTrigger("Idle");
+            return;
+        }
+
+        if (direction.x >= 0.9f)
+        {
+            bodyAnimator.SetBool("IsSide", true);
+            bodyAnimator.SetTrigger("Walk");
+            bodySprite.flipX = true;
+        }
+        else if (direction.x <= -0.9f)
+        {
+            bodyAnimator.SetBool("IsSide", true);
+            bodyAnimator.SetTrigger("Walk");
+            bodySprite.flipX = false;
+        }
+        else if (direction.y >= 0.4f)
+        {
+            bodyAnimator.SetBool("IsSide", false);
+            bodyAnimator.SetTrigger("Walk");
+        }
+        else if (direction.y <= -0.4f)
+        {
+            bodyAnimator.SetBool("IsSide", false);
+            bodyAnimator.SetTrigger("Walk");
+        }
+
     }
 
     #endregion
