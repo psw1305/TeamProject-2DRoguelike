@@ -16,14 +16,14 @@ public class Enemy_Plus : Enemy
 
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
-        _agent.speed = enemySO._movementSpeed;
-        _agent.stoppingDistance = enemySO._range;
+        _agent.speed = _movementSpeed;
+        _agent.stoppingDistance = _range;
     }
 
 
     void Update()
     {
-        if (enemySO.enemyState != EnemySO.EnemyState.live) return;
+        if (_enemyState != EnemySO.EnemyState.live) return;
 
         Move();
     }
@@ -51,11 +51,11 @@ public class Enemy_Plus : Enemy
 
         if (!IsTargetStraight())
         {
-            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance - 0.1f, 1, enemySO._range);
+            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance - 0.1f, 1, _range);
             return;
         }
 
-        _agent.stoppingDistance = enemySO._range; // 시야거리 초기화
+        _agent.stoppingDistance = _range; // 시야거리 초기화
         _attackCoroutine = StartCoroutine(Attack());
     }
 
@@ -68,14 +68,14 @@ public class Enemy_Plus : Enemy
 
 
 
-            yield return new WaitForSeconds(enemySO._attackSpeed);
+            yield return new WaitForSeconds(_attackSpeed);
 
-            Circle(4, enemySO._bulletSpeed);
+            Circle(4, _bulletSpeed);
 
 
-            yield return new WaitForSeconds(enemySO._attackSpeed);
+            yield return new WaitForSeconds(_attackSpeed);
 
-            Circle(5, enemySO._bulletSpeed);
+            Circle(5, _bulletSpeed);
 
         }
     }

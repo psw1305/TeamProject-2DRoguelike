@@ -12,7 +12,7 @@ public class Enemy_Goblin : Enemy
 
     void Update()
     {
-        if (enemySO.enemyState != EnemySO.EnemyState.live) return;
+        if (_enemyState != EnemySO.EnemyState.live) return;
 
         Move();
     }
@@ -21,8 +21,8 @@ public class Enemy_Goblin : Enemy
     {
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
-        _agent.speed = enemySO._movementSpeed;
-        _agent.stoppingDistance = enemySO._range;
+        _agent.speed = _movementSpeed;
+        _agent.stoppingDistance = _range;
     }
 
 
@@ -52,11 +52,11 @@ public class Enemy_Goblin : Enemy
 
         if (!IsTargetStraight())
         {
-            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance - 0.1f, 1.2f, enemySO._range);
+            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance - 0.1f, 1.2f, _range);
             return;
         }
 
-        _agent.stoppingDistance = enemySO._range; // 시야거리 초기화
+        _agent.stoppingDistance = _range; // 시야거리 초기화
         _attackCoroutine = StartCoroutine(Attack());
     }
 
@@ -67,12 +67,12 @@ public class Enemy_Goblin : Enemy
             if (!IsTargetStraight())
                 StopStateCoroutin();
          
-            yield return new WaitForSeconds(enemySO._attackSpeed);
+            yield return new WaitForSeconds(_attackSpeed);
 
             _animator?.SetBool(isWalkHash, false);
             _animator?.SetTrigger(AttackHash);
 
-            _target.Damaged(enemySO._attackDamage);
+            _target.Damaged(_attackDamage);
         }
     }
 

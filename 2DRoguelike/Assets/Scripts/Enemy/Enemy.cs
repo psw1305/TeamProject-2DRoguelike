@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
+using static EnemySO;
 
 public class Enemy : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class Enemy : MonoBehaviour
     }
 
     public EnemyBullet bullet;
-    public EnemySO enemySO;
+     public EnemySO enemySO;
 
     protected Player _target;
     protected NavMeshAgent _agent;
@@ -38,6 +39,20 @@ public class Enemy : MonoBehaviour
     protected readonly int isWalkHash = Animator.StringToHash("isWalk");
     protected readonly int AttackHash = Animator.StringToHash("Attack");
     protected readonly int DieHash = Animator.StringToHash("Die");
+
+
+
+    protected int _maxHp;
+    protected int _currentHp;
+    protected float _range; // 사정거리
+    protected float _movementSpeed;
+    protected float _attackSpeed; // 공격쿨타임
+    protected int _attackDamage;
+    protected float _bulletSpeed; // 총알 속도
+    protected int _phase = 0; // 기술순서
+
+    protected EnemyState _enemyState;
+
 
 
     #endregion
@@ -59,11 +74,18 @@ public class Enemy : MonoBehaviour
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
 
-        enemySO.enemyState = EnemySO.EnemyState.Ready;
-        enemySO.enemyState = EnemySO.EnemyState.live;
+        _enemyState = EnemySO.EnemyState.Ready;
+        _enemyState = EnemySO.EnemyState.live;
 
 
-        enemySO._currentHp = enemySO._maxHp;
+        _maxHp = enemySO._maxHp;
+        _currentHp = _maxHp;
+        _range = enemySO._range; 
+        _movementSpeed = enemySO._movementSpeed;
+        _attackSpeed = enemySO._attackSpeed; 
+        _attackDamage = enemySO._attackDamage;
+        _bulletSpeed = enemySO._bulletSpeed; 
+        _phase = enemySO.Phase;
 
     }
 
@@ -88,15 +110,15 @@ public class Enemy : MonoBehaviour
 
     public void Damaged(int damage)
     {
-        if (enemySO.enemyState != EnemySO.EnemyState.live) return;
+        if (_enemyState != EnemySO.EnemyState.live) return;
 
-        enemySO._currentHp -= damage;
+        _currentHp -= damage;
 
         StartCoroutine(FlickerCharacter());
 
-        if (enemySO._currentHp <= 0)
+        if (_currentHp <= 0)
         {
-            enemySO.enemyState = EnemySO.EnemyState.Die;
+            _enemyState = EnemySO.EnemyState.Die;
             StopAllCoroutines();
             Main.Game.Dungeon.CurrentRoom.CheckRoomClear();     // 적 사망 => 방 클리어 조건 체크
 
@@ -162,7 +184,6 @@ public class Enemy : MonoBehaviour
     }
 
 
-
     protected void BulletGenerator(float rotate, float speed)
     {
         EnemyBullet obj = Instantiate(bullet);
@@ -172,6 +193,23 @@ public class Enemy : MonoBehaviour
         obj._bulletSpeed = speed;
         obj.transform.SetParent(Root);
     }
+
+
+    /*
+     풀링 부분 백업
+
+            FanShape(3, _bulletSpeed, false);
+
+            EnemyProjectile enemyProjectile = Main.Object.Spawn<EnemyProjectile>("EenmyBullet", gameObject.transform.position);
+            enemyProjectile.SetInfo(1, 7);//float 값이라 임의로 넣음
+            enemyProjectile.transform.rotation = Quaternion.Euler(0, 0, AngleToTarget());
+
+            enemyProjectile.SetVelocity(DirectionToTarget() * 5); //5에 발사체 스피드 넣어주시면 됩니다
+            enemyProjectile.gameObject.tag = "EnemyProjectile";
+
+
+     */
+
 
     #endregion
 
@@ -213,7 +251,7 @@ public class Enemy : MonoBehaviour
     void OnDrawGizmosSelected() // 사정거리보기
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, enemySO._range);
+        Gizmos.DrawWireSphere(transform.position, _range);
     }
 
 
