@@ -3,11 +3,9 @@ using UnityEngine;
 public class EnemySO : ScriptableObject
 {
 
-  //  public int _id;
-  //  public string _name;
+    //  public int _id;
+    //  public string _name;
     public int _maxHp;
-
-  [HideInInspector]  public int _currentHp;
 
     public float _range; // 사정거리
 

@@ -1,10 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy_Boss1 : Enemy
 {
+
+
+     public Animator introAnim;
+    Animator intro;
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -13,7 +17,7 @@ public class Enemy_Boss1 : Enemy
 
     void Update()
     {
-        if (enemySO.enemyState != EnemySO.EnemyState.live) return;
+        if (_enemyState != EnemySO.EnemyState.live) return;
 
         Move();
     }
@@ -22,8 +26,21 @@ public class Enemy_Boss1 : Enemy
     {
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
-        _agent.speed = enemySO._movementSpeed;
-        _agent.stoppingDistance = enemySO._range;
+        _agent.speed = _movementSpeed;
+        _agent.stoppingDistance = _range;
+
+
+        _enemyState = EnemySO.EnemyState.Ready;
+
+        intro = Instantiate(introAnim);
+        Invoke("BattleBegen", 2.467f);
+
+    }
+
+    void BattleBegen()
+    {
+       Destroy(intro.gameObject);
+        _enemyState = EnemySO.EnemyState.live;
     }
 
 
@@ -53,62 +70,60 @@ public class Enemy_Boss1 : Enemy
 
         if (!IsTargetStraight())
         {
-            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance - 0.1f, 1.2f, enemySO._range);
+            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance - 0.1f, 1.2f, _range);
             return;
         }
 
-        _agent.stoppingDistance = enemySO._range; // 시야거리 초기화
+        _agent.stoppingDistance = _range; // 시야거리 초기화
         _attackCoroutine = StartCoroutine(Attack());
     }
 
     IEnumerator Attack()
     {
+        yield return new WaitForSeconds(1f);
+
         while (true)
         {
             if (!IsTargetStraight())
                 StopStateCoroutin();
 
 
-            if (enemySO._maxHp * 0.10 >= enemySO._currentHp)
+            if (_maxHp * 0.10 >= _currentHp)
             {
-                Circle(20, 5);
+                Circle(10, 10);
 
                 yield return new WaitForSeconds(1f);
 
-                Circle(16, 7);
+                FanShape(5, 14, 7);
 
                 yield return new WaitForSeconds(1f);
             }
-            else if (enemySO._maxHp * 0.25 >= enemySO._currentHp)
+            else if (_maxHp * 0.30 >= _currentHp)
             {
                 Circle(14,3);
 
                 yield return new WaitForSeconds(1.4f);
 
             }
-            else if (enemySO._maxHp * 0.50 >= enemySO._currentHp)
+            else if (_maxHp * 0.50 >= _currentHp)
             {
-                _animator?.SetTrigger(AttackHash);
                 FanShape(1, 7, 10);
 
                 yield return new WaitForSeconds(0.5f);
 
-                _animator?.SetTrigger(AttackHash);
                 FanShape(14, 7, 7, true);
 
                 yield return new WaitForSeconds(1);
 
             }
-            else if (enemySO._maxHp * 0.75 >= enemySO._currentHp)
+            else if (_maxHp * 0.75 >= _currentHp)
             {
-                _animator?.SetTrigger(AttackHash);
                 FanShape(7, 40);
                 yield return new WaitForSeconds(1);
 
             }
             else
             {
-                _animator?.SetTrigger(AttackHash);
                 FanShape(3, 20);
 
                 yield return new WaitForSeconds(1.3f);

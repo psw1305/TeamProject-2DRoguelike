@@ -16,7 +16,7 @@ public class Enemy_Horse : Enemy
 
     void Update()
     {
-        if (enemySO.enemyState != EnemySO.EnemyState.live) return;
+        if (_enemyState != EnemySO.EnemyState.live) return;
 
         Move();
     }
@@ -25,8 +25,8 @@ public class Enemy_Horse : Enemy
     {
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
-        _agent.speed = enemySO._movementSpeed;
-        _agent.stoppingDistance = enemySO._range;
+        _agent.speed = _movementSpeed;
+        _agent.stoppingDistance = _range;
 
         pos = _target.transform.position;
     }

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97af6ed5199939f478c049ba1aefb535, type: 3}
+  m_Name: Normal_13
+  m_EditorClassIdentifier: 
+  floor: {fileID: 0}
+  isReward: 1
+  rewardPosition: {x: 0, y: 0}
+  obstacleList: []
+  itemList: []
+  enemyList:
+  - value1: {fileID: 1711403224026450714, guid: c90812d57eb5b85418f77d666974308d, type: 3}
+    value2: {x: -6.5, y: 4}
+  - value1: {fileID: 1711403224026450714, guid: c90812d57eb5b85418f77d666974308d, type: 3}
+    value2: {x: 6.5, y: -4}
+  - value1: {fileID: 1711403224026450714, guid: c90812d57eb5b85418f77d666974308d, type: 3}
+    value2: {x: -6.5, y: -4}
+  - value1: {fileID: 1711403224026450714, guid: c90812d57eb5b85418f77d666974308d, type: 3}
+    value2: {x: 6.5, y: 4}
+  - value1: {fileID: 5264915059859455069, guid: 5ab97952199b3e248aef23ba977789eb, type: 3}
+    value2: {x: 0, y: 0}

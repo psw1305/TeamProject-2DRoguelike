@@ -9,13 +9,12 @@ public class Dungeon : MonoBehaviour
 
     [SerializeField] private int roomAmount;
 
-    // 방 설계도 테스트
-    [Header("Test Blueprint")]
+    // 방 설계도
     [SerializeField] private RoomBlueprint startRoom;
-    [SerializeField] private RoomBlueprint normalRoom;
     [SerializeField] private RoomBlueprint treasureRoom;
     [SerializeField] private RoomBlueprint shopRoom;
     [SerializeField] private RoomBlueprint bossRoom;
+    private List<RoomBlueprint> _normalRooms = new();
 
     private Room _roomPrefab;
     private Room[,] _roomArray = new Room[20, 20];
@@ -34,6 +33,9 @@ public class Dungeon : MonoBehaviour
 
     public void CreateDungeon()
     {
+        // 노멀 방 가져오기
+        _normalRooms = Main.Resource.GetRoomBlueprints("ScriptableObjects/Rooms/Normal");
+
         // 던전 생성
         _roomPrefab = Main.Resource.GetObject("Room").GetComponent<Room>();
         CreateRooms();
@@ -200,18 +202,32 @@ public class Dungeon : MonoBehaviour
         }
     }
 
-    // TODO => 임시로 만든 방 설계도 부여
+    // 방 설계도 부여
     public RoomBlueprint GetRoomBlueprint(RoomType type)
     {
         return type switch
         {
             RoomType.Start => startRoom,
-            RoomType.Normal => normalRoom,
+            RoomType.Normal => GetNormalRoom(),
             RoomType.Treasure => treasureRoom,
             RoomType.Shop => shopRoom,
             RoomType.Boss => bossRoom,
             _ => null,
         };
+    }
+
+    /// <summary>
+    /// 랜덤으로 일반 방 호출 뒤, 해당 인덱스 제거
+    /// </summary>
+    /// <returns>랜덤 일반 방</returns>
+    private RoomBlueprint GetNormalRoom()
+    {
+        int index = UnityEngine.Random.Range(0, _normalRooms.Count);
+        var normalRoom = _normalRooms[index];
+        // 임시 주석 처리
+        //_normalRooms.RemoveAt(index);
+
+        return normalRoom;
     }
 
     #endregion

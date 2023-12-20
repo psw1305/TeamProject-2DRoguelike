@@ -15,14 +15,14 @@ public class Enemy_Mage : Enemy
     {
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
-        _agent.speed = enemySO._movementSpeed;
-        _agent.stoppingDistance = enemySO._range;
+        _agent.speed = _movementSpeed;
+        _agent.stoppingDistance = _range;
     }
 
 
     void Update()
     {
-        if (enemySO.enemyState != EnemySO.EnemyState.live) return;
+        if (_enemyState != EnemySO.EnemyState.live) return;
 
         Move();
     }
@@ -50,11 +50,11 @@ public class Enemy_Mage : Enemy
 
         if (!IsTargetStraight())
         {
-            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance - 0.1f, 1, enemySO._range);
+            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance - 0.1f, 1, _range);
             return;
         }
 
-        _agent.stoppingDistance = enemySO._range; // 시야거리 초기화
+        _agent.stoppingDistance = _range; // 시야거리 초기화
         _attackCoroutine = StartCoroutine(Attack());
     }
 
@@ -67,28 +67,12 @@ public class Enemy_Mage : Enemy
 
 
 
-            yield return new WaitForSeconds(enemySO._attackSpeed);
+            yield return new WaitForSeconds(_attackSpeed);
 
-            FanShape(1, enemySO._bulletSpeed);
+            FanShape(1, _bulletSpeed);
 
 
         }
     }
 
 }
-
-
-/*
- 풀링 부분 백업
-
-        FanShape(3, _bulletSpeed, false);
-
-        EnemyProjectile enemyProjectile = Main.Object.Spawn<EnemyProjectile>("EenmyBullet", gameObject.transform.position);
-        enemyProjectile.SetInfo(1, 7);//float 값이라 임의로 넣음
-        enemyProjectile.transform.rotation = Quaternion.Euler(0, 0, AngleToTarget());
-
-        enemyProjectile.SetVelocity(DirectionToTarget() * 5); //5에 발사체 스피드 넣어주시면 됩니다
-        enemyProjectile.gameObject.tag = "EnemyProjectile";
- 
- 
- */
