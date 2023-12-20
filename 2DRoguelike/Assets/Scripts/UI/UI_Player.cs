@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class UI_Player : MonoBehaviour
 {
+    #region Fields
+
     [Header("Inventory")]
     [SerializeField] private TextMeshProUGUI hpText;
     [SerializeField] private TextMeshProUGUI coinText;
@@ -15,6 +17,14 @@ public class UI_Player : MonoBehaviour
     [SerializeField] private TextMeshProUGUI statAttackSpeedText;
     [SerializeField] private TextMeshProUGUI statAttackRangeText;
     [SerializeField] private TextMeshProUGUI statShotSpeedText;
+
+    [Header("Pause")]
+    [SerializeField] private GameObject pausePopup;
+
+    [Header("Stop")]
+    [SerializeField] private GameObject stopPopup;
+
+    #endregion
 
     #region Init
 
@@ -63,4 +73,22 @@ public class UI_Player : MonoBehaviour
 
     #endregion
 
+    #region Progress
+
+    public void GamePauseEnter()
+    {
+        pausePopup.SetActive(true);
+    }
+
+    public void GamePauseExit()
+    {
+        pausePopup.SetActive(false);
+    }
+
+    public void GameOver()
+    {
+        stopPopup.SetActive(true);
+    }
+
+    #endregion
 }

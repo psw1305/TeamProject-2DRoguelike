@@ -37,18 +37,46 @@ public class Bomb : MonoBehaviour
 
         if (other.CompareTag("Obstacle"))
         {
-            Destroy(other);
+            if (other.TryGetComponent<Obstacle>(out var obstacle))
+            {
+                obstacle.DestroySelf();
+            }
         }
 
-        if (other.CompareTag("PickupItem") || other.CompareTag("Bomb") || other.CompareTag("Enemy"))
+        if (other.CompareTag("PickupItem"))
         {
-            Vector2 direction = other.transform.position - transform.position;
-            Vector2 knockbackForce = direction.normalized * explosionForce;
+            TargetKnockback(other.transform);
+        }
 
-            if (other.TryGetComponent<Rigidbody2D>(out var targetRigidbody))
+        if (other.CompareTag("Enemy"))
+        {
+            TargetKnockback(other.transform);
+
+            if (other.TryGetComponent<Enemy>(out var enemy))
             {
-                targetRigidbody.AddForce(knockbackForce, ForceMode2D.Impulse);
+                enemy.Damaged(30);
             }
+        }
+
+        if (other.CompareTag("Player"))
+        {
+            TargetKnockback(other.transform);
+
+            if (other.TryGetComponent<Player>(out var player))
+            {
+                player.Damaged(2);
+            }
+        }
+    }
+
+    private void TargetKnockback(Transform target)
+    {
+        Vector2 direction = target.transform.position - transform.position;
+        Vector2 knockbackForce = direction.normalized * explosionForce;
+
+        if (target.TryGetComponent<Rigidbody2D>(out var targetRigidbody))
+        {
+            targetRigidbody.AddForce(knockbackForce, ForceMode2D.Impulse);
         }
     }
 }
