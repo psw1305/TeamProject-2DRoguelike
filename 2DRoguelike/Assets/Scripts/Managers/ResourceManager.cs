@@ -76,6 +76,12 @@ public class ResourceManager
         return Resources.LoadAll<ItemBlueprint>(path);
     }
 
+    public List<RoomBlueprint> GetRoomBlueprints(string path)
+    {
+        var rooms = Resources.LoadAll<RoomBlueprint>(path);
+        return rooms.ToList();
+    }
+
     #endregion
 
     #region Pool

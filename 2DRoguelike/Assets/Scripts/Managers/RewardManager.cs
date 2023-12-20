@@ -21,7 +21,7 @@ public class RewardManager
         _pickupBase = Main.Resource.GetObject("Pickup_Base");
         _passiveBase = Main.Resource.GetObject("Passive_Base");
         _shopBase = Main.Resource.GetObject("Shop_Base");
-        _pickupItems = Resources.LoadAll<ItemBlueprint>("ScriptableObjects/Items/Pickup");
+        _pickupItems = Main.Resource.GetItemBlueprints("ScriptableObjects/Items/Pickup");
         _passiveItems = Main.Resource.GetItemBlueprints("ScriptableObjects/Items/Passive");
 
         _normalChest = Main.Resource.GetObject("Pickup_Chest");
