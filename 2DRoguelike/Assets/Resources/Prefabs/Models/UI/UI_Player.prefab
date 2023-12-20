@@ -234,7 +234,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BGM Volume
+  m_text: "\uBC30\uACBD\uC74C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7df9f0b84d1ca8f45914c9077c55e824, type: 2}
   m_sharedMaterial: {fileID: -748550826145353047, guid: 7df9f0b84d1ca8f45914c9077c55e824, type: 2}
@@ -627,7 +627,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 180}
-  m_SizeDelta: {x: 800, y: 200}
+  m_SizeDelta: {x: 1920, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6164429353223496934
 CanvasRenderer:
@@ -657,7 +657,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You Die...
+  m_text: You Die...........
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7df9f0b84d1ca8f45914c9077c55e824, type: 2}
   m_sharedMaterial: {fileID: -748550826145353047, guid: 7df9f0b84d1ca8f45914c9077c55e824, type: 2}
@@ -1970,7 +1970,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SFX Volume
+  m_text: "\uD6A8\uACFC\uC74C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7df9f0b84d1ca8f45914c9077c55e824, type: 2}
   m_sharedMaterial: {fileID: -748550826145353047, guid: 7df9f0b84d1ca8f45914c9077c55e824, type: 2}
@@ -2471,7 +2471,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: I want go Home
+  m_text: "\uC544\uC774 \uC6D0\uD2B8 \uACE0 \uD648"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7df9f0b84d1ca8f45914c9077c55e824, type: 2}
   m_sharedMaterial: {fileID: -748550826145353047, guid: 7df9f0b84d1ca8f45914c9077c55e824, type: 2}
@@ -2854,7 +2854,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Try Again
+  m_text: "\uC7AC\uC2DC\uC791"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7df9f0b84d1ca8f45914c9077c55e824, type: 2}
   m_sharedMaterial: {fileID: -748550826145353047, guid: 7df9f0b84d1ca8f45914c9077c55e824, type: 2}
@@ -4102,7 +4102,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pause
+  m_text: "\uC77C\uC2DC\uC815\uC9C0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7df9f0b84d1ca8f45914c9077c55e824, type: 2}
   m_sharedMaterial: {fileID: -748550826145353047, guid: 7df9f0b84d1ca8f45914c9077c55e824, type: 2}
