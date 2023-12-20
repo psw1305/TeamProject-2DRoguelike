@@ -38,6 +38,9 @@ public class SFX : AudioSystem<SFX>
 
     [Header("Player")]
     public AudioClip playerAtk;
+    public AudioClip playerHit;
+    public AudioClip bombDrop;
+    public AudioClip bombExplode;
 
     [Header("Enemy")]
     public AudioClip enemyAtk;

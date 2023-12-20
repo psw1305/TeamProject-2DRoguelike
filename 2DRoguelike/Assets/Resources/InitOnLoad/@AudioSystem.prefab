@@ -287,7 +287,10 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: 462699daa0223b3448030b41ad4f5244, type: 2}
   btnClick: {fileID: 8300000, guid: 2a6cf02efb7d832489ba879699aa06e4, type: 3}
   playerAtk: {fileID: 8300000, guid: 3b790b57732bb5a4e8dca4febe7126df, type: 3}
-  enemyAtk: {fileID: 8300000, guid: 3b790b57732bb5a4e8dca4febe7126df, type: 3}
+  playerHit: {fileID: 8300000, guid: 447f91f90157bf246bd159440fb30c10, type: 3}
+  bombDrop: {fileID: 8300000, guid: 812ce545e25935c4f97d4c5b61f2d188, type: 3}
+  bombExplode: {fileID: 8300000, guid: 1edf134d13133334685f04f5e71f44e9, type: 3}
+  enemyAtk: {fileID: 8300000, guid: 1e415df681b56c040ad2750f69213c07, type: 3}
 --- !u!1 &7580983574363506155
 GameObject:
   m_ObjectHideFlags: 0
