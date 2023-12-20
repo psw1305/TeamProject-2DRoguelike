@@ -31,6 +31,7 @@ public enum StatusType
     Damage,
     Speed,
     AttackRange,
+    AttackSpeed,
     ShotSpeed
 }
 

@@ -5,7 +5,7 @@ public class RewardManager
     #region Fields
 
     private GameObject _pickupBase;
-    private GameObject _passiveBase;
+    private GameObject _treasureBase;
     private GameObject _shopBase;
 
     private ItemBlueprint[] _pickupItems;
@@ -19,7 +19,7 @@ public class RewardManager
     public void Initialize()
     {
         _pickupBase = Main.Resource.GetObject("Pickup_Base");
-        _passiveBase = Main.Resource.GetObject("Passive_Base");
+        _treasureBase = Main.Resource.GetObject("Treasure_Base");
         _shopBase = Main.Resource.GetObject("Shop_Base");
         _pickupItems = Main.Resource.GetItemBlueprints("ScriptableObjects/Items/Pickup");
         _passiveItems = Main.Resource.GetItemBlueprints("ScriptableObjects/Items/Passive");
@@ -89,7 +89,7 @@ public class RewardManager
     /// <param name="position"></param>
     public void DisplayTreasures(Vector2 position)
     {
-        var interactableItem = GameObject.Instantiate(_passiveBase).GetComponent<InteractableItem>();
+        var interactableItem = GameObject.Instantiate(_treasureBase).GetComponent<InteractableItem>();
         interactableItem.gameObject.transform.position = position;
         interactableItem.SetItem(GetRandomPassiveBlueprint());
     }
@@ -100,9 +100,9 @@ public class RewardManager
     /// <param name="position"></param>
     public void DisplayProducts(Vector2 position)
     {
-        float x = 5;
+        float x = 2.5f;
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
             var shopItem = GameObject.Instantiate(_shopBase).GetComponent<ShopItem>();
             shopItem.gameObject.transform.position = position + new Vector2((i * x) - 5, 0);

@@ -8,6 +8,7 @@ public class Room : MonoBehaviour
 
     [SerializeField] private RoomType roomType;
     [SerializeField] private Vector2Int coordinate;
+    [SerializeField] private Transform floor;
     [SerializeField] private List<GameObject> doorList;
     [SerializeField] private Transform objectContainer;
     [SerializeField] private Transform enemyContainer;
@@ -53,6 +54,11 @@ public class Room : MonoBehaviour
         isCleared = false;
         _roomBlueprint = Main.Game.Dungeon.GetRoomBlueprint(roomType);
 
+        for (int i = 0; i < floor.childCount; i++)
+        {
+            floor.GetChild(i).GetComponent<SpriteRenderer>().sprite = _roomBlueprint.Floor;
+        }
+
         ChangeDoorOutWard();
     }
 
@@ -84,7 +90,7 @@ public class Room : MonoBehaviour
                     doorFrame.sprite = Main.Resource.GetSprite("door-treasure");
                     break;
                 case RoomType.Shop:
-                    doorFrame.sprite = Main.Resource.GetSprite("door-shop");
+                    //doorFrame.sprite = Main.Resource.GetSprite("door-shop");
                     break;
                 default:
                     break;
@@ -121,6 +127,7 @@ public class Room : MonoBehaviour
         {
             var door = _activeDoorList[i];
             door.GetComponent<BoxCollider2D>().enabled = false;
+            door.GetComponent<Animator>().Play("Open");
         }
     }
 

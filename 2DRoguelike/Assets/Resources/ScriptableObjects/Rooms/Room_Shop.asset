@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97af6ed5199939f478c049ba1aefb535, type: 3}
   m_Name: Room_Shop
   m_EditorClassIdentifier: 
-  floor: {fileID: 0}
+  floor: {fileID: 21300002, guid: cf9063be2ff1f4f4a9df1418831ce821, type: 3}
   isReward: 0
   rewardPosition: {x: 0, y: 0}
   obstacleList: []
