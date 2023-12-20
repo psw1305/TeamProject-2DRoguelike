@@ -21,7 +21,9 @@ public class PlayerProjectile : MonoBehaviour
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Obstacle"))
+        string targetLayerName = "Obstacle";
+
+        if (collision.gameObject.CompareTag("Wall") || IsLayer(collision.gameObject.layer, targetLayerName) || collision.gameObject.CompareTag("DoorCollider"))
         {
             if (this.IsValid()) Main.Object.Despawn(this);
         }
@@ -33,6 +35,11 @@ public class PlayerProjectile : MonoBehaviour
 
             collision.GetComponent<Enemy>().Damaged(Damage);
         }
+    }
+    private bool IsLayer(int layer, string layerName)
+    {
+        int targetLayer = LayerMask.NameToLayer(layerName);
+        return layer == targetLayer;
     }
 
     public void Initialize()
