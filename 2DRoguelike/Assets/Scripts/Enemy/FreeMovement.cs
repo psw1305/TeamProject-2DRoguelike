@@ -4,41 +4,24 @@ using UnityEngine.AI;
 
 public class FreeMovement : MonoBehaviour
 {
-    #region Gizmo
+    private  NavMeshAgent _agent;
+    private  Vector3 _target; // 목적지
 
-    void OnDrawGizmosSelected() // 이동범위 보기
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _range);
+    private float _range = 4;
 
-        Debug.DrawRay(_target, Vector3.up);
-
-    }
-
-    #endregion
-
-    private NavMeshAgent _agent;
-    private Vector3 _target; // 목적지
-
-    private float _range; 
-
-
-    void Awake()
+     void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
-        _range = 7;
     }
 
-    private void OnEnable()
+
+     void OnEnable()
     {
-        _agent.updateRotation = false;
-        _agent.updateUpAxis = false;
-
         _target = RandomPosition();
+
     }
 
-
-    void Update()
+    private void Update()
     {
         _agent.SetDestination(_target);
 

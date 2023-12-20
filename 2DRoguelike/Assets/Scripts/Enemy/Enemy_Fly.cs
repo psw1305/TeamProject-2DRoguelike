@@ -1,19 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyMelee : Enemy
+public class Enemy_Fly : Enemy
 {
 
-    protected override void Awake()
-    {
-        base.Awake();
-
-        _maxHp = 50;
-        _movementSpeed = 1.5f;
-        _attackSpeed = 1;
-        _range = 1.2f;
-
-    }
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -22,20 +12,21 @@ public class EnemyMelee : Enemy
 
     void Update()
     {
-        if (enemyState != EnemyState.live) return;
+        if (enemySO.enemyState != EnemySO.EnemyState.live) return;
 
         Move();
     }
 
     void Initialize()
     {
-        _currentHp = _maxHp;
+        enemySO._currentHp = enemySO._maxHp;
 
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
-        _agent.speed = _movementSpeed;
-        _agent.stoppingDistance = _range;
+        _agent.speed = enemySO._movementSpeed;
+        _agent.stoppingDistance = enemySO._range;
     }
+
 
 
     void Move()
@@ -43,11 +34,11 @@ public class EnemyMelee : Enemy
         if (_target == null) return;
 
         _agent.SetDestination(_target.transform.position);
-     
+
 
         if (_agent.velocity.magnitude > 0.2f) // 움직이는 중이면 true
         {
-            _animator.SetBool(isWalkHash, true);
+            _animator?.SetBool(isWalkHash, true);
             StopStateCoroutin();
         }
         else
@@ -64,11 +55,11 @@ public class EnemyMelee : Enemy
 
         if (!IsTargetStraight())
         {
-            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance - 0.1f, 1.2f, _range);
+            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance - 0.1f, 1.2f, enemySO._range);
             return;
         }
 
-        _agent.stoppingDistance = _range; // 시야거리 초기화
+        _agent.stoppingDistance = enemySO._range; // 시야거리 초기화
         _attackCoroutine = StartCoroutine(Attack());
     }
 
@@ -78,13 +69,13 @@ public class EnemyMelee : Enemy
         {
             if (!IsTargetStraight())
                 StopStateCoroutin();
-         
-            yield return new WaitForSeconds(_attackSpeed);
 
-            _animator.SetBool(isWalkHash, false);
-            _animator.SetTrigger(AttackHash);
+            yield return new WaitForSeconds(enemySO._attackSpeed);
 
-            _target.Damaged(_attackDamage);
+            _animator?.SetBool(isWalkHash, false);
+            _animator?.SetTrigger(AttackHash);
+
+            _target.Damaged(enemySO._attackDamage);
         }
     }
 
