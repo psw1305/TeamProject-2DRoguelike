@@ -150,6 +150,18 @@ public class Room : MonoBehaviour
             GenerateObject(_roomBlueprint.EnemyList[i].value1, _roomBlueprint.EnemyList[i].value2, enemyContainer);
         }
 
+        // 보물방인 경우 => 아이템 전시
+        if (roomType == RoomType.Treasure)
+        {
+            Main.Reward.DisplayTreasures(this.transform.position);
+        }
+
+        // 상점방인 경우 => 상품 전시
+        if (roomType == RoomType.Shop)
+        {
+            Main.Reward.DisplayProducts(this.transform.position);
+        }
+
         CheckRoomClear();
     }
 

@@ -79,16 +79,20 @@ public class Player : MonoBehaviour
     public bool GetHeart(int amount)
     {
         if (CurrentHp + amount > HP.Value) return false;
+
         CurrentHp += amount;
+        SFX.Instance.PlayOneShot(SFX.Instance.pickupHeart);
         Main.UI.PlayerUI.SetCurrentHP(CurrentHp.ToString());
         return true;
     }
 
-    // 코인은 한도 초과를 넘겨도 오브젝트 파괴 가능
+    // 코인은 한도 초과를 넘겨도 계속 섭취 가능
     public bool GetCoin(int amount)
     {
         if (Coin + amount > Globals.MaxCoinStock) return true;
         Coin += amount;
+
+        SFX.Instance.PlayOneShot(SFX.Instance.pickupCoin);
         Main.UI.PlayerUI.SetCoin(Coin.ToString());
         return true;
     }
@@ -97,6 +101,8 @@ public class Player : MonoBehaviour
     {
         if (Key + amount > Globals.MaxKeyStock) return false;
         Key += amount;
+
+        SFX.Instance.PlayOneShot(SFX.Instance.pickupKey);
         Main.UI.PlayerUI.SetKey(Key.ToString());
         return true;
     }
@@ -105,6 +111,8 @@ public class Player : MonoBehaviour
     {
         if (Bomb + amount > Globals.MaxBombStock) return false;
         Bomb += amount;
+
+        SFX.Instance.PlayOneShot(SFX.Instance.pickupBomb);
         Main.UI.PlayerUI.SetBomb(Bomb.ToString());
         return true;
     }
@@ -123,6 +131,7 @@ public class Player : MonoBehaviour
         if (Key - 1 < 0) return false;
 
         Key -= 1;
+        SFX.Instance.PlayOneShot(SFX.Instance.useKey);
         Main.UI.PlayerUI.SetKey(Key.ToString());
         return true;
     }
@@ -132,6 +141,7 @@ public class Player : MonoBehaviour
         if (Bomb - 1 < 0) return false;
 
         Bomb -= 1;
+        SFX.Instance.PlayOneShot(SFX.Instance.useBomb);
         Main.UI.PlayerUI.SetBomb(Bomb.ToString());
         return true;
     }
@@ -143,6 +153,7 @@ public class Player : MonoBehaviour
     public void Damaged(int damage)
     {
         CurrentHp -= damage;
+        SFX.Instance.PlayOneShot(SFX.Instance.playerHit);
 
         StartCoroutine(AlphaModifyAfterCollision());
 

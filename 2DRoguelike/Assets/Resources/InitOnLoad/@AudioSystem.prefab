@@ -286,10 +286,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 462699daa0223b3448030b41ad4f5244, type: 2}
   btnClick: {fileID: 8300000, guid: 2a6cf02efb7d832489ba879699aa06e4, type: 3}
+  pickupHeart: {fileID: 8300000, guid: 7cecba13581d5db48963eb2b3a07ca9c, type: 3}
+  pickupCoin: {fileID: 8300000, guid: 17d23da5be86ed44e953f9f5a718d386, type: 3}
+  pickupKey: {fileID: 8300000, guid: f949498263054e2458cab06846393b63, type: 3}
+  pickupBomb: {fileID: 8300000, guid: d38f3e1457892fa47a75fdf6729e7428, type: 3}
+  openChest: {fileID: 8300000, guid: cec6a666e3378f445907904bf165fbe7, type: 3}
+  getPassiveItem: {fileID: 8300000, guid: f590069b39655c644aaa0df8455bc3a8, type: 3}
   playerAtk: {fileID: 8300000, guid: 3b790b57732bb5a4e8dca4febe7126df, type: 3}
   playerHit: {fileID: 8300000, guid: 447f91f90157bf246bd159440fb30c10, type: 3}
-  bombDrop: {fileID: 8300000, guid: 812ce545e25935c4f97d4c5b61f2d188, type: 3}
-  bombExplode: {fileID: 8300000, guid: 1edf134d13133334685f04f5e71f44e9, type: 3}
+  useKey: {fileID: 8300000, guid: 03598527402cf344ea601f010fe10d98, type: 3}
+  useBomb: {fileID: 8300000, guid: 79bf8e596f4c28c4ba758dc7b1513878, type: 3}
+  explodeBomb: {fileID: 8300000, guid: b297de45db5f5bf4b8280b4b23b7a4b7, type: 3}
   enemyAtk: {fileID: 8300000, guid: 1e415df681b56c040ad2750f69213c07, type: 3}
 --- !u!1 &7580983574363506155
 GameObject:

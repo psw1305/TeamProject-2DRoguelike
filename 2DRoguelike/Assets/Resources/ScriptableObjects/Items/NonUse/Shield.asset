@@ -10,16 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c09eafff079c9684681c0f1907d853d2, type: 3}
-  m_Name: Book
+  m_Name: Shield
   m_EditorClassIdentifier: 
-  itemName: Book
-  itemAmount: 1
+  itemName: 
+  itemAmount: 0
   itemAnimationController: {fileID: 0}
-  itemType: 6
+  itemType: 0
   itemCost: 15
-  interactType: 2
-  itemSprite: {fileID: 631249909, guid: aa07ad6056a3ed0429ad7530e16488a4, type: 3}
-  valueList:
-  - statusType: 1
-    statusModType: 2
-    value: 0.2
+  interactType: 0
+  itemSprite: {fileID: 0}
+  valueList: []

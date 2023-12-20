@@ -36,11 +36,20 @@ public class SFX : AudioSystem<SFX>
     [Header("UI")]
     public AudioClip btnClick;
 
+    [Header("Item")]
+    public AudioClip pickupHeart;
+    public AudioClip pickupCoin;
+    public AudioClip pickupKey;
+    public AudioClip pickupBomb;
+    public AudioClip openChest;
+    public AudioClip getPassiveItem;
+
     [Header("Player")]
     public AudioClip playerAtk;
     public AudioClip playerHit;
-    public AudioClip bombDrop;
-    public AudioClip bombExplode;
+    public AudioClip useKey;
+    public AudioClip useBomb;
+    public AudioClip explodeBomb;
 
     [Header("Enemy")]
     public AudioClip enemyAtk;

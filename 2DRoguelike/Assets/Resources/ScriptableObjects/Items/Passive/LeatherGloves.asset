@@ -15,7 +15,6 @@ MonoBehaviour:
   itemName: LeatherGloves
   itemAmount: 1
   itemAnimationController: {fileID: 0}
-  getRadius: 2
   itemType: 6
   itemCost: 15
   interactType: 2

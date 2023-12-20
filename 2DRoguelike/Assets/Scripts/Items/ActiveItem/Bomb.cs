@@ -23,6 +23,7 @@ public class Bomb : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        SFX.Instance.PlayOneShot(SFX.Instance.explodeBomb);
         _collider.isTrigger = true;
         _collider.radius = 1.5f;
 

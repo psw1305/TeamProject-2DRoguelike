@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c09eafff079c9684681c0f1907d853d2, type: 3}
-  m_Name: Card
+  m_Name: Scroll
   m_EditorClassIdentifier: 
-  itemName: Card
+  itemName: 
   itemAmount: 0
   itemAnimationController: {fileID: 0}
   itemType: 0
-  itemCost: 0
+  itemCost: 15
   interactType: 0
-  itemSprite: {fileID: 398272527, guid: aa07ad6056a3ed0429ad7530e16488a4, type: 3}
+  itemSprite: {fileID: 0}
   valueList: []
