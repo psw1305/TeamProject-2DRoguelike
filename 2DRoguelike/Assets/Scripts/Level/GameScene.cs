@@ -8,7 +8,7 @@ public class GameScene : MonoBehaviour
 
     #endregion
 
-    #region Init
+    #region MonoBehaviour
 
     private void Start()
     {
@@ -28,9 +28,11 @@ public class GameScene : MonoBehaviour
 
         // #5. NevMesh 영역생성
         Main.Resource.InstantiatePrefab("NevMesh");
+    }
 
-        // 테스트 적 스폰
-        //Main.Game.SpawnEnemy();
+    private void Update()
+    {
+        Main.Game.CurrentState?.UpdateState();
     }
 
     #endregion

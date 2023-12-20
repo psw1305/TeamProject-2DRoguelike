@@ -13,20 +13,22 @@ MonoBehaviour:
   m_Name: Normal_1
   m_EditorClassIdentifier: 
   floor: {fileID: 0}
-  isReward: 0
-  rewardPosition: {x: 13, y: 7}
+  isReward: 1
+  rewardPosition: {x: 0, y: 0}
   obstacleList:
   - value1: {fileID: 2377632366193899140, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
     value2: {x: -4, y: -2}
-  - value1: {fileID: 2402240875340394692, guid: 711422058f154d749944f7faa383e796, type: 3}
+  - value1: {fileID: 2377632366193899140, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
     value2: {x: -4, y: 0}
-  - value1: {fileID: 207654240137252809, guid: e562994d0d5997a489b3f689f69493b9, type: 3}
+  - value1: {fileID: 2377632366193899140, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
     value2: {x: -4, y: 2}
-  itemList:
-  - value1: {fileID: 7543223595214573595, guid: c4876801e92656a4883d224dc9623f3c, type: 3}
-    value2: {x: 4, y: 2}
-  - value1: {fileID: 7543223595214573595, guid: 9cc4f821193b46940a5489100ce4803b, type: 3}
-    value2: {x: 4, y: -2}
+  - value1: {fileID: 2377632366193899140, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
+    value2: {x: 4, y: -1}
+  - value1: {fileID: 2377632366193899140, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
+    value2: {x: 4, y: 0}
+  - value1: {fileID: 2377632366193899140, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
+    value2: {x: 4, y: 1}
+  itemList: []
   enemyList:
   - value1: {fileID: 5264915059859455069, guid: 5ab97952199b3e248aef23ba977789eb, type: 3}
     value2: {x: 7, y: 4}
