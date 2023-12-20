@@ -118,8 +118,8 @@ GameObject:
   - component: {fileID: 7021100969995000864}
   - component: {fileID: 5899168646931849055}
   - component: {fileID: 4699476635209121338}
-  - component: {fileID: 4156900590312569218}
   - component: {fileID: 421212513352212879}
+  - component: {fileID: 7924274465902866343}
   m_Layer: 8
   m_Name: Enemy_Fly
   m_TagString: Enemy
@@ -227,20 +227,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.46, y: 0.4}
   m_Direction: 0
---- !u!114 &4156900590312569218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3803739711051263448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e295b3e612efd9544934a75ad50d311d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 683310922939161249, guid: 463c08ec808b1064bb069fd53355c5e8, type: 3}
-  enemySO: {fileID: 11400000, guid: 7016d26dcdd9b644b8bee0556b83c01b, type: 2}
 --- !u!114 &421212513352212879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,3 +239,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9090a95dd5104aa46b89dbb3dfec14fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7924274465902866343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3803739711051263448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d152f1c3046f99e4b818b4bdb75f17ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 683310922939161249, guid: 463c08ec808b1064bb069fd53355c5e8, type: 3}
+  enemySO: {fileID: 11400000, guid: 7016d26dcdd9b644b8bee0556b83c01b, type: 2}

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2876072321317774143}
   - component: {fileID: 6775942484066114820}
   - component: {fileID: 5434293355913071989}
+  - component: {fileID: 9151572453063289206}
   m_Layer: 8
   m_Name: Enemy_Horse
   m_TagString: Enemy
@@ -118,7 +119,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.15, y: 0.55}
+  m_Size: {x: 1.41, y: 1.76}
   m_Direction: 0
 --- !u!114 &5434293355913071989
 MonoBehaviour:
@@ -134,7 +135,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 683310922939161249, guid: 463c08ec808b1064bb069fd53355c5e8, type: 3}
   enemySO: {fileID: 11400000, guid: 0bf0fb5e869cfa64a848f9f1fac75e2f, type: 2}
-  _endPos: {x: 0, y: 0, z: 0}
+--- !u!114 &9151572453063289206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753507385331679419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9090a95dd5104aa46b89dbb3dfec14fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2174096640889018191
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +174,7 @@ Transform:
   m_GameObject: {fileID: 2174096640889018191}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8141154437384521511}
