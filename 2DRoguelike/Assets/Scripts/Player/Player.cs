@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -15,6 +16,28 @@ public class Player : MonoBehaviour
     public StatUnit AttackSpeed { get; private set; }
     public StatUnit AttackRange { get; private set; }
     public StatUnit ShotSpeed { get; private set; }
+
+    public bool Invincible
+    {
+        get => _invincible;
+        set
+        {
+            _invincible = value;
+            if (_invincible)
+            {
+                if (_coInvincible != null) StopCoroutine(_coInvincible);
+                _coInvincible = StartCoroutine(InvincibleTimer(_invincibilityTime));
+            }
+        }
+    }
+    #endregion
+
+    #region Fields
+
+    private SpriteRenderer _sprite;
+    private bool _invincible = false;
+    private Coroutine _coInvincible;
+    [SerializeField] private float _invincibilityTime = 1f;
 
     #endregion
 
@@ -38,6 +61,11 @@ public class Player : MonoBehaviour
     public void Initialize()
     {
         Main.UI.PlayerUI.Initialize(this);
+    }
+
+    private void Awake()
+    {
+        _sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     #endregion
@@ -116,6 +144,8 @@ public class Player : MonoBehaviour
     {
         CurrentHp -= damage;
 
+        StartCoroutine(AlphaModifyAfterCollision());
+
         if (CurrentHp <= 0)
         {
             CurrentHp = 0;
@@ -158,6 +188,47 @@ public class Player : MonoBehaviour
         else if (collision.gameObject.CompareTag("Enemy"))
         {
             Damaged(1);
+            Invincible = true;
+        }
+    }
+
+    #endregion
+
+    #region Coroutine
+
+    private IEnumerator InvincibleTimer(float invincibilityTime)
+    {
+        yield return new WaitForSeconds(invincibilityTime);
+        Invincible = false;
+    }
+
+    IEnumerator AlphaModifyAfterCollision()
+    {
+        float targetRed = 0.1f;
+
+        Color startColor = _sprite.color;
+        Color targetColor = new Color(startColor.a, targetRed, targetRed, startColor.a);
+
+        for (int i = 0; i < 1; ++i)
+        {
+            yield return FadeColor(startColor, targetColor, _invincibilityTime / 5);
+            _sprite.color = targetColor;
+            yield return FadeColor(targetColor, startColor, _invincibilityTime / 5);
+            _sprite.color = startColor;
+        }
+
+        _sprite.color = startColor;
+    }
+
+    IEnumerator FadeColor(Color startColor, Color targetColor, float duration)
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            _sprite.color = Color.Lerp(startColor, targetColor, Mathf.Clamp01(elapsedTime / duration));
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
     }
 
