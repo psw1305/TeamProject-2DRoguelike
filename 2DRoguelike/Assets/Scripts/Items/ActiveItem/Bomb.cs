@@ -40,7 +40,7 @@ public class Bomb : MonoBehaviour
             Destroy(other);
         }
 
-        if (other.CompareTag("PickupItem") || other.CompareTag("Bomb"))
+        if (other.CompareTag("PickupItem") || other.CompareTag("Bomb") || other.CompareTag("Enemy"))
         {
             Vector2 direction = other.transform.position - transform.position;
             Vector2 knockbackForce = direction.normalized * explosionForce;

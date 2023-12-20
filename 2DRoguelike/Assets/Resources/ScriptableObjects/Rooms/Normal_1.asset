@@ -16,7 +16,7 @@ MonoBehaviour:
   isReward: 0
   rewardPosition: {x: 13, y: 7}
   obstacleList:
-  - value1: {fileID: 8028431702945169106, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
+  - value1: {fileID: 2377632366193899140, guid: 99ac2ecc4efd1774c9f24e84334f7ca6, type: 3}
     value2: {x: -4, y: -2}
   - value1: {fileID: 2402240875340394692, guid: 711422058f154d749944f7faa383e796, type: 3}
     value2: {x: -4, y: 0}
@@ -30,3 +30,5 @@ MonoBehaviour:
   enemyList:
   - value1: {fileID: 5264915059859455069, guid: 5ab97952199b3e248aef23ba977789eb, type: 3}
     value2: {x: 7, y: 4}
+  - value1: {fileID: 2151391770028553009, guid: 5df07e1f56f1a344d906ce48cdf0a0bd, type: 3}
+    value2: {x: -7, y: 4}
