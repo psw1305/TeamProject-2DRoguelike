@@ -8,19 +8,20 @@ public class ShopItem : InteractableItem
 {
     private void Start()
     {
-        InteractableItemBluePrint bluePrint = blueprint as InteractableItemBluePrint;
-        GetComponentInChildren<TextMeshProUGUI>().text = "Cost : " + bluePrint.itemCost.ToString();
+        GetComponentInChildren<TextMeshProUGUI>().text = "Cost : " + targetBp.itemCost.ToString();
     }
-    public override bool PlayerGetThis()
+
+    protected override void OnTriggerEnter2D(Collider2D other)
     {
-        if (HasCoin())
-            return true;
-        return false;
+        if(!other.CompareTag("Player")) return;
+        if(!HasCoin()) return;
+
+        _equipSystem.GetItemStatus(targetBp);
+        // TODO => 소리
+        Destroy(gameObject);
     }
-    
     public bool HasCoin()
     {
-        InteractableItemBluePrint bluePrint = blueprint as InteractableItemBluePrint;
-        return Main.Game.Player.UseCoin(bluePrint.itemCost);
+        return Main.Game.Player.UseCoin(targetBp.itemCost);
     }
 }

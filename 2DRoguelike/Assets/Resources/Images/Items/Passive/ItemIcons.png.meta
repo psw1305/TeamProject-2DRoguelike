@@ -850,111 +850,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemIcons_34
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 739
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 358978ff4115e2142a007543882f4df1
-      internalID: 1324567337
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ItemIcons_35
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 739
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d025098704d87f549926804d9cfa77b5
-      internalID: 1296841493
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ItemIcons_36
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 739
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5d2b67633e9d6bd439159f1e3c44eef8
-      internalID: -41833082
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ItemIcons_37
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 739
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ab5d6c8e49f43834687eda67b57f53e3
-      internalID: 299544659
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ItemIcons_38
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 739
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b54111cac2a29a5449b3988f12f3903e
-      internalID: 358679302
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: ItemIcons_39
       rect:
         serializedVersion: 2
@@ -1480,7 +1375,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemIcons_64
+      name: Shield
       rect:
         serializedVersion: 2
         x: 0
@@ -2026,7 +1921,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemIcons_90
+      name: Cape
       rect:
         serializedVersion: 2
         x: 448
@@ -3916,7 +3811,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemIcons_180
+      name: Card
       rect:
         serializedVersion: 2
         x: 448
@@ -4357,7 +4252,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemIcons_201
+      name: Meat
       rect:
         serializedVersion: 2
         x: 96
@@ -4882,7 +4777,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemIcons_226
+      name: Plate0
       rect:
         serializedVersion: 2
         x: 416
@@ -4945,7 +4840,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemIcons_229
+      name: Plate1
       rect:
         serializedVersion: 2
         x: 32
@@ -5008,7 +4903,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemIcons_232
+      name: Gem
       rect:
         serializedVersion: 2
         x: 128
@@ -5932,7 +5827,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ItemIcons_276
+      name: Scroll
       rect:
         serializedVersion: 2
         x: 192
@@ -6111,6 +6006,9 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Book: 631249909
+      Cape: 1547195732
+      Card: 398272527
+      Gem: 2043035710
       GemRing: 1042773334
       ItemIcons_0: -1515079507
       ItemIcons_1: -782573407
@@ -6201,7 +6099,6 @@ TextureImporter:
       ItemIcons_178: 533633751
       ItemIcons_179: -753910760
       ItemIcons_18: 765530217
-      ItemIcons_180: 398272527
       ItemIcons_181: 2039545650
       ItemIcons_182: -392627997
       ItemIcons_183: 1380412020
@@ -6225,7 +6122,6 @@ TextureImporter:
       ItemIcons_2: -1671778503
       ItemIcons_20: 777582931
       ItemIcons_200: 2028528463
-      ItemIcons_201: 1350831347
       ItemIcons_202: 2028883836
       ItemIcons_203: 1638803651
       ItemIcons_204: -140395633
@@ -6252,14 +6148,11 @@ TextureImporter:
       ItemIcons_223: -789798941
       ItemIcons_224: -62764492
       ItemIcons_225: -1066988221
-      ItemIcons_226: 225855537
       ItemIcons_227: 963803468
       ItemIcons_228: -1890598468
-      ItemIcons_229: -1490681314
       ItemIcons_23: 740462588
       ItemIcons_230: 1949108247
       ItemIcons_231: -2042584202
-      ItemIcons_232: 2043035710
       ItemIcons_233: -449731239
       ItemIcons_234: 1296993073
       ItemIcons_235: 816948416
@@ -6307,7 +6200,6 @@ TextureImporter:
       ItemIcons_273: -107846855
       ItemIcons_274: -1027168340
       ItemIcons_275: 992600827
-      ItemIcons_276: -1555150762
       ItemIcons_277: -375127539
       ItemIcons_278: 194336589
       ItemIcons_279: 736791424
@@ -6337,6 +6229,7 @@ TextureImporter:
       ItemIcons_45: 1207989947
       ItemIcons_46: 279044045
       ItemIcons_47: 991555167
+      ItemIcons_48: -1572297261
       ItemIcons_49: -1557697589
       ItemIcons_5: 573369373
       ItemIcons_50: -1677002348
@@ -6353,7 +6246,6 @@ TextureImporter:
       ItemIcons_61: -1680643219
       ItemIcons_62: -224375702
       ItemIcons_63: 1737178127
-      ItemIcons_64: 1825892051
       ItemIcons_65: -2089665775
       ItemIcons_66: -650047570
       ItemIcons_67: -428173820
@@ -6382,7 +6274,6 @@ TextureImporter:
       ItemIcons_88: 52050037
       ItemIcons_89: 2084050901
       ItemIcons_9: -1048269067
-      ItemIcons_90: 1547195732
       ItemIcons_91: -1484617125
       ItemIcons_93: -306523780
       ItemIcons_95: 1385753020
@@ -6391,7 +6282,12 @@ TextureImporter:
       ItemIcons_99: -404273036
       LeatherBoots: -911590103
       LeatherGloves: 502473347
+      Meat: 1350831347
+      Plate0: 225855537
+      Plate1: -1490681314
       Pot: -1918498691
+      Scroll: -1555150762
+      Shield: 1825892051
       SteelAxe: -853828404
       WoodSword: -1808396129
   mipmapLimitGroupName: 
