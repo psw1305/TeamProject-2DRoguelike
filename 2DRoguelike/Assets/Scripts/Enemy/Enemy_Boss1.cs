@@ -1,8 +1,14 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy_Boss1 : Enemy
 {
+
+
+     public Animator introAnim;
+    Animator intro;
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -22,6 +28,19 @@ public class Enemy_Boss1 : Enemy
         _agent.updateUpAxis = false;
         _agent.speed = _movementSpeed;
         _agent.stoppingDistance = _range;
+
+
+        _enemyState = EnemySO.EnemyState.Ready;
+
+        intro = Instantiate(introAnim);
+        Invoke("BattleBegen", 2.467f);
+
+    }
+
+    void BattleBegen()
+    {
+       Destroy(intro.gameObject);
+        _enemyState = EnemySO.EnemyState.live;
     }
 
 
@@ -61,6 +80,8 @@ public class Enemy_Boss1 : Enemy
 
     IEnumerator Attack()
     {
+        yield return new WaitForSeconds(1f);
+
         while (true)
         {
             if (!IsTargetStraight())

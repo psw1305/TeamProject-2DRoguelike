@@ -253,3 +253,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 683310922939161249, guid: 463c08ec808b1064bb069fd53355c5e8, type: 3}
   enemySO: {fileID: 11400000, guid: c973d96e7c0fa70488a8eba28dadc93d, type: 2}
+  introAnim: {fileID: 5045337486307785425, guid: 6f99b9bf96f34fe418d80afd9ad56870, type: 3}
