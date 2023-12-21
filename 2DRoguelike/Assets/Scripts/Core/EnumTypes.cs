@@ -32,3 +32,10 @@ public enum ItemType
     Chest,
     Special
 }
+
+public enum EnemyState
+{
+    Ready, // 이벤트씬 용
+    live,
+    Die
+}

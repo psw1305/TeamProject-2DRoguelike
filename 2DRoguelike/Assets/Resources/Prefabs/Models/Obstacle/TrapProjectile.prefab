@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9173761109508621562}
   - component: {fileID: -5719110388598241770}
   - component: {fileID: 7509931635459025072}
-  - component: {fileID: 7034269044993807120}
   m_Layer: 0
   m_Name: TrapProjectile
   m_TagString: ObstacleProjectile
@@ -107,18 +106,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.29166666, y: 0.875}
   m_EdgeRadius: 0
---- !u!114 &7034269044993807120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3313010071783593888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b63a0c26153c394287d2237e0199be9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7081395094871754527
 GameObject:
   m_ObjectHideFlags: 0

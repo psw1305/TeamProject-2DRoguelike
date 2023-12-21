@@ -57,6 +57,7 @@ public class Room : MonoBehaviour
         for (int i = 0; i < floor.childCount; i++)
         {
             floor.GetChild(i).GetComponent<SpriteRenderer>().sprite = _roomBlueprint.Floor;
+            //_roomBlueprint.Floor = floor.GetChild(i).GetComponent<SpriteRenderer>().sprite;
         }
 
         ChangeDoorOutWard();

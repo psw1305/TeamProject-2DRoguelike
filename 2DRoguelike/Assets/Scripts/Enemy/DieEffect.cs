@@ -10,6 +10,5 @@ public class DieEffect : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
-
     }
 }

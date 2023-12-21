@@ -6,7 +6,6 @@ public class LookAtPlayer : MonoBehaviour
     /// 플레이어 위치에따라 Sprite 반전시키는 스크립트
     /// </summary>
 
-
     private Player _target;
     private SpriteRenderer _spriteRenderer;
 
@@ -21,11 +20,9 @@ public class LookAtPlayer : MonoBehaviour
 
     private void Update()
     {
-
         if (_spriteRenderer != null)
         {
             _spriteRenderer.flipX = (transform.position.x > _target.transform.position.x);
         }
-
     }
 }

@@ -344,7 +344,6 @@ GameObject:
   - component: {fileID: 436055077}
   - component: {fileID: 436055076}
   - component: {fileID: 436055075}
-  - component: {fileID: 436055078}
   m_Layer: 5
   m_Name: BackBtn
   m_TagString: Untagged
@@ -416,19 +415,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 436055076}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 436055078}
-        m_TargetAssemblyTypeName: BackBtn, Assembly-CSharp
-        m_MethodName: InactiveUIBundle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &436055076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,18 +454,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 436055073}
   m_CullTransparentMesh: 1
---- !u!114 &436055078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 436055073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bc73d1cc2f4156419ee2151228c664a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &473062559
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,19 +537,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 473062562}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2104135705}
-        m_TargetAssemblyTypeName: LobbyBtn, Assembly-CSharp
-        m_MethodName: ActiveOptionUI
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &473062562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2339,19 +2302,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1897985625}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2104135705}
-        m_TargetAssemblyTypeName: LobbyBtn, Assembly-CSharp
-        m_MethodName: LoadGameScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1897985625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2390,74 +2341,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897985622}
   m_CullTransparentMesh: 1
---- !u!1 &1924851292
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1924851295}
-  - component: {fileID: 1924851294}
-  - component: {fileID: 1924851293}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1924851293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1924851292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &1924851294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1924851292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &1924851295
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1924851292}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1928167575
 GameObject:
   m_ObjectHideFlags: 0
@@ -2680,10 +2563,9 @@ GameObject:
   - component: {fileID: 2104135702}
   - component: {fileID: 2104135704}
   - component: {fileID: 2104135703}
-  - component: {fileID: 2104135705}
   - component: {fileID: 2104135706}
   m_Layer: 5
-  m_Name: Lobby
+  m_Name: UI_Lobby
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2750,19 +2632,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2104135701}
   m_CullTransparentMesh: 1
---- !u!114 &2104135705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2104135701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f2382ce1c23be4c90ed9dd7f303cb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  optionUIBundle: {fileID: 1110650254}
 --- !u!114 &2104135706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2775,3 +2644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c03f26362cd1464dbb8398888418b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionPopup: {fileID: 1110650254}
+  startBtn: {fileID: 1897985624}
+  optionBtn: {fileID: 473062561}
+  returnBtn: {fileID: 436055075}

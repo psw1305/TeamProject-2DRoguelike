@@ -217,7 +217,7 @@ public class Dungeon : MonoBehaviour
     }
 
     /// <summary>
-    /// 랜덤으로 일반 방 호출 뒤, 해당 인덱스 제거
+    /// 중복없이 랜덤으로 일반 방 호출
     /// </summary>
     /// <returns>랜덤 일반 방</returns>
     private RoomBlueprint GetNormalRoom()

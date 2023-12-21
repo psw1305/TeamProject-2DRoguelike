@@ -1,20 +1,23 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-  [HideInInspector] public float _bulletSpeed = 5f;
-    [HideInInspector] public int _damage = 1;
+    private float _bulletSpeed = 5f;
+    private int _damage = 1;
+
+    public void SetBulletSpeed(float bulletSpeed)
+    {
+        _bulletSpeed = bulletSpeed;
+    }
 
     private void OnEnable()
     {
-        transform.position = Vector3.zero;
-        transform.rotation = Quaternion.identity;
+        transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
     }
 
     void Update()
     {
-        transform.Translate(Vector3.right * _bulletSpeed * Time.deltaTime);
+        transform.Translate(_bulletSpeed * Time.deltaTime * Vector3.right);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -1,7 +1,5 @@
-using Microsoft.Unity.VisualStudio.Editor;
 using System;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "InteractableItem", menuName = "Blueprint/InteractableItem")]

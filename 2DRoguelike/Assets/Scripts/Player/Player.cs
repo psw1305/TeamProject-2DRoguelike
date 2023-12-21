@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public StatUnit AttackRange { get; private set; }
     public StatUnit ShotSpeed { get; private set; }
 
+    // 피격시 => 플레이어 무적 시간
     public bool Invincible
     {
         get => _invincible;
@@ -30,15 +31,15 @@ public class Player : MonoBehaviour
             }
         }
     }
+
     #endregion
 
     #region Fields
 
-    private Rigidbody2D _rigidbody;
     private SpriteRenderer _sprite;
     private bool _invincible = false;
     private Coroutine _coInvincible;
-    [SerializeField] private float _invincibilityTime = 1f;
+    private float _invincibilityTime = 1f;
     private PlayerInputController _playerInputController;
 
     #endregion
@@ -68,17 +69,12 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         _sprite = GetComponentInChildren<SpriteRenderer>();
-        _rigidbody = GetComponent<Rigidbody2D>();
         _playerInputController = GetComponentInChildren<PlayerInputController>();
     }
 
     #endregion
 
     #region Inventory Method
-
-    /// <summary>
-    /// [정용태] 인벤토리 클래스
-    /// </summary>
 
     public bool GetHeart(int amount)
     {
@@ -167,21 +163,16 @@ public class Player : MonoBehaviour
 
             Main.UI.PlayerUI.SetCurrentHP(CurrentHp.ToString());
         }
-       
 
         if (CurrentHp <= 0)
         {
             CurrentHp = 0;
             Main.Game.GameStop();
         }
-
-        
     }
-
 
     private void PlayerKnockback(Transform target, int damage)
     {
-        //target.transform.position - transform.position;
         Vector2 direction = -(target.transform.position - transform.position).normalized;
         Vector2 knockbackForce = direction * damage;
 
@@ -225,11 +216,14 @@ public class Player : MonoBehaviour
                 Main.Game.Dungeon.MoveToNextRoom(Vector2Int.right);
             }
         }
-        if (Invincible && collision.gameObject.CompareTag("Enemy")) return;
+
+        if (Invincible && collision.gameObject.CompareTag("Enemy"))
+        {
+            return;
+        }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
             Damaged(collision.transform,1);
-            
         }
     }
 

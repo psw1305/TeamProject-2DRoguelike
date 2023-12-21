@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,15 +10,12 @@ public class PlayerInputController : CharacterController
     [SerializeField] private Animator headAnimator;
     [SerializeField] private Animator bodyAnimator;
     [SerializeField] private Transform projectileSpawnPosition;
-
-    // 테스트용 프리팹
-    public GameObject bombPrefab;
+    [SerializeField] private GameObject bombPrefab;
 
     #endregion
 
     #region Properties
 
-    private Camera _camera;
     private Vector2 _movementDirection = Vector2.zero;
     private Vector2 _aimDirection = Vector2.right;
     private Rigidbody2D _rigidbody;
@@ -33,7 +29,6 @@ public class PlayerInputController : CharacterController
 
     private void Awake()
     {
-        _camera = Camera.main;
         _rigidbody = GetComponent<Rigidbody2D>();
         _player = GetComponent<Player>();
     }
@@ -73,7 +68,7 @@ public class PlayerInputController : CharacterController
 
     private void ApplyMovment(Vector2 direction)
     {
-        direction = direction * (int)Main.Game.Player.Speed.Value; //플레이어 speed
+        direction *= (int)Main.Game.Player.Speed.Value; //플레이어 speed
         direction += KnockbackDirection;
         _rigidbody.velocity = direction;
     }
@@ -156,20 +151,12 @@ public class PlayerInputController : CharacterController
 
     private void CreateBomb()
     {
-        GameObject bomb = Instantiate(bombPrefab, transform.position, Quaternion.identity);     
-        //StartCoroutine(Explosiontime(bomb, 3f)); //3초뒤 폭발
-    }
-
-    private IEnumerator Explosiontime(GameObject bomb, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        // 폭팔에 대한 코드
-        //Destroy(bomb); //일단 지우기
+        Instantiate(bombPrefab, transform.position, Quaternion.identity);     
     }
 
     #endregion
 
-        #region ChangeSprite
+    #region ChangeSprite
 
     private void headChange(Vector2 fireValue)
     {
