@@ -254,3 +254,4 @@ MonoBehaviour:
   enemySO: {fileID: 11400000, guid: c973d96e7c0fa70488a8eba28dadc93d, type: 2}
   hpSlider: {fileID: 3302892206433361109, guid: 7647aab0154154147852fa46c50b06af, type: 3}
   introAnim: {fileID: 5045337486307785425, guid: 6f99b9bf96f34fe418d80afd9ad56870, type: 3}
+  dieEffect: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
