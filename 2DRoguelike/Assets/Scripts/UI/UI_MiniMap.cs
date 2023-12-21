@@ -14,13 +14,8 @@ public class UI_Minimap : MonoBehaviour
     private GameObject _miniRoomPrefab;
     private GameObject[,] _miniRoomArray;
 
-    private GameObject _currentRoom;
     private Vector2Int _currentCoordinate;
     private List<Vector2> _hasBeenToList = new ();
-
-    private Color white = new(1f, 1f, 1f, 1);
-    private Color gray = new(0.6f, 0.6f, 0.6f, 1);
-    private Color black = new(0.3f, 0.3f, 0.3f, 1);
 
     #endregion
 
@@ -66,51 +61,16 @@ public class UI_Minimap : MonoBehaviour
         }
 
         _currentCoordinate = new Vector2Int(Main.Game.Dungeon.CurrentRoom.Coordinate.x, Main.Game.Dungeon.CurrentRoom.Coordinate.y);
-        _currentRoom = _miniRoomArray[_currentCoordinate.x, _currentCoordinate.y];
     }
 
     public void UpdateMinimap(Vector2Int MoveDirection)
     {
         _hasBeenToList.Add(_currentCoordinate);
 
-        //_currentRoom.GetComponent<Image>().color = gray;
         _currentCoordinate.x += MoveDirection.y;
         _currentCoordinate.y += MoveDirection.x;
-        //_currentRoom = _miniRoomArray[_currentCoordinate.x, _currentCoordinate.y];
-        //_currentRoom.GetComponent<Image>().color = white;
-
-        List<Vector2Int> neighborCoordinate = new()
-        {
-            _currentCoordinate + Vector2Int.right,_currentCoordinate + Vector2Int.left,
-            _currentCoordinate + Vector2Int.down,_currentCoordinate + Vector2Int.up
-        };
-
-        //foreach (var coordinate in neighborCoordinate)
-        //{
-        //    GameObject cell = _miniRoomArray[coordinate.x, coordinate.y];
-        //    if (cell != null && !_hasBeenToList.Contains(coordinate))
-        //    {
-        //        cell.GetComponent<Image>().color = black;
-        //    }
-        //}
 
         miniRoomNode.transform.localPosition -= new Vector3(MoveDirection.x * _cellWidth, MoveDirection.y * _height, 0);
-    }
-
-    public void ShowAllMinimap()
-    {
-        for (int i = 0; i < _miniRoomArray.GetLength(0); i++)
-        {
-            for (int j = 0; j < _miniRoomArray.GetLength(1); j++)
-            {
-                if (_miniRoomArray[i, j] != null && !_hasBeenToList.Contains(new Vector2(i, j)))
-                {
-                    _miniRoomArray[i, j].GetComponent<Image>().color = black;
-                }
-            }
-        }
-
-        UpdateMinimap(Vector2Int.zero);
     }
 
     #endregion
