@@ -14,6 +14,8 @@ public class Enemy_Boss1 : Enemy
     private Slider _hpSlider;
 
 
+    public GameObject dieEffect;
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -39,6 +41,13 @@ public class Enemy_Boss1 : Enemy
         _hpSlider.value = _currentHp;
     }
 
+    protected void DieEffectGenerator()
+    {
+        GameObject obj = Instantiate(dieEffect);
+        obj.gameObject.transform.SetParent(transform, false);
+
+        obj.transform.SetParent(Root);
+    }
 
     void Initialize()
     {
@@ -51,6 +60,10 @@ public class Enemy_Boss1 : Enemy
         dieAction += HpbarDestroy;
         damagedAction -= HpbarChange;
         damagedAction += HpbarChange;
+        dieAction -= DieEffectGenerator;
+        dieAction += DieEffectGenerator;
+
+
 
         _hpSlider = Instantiate(hpSlider).GetComponentInChildren<Slider>();
 
