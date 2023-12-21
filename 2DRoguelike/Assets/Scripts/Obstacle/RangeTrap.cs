@@ -20,7 +20,6 @@ public class RangeTrap : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("활성화");
             InvokeRepeating("ActiveRangeTrap", 0, trapShootDelay);
             InvokeRepeating("SeeTarget", 0, 0.1f);
         }
