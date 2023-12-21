@@ -156,11 +156,18 @@ public class Player : MonoBehaviour
 
     public void Damaged(Transform target, int damage)
     {
-        CurrentHp -= damage;
-        SFX.Instance.PlayOneShot(SFX.Instance.playerHit);
+        if (Invincible == false)
+        {
+            Invincible = true;
+            CurrentHp -= damage;
+            SFX.Instance.PlayOneShot(SFX.Instance.playerHit);
 
-        StartCoroutine(AlphaModifyAfterCollision());
-        PlayerKnockback(target, damage);
+            StartCoroutine(AlphaModifyAfterCollision());
+            PlayerKnockback(target, damage);
+
+            Main.UI.PlayerUI.SetCurrentHP(CurrentHp.ToString());
+        }
+       
 
         if (CurrentHp <= 0)
         {
@@ -168,7 +175,7 @@ public class Player : MonoBehaviour
             Main.Game.GameStop();
         }
 
-        Main.UI.PlayerUI.SetCurrentHP(CurrentHp.ToString());
+        
     }
 
 
@@ -222,7 +229,7 @@ public class Player : MonoBehaviour
         else if (collision.gameObject.CompareTag("Enemy"))
         {
             Damaged(collision.transform,1);
-            Invincible = true;
+            
         }
     }
 

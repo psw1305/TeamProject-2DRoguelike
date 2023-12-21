@@ -44,6 +44,12 @@ public class Pool
     {
         pool.Release(obj);
     }
+
+    public void Clear()
+    {
+        root = null;
+        pool.Clear();
+    }
     #region Callbacks
 
     /// <summary>
@@ -123,6 +129,10 @@ public class PoolManager
 
     public void Clear()
     {
+        foreach (var pool in pools.Values)
+        {
+            pool.Clear();
+        }
         pools.Clear();
     }
 
