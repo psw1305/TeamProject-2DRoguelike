@@ -71,7 +71,7 @@ public class Room : MonoBehaviour
     /// </summary>
     private void ChangeDoorOutWard()
     {
-        if (roomType == RoomType.Normal || roomType == RoomType.Start) return;
+        if (roomType == RoomType.Start || roomType == RoomType.Normal || roomType == RoomType.Shop) return;
 
         List<GameObject> doors = new();
         doors.AddRange(_activeDoorList);
@@ -88,11 +88,6 @@ public class Room : MonoBehaviour
                     break;
                 case RoomType.Treasure:
                     doorFrame.sprite = Main.Resource.GetSprite("door-treasure");
-                    break;
-                case RoomType.Shop:
-                    //doorFrame.sprite = Main.Resource.GetSprite("door-shop");
-                    break;
-                default:
                     break;
             }
         }
@@ -138,9 +133,28 @@ public class Room : MonoBehaviour
     /// <summary>
     /// 방 내부의 콘텐츠 생성 => 장애물, 아이템, 적
     /// </summary>
-    public void GenerateRoomContents()
+    public void GenerateRoomContents(float delaySecond)
     {
         isArrived = true;
+        StartCoroutine(DelayGenerateRoom(delaySecond));
+    }
+
+    /// <summary>
+    /// 방 딜레이 생성
+    /// </summary>
+    /// <param name="delaySecond">딜레이 시간</param>
+    /// <returns></returns>
+    private IEnumerator DelayGenerateRoom(float delaySecond)
+    {
+        // 보스 인트로는 딜레이 없이 바로 생성
+        if (roomType == RoomType.Boss)
+        {
+            yield return null;
+        }
+        else
+        {
+            yield return new WaitForSeconds(delaySecond);
+        }
 
         for (int i = 0; i < _roomBlueprint.ObstacleList.Count; i++)
         {

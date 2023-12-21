@@ -35,6 +35,8 @@ public class BGM : AudioSystem<BGM>
 
     [Header("Game")]
     public AudioClip bgm;
+    public AudioClip boss;
+
 
     private void Start()
     {
@@ -46,6 +48,11 @@ public class BGM : AudioSystem<BGM>
         this.AudioSource.loop = isLoop;
         this.AudioSource.clip = clip;
         this.AudioSource.Play();       
+    }
+
+    public void Stop() 
+    {
+        this.AudioSource.Stop();
     }
 }
 

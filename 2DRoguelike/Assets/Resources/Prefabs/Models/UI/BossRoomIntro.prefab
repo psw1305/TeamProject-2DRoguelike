@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5414898965164744036}
   - component: {fileID: 5770363235638136046}
   m_Layer: 5
-  m_Name: BG
+  m_Name: BG1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 172892343266624365}
   - component: {fileID: 2562024698679429248}
   m_Layer: 5
-  m_Name: vs
+  m_Name: VSText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: 2151102268922372669}
   - component: {fileID: 1062984898146882671}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Fade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -800,7 +800,7 @@ GameObject:
   - component: {fileID: 2989551253724581471}
   - component: {fileID: 5045337486307785425}
   m_Layer: 5
-  m_Name: BossRoomIntroCanvas
+  m_Name: BossRoomIntro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -930,7 +930,7 @@ GameObject:
   - component: {fileID: 5072973966523744715}
   - component: {fileID: 1699105446386323891}
   m_Layer: 5
-  m_Name: BG (1)
+  m_Name: BG2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

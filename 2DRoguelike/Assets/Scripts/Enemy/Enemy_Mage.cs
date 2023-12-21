@@ -60,11 +60,13 @@ public class Enemy_Mage : Enemy
 
     IEnumerator Attack()
     {
+        yield return new WaitForSeconds(0.7f);
+
+
         while (true)
         {
             if (!IsTargetStraight())
                 StopStateCoroutin();
-
 
 
             yield return new WaitForSeconds(_attackSpeed);

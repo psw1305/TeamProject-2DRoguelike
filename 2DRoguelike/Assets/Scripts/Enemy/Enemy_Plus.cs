@@ -61,6 +61,8 @@ public class Enemy_Plus : Enemy
 
     IEnumerator Attack()
     {
+        yield return new WaitForSeconds(0.7f);
+
         while (true)
         {
             if (!IsTargetStraight())
