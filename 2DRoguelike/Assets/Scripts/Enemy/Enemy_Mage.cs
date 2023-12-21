@@ -8,7 +8,6 @@ public class Enemy_Mage : Enemy
     {
         base.OnEnable();
         Initialize();
-
     }
 
     void Initialize()
@@ -19,7 +18,6 @@ public class Enemy_Mage : Enemy
         _agent.stoppingDistance = _range;
     }
 
-
     void Update()
     {
         if (_enemyState != EnemySO.EnemyState.live) return;
@@ -29,7 +27,6 @@ public class Enemy_Mage : Enemy
 
     void Move()
     {
-
         _agent.SetDestination(_target.transform.position);
 
         if (_agent.velocity.magnitude > 0.2f) // 움직이는 중이면 true
@@ -62,18 +59,14 @@ public class Enemy_Mage : Enemy
     {
         yield return new WaitForSeconds(0.7f);
 
-
         while (true)
         {
             if (!IsTargetStraight())
                 StopStateCoroutin();
 
-
             yield return new WaitForSeconds(_attackSpeed);
 
             FanShape(1, _bulletSpeed);
-
-
         }
     }
 

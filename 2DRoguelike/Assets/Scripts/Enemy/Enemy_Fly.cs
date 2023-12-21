@@ -19,12 +19,12 @@ public class Enemy_Fly : Enemy
 
     void Initialize()
     {
-        _currentHp = _maxHp;
-
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
         _agent.speed = _movementSpeed;
         _agent.stoppingDistance = _range;
+
+        _currentHp = _maxHp;
     }
 
 
@@ -34,7 +34,6 @@ public class Enemy_Fly : Enemy
         if (_target == null) return;
 
         _agent.SetDestination(_target.transform.position);
-
 
         if (_agent.velocity.magnitude > 0.2f) // 움직이는 중이면 true
         {
@@ -81,6 +80,5 @@ public class Enemy_Fly : Enemy
             _target.Damaged(transform, _attackDamage);
         }
     }
-
 
 }

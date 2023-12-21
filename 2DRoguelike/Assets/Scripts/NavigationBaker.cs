@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class NavigationBaker : MonoBehaviour
 {
-
     NavMeshPlus.Components.NavMeshSurface surfaces;
-
 
     private void Awake()
     {
@@ -15,7 +13,4 @@ public class NavigationBaker : MonoBehaviour
     {
         surfaces.BuildNavMesh();
     }
-
-  
-
 }

@@ -5,14 +5,14 @@ using UnityEngine.AI;
 
 public class Enemy_Horse : Enemy
 {
+    float runTime = 0;
+    Vector3 pos;
+
     protected override void OnEnable()
     {
         base.OnEnable();
         Initialize();
     }
-
-    float runTime = 0;
-    Vector3 pos;
 
     void Update()
     {
@@ -32,13 +32,11 @@ public class Enemy_Horse : Enemy
     }
 
 
-
     void Move()
     {
         if (_target == null) return;
 
         _agent.SetDestination(pos);
-
 
         runTime += Time.deltaTime;
 
@@ -54,7 +52,6 @@ public class Enemy_Horse : Enemy
         {
             // 말 공격은 몸통박치기
         }
-
 
     }
 }

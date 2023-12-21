@@ -8,12 +8,10 @@ public class Enemy_Plus : Enemy
     {
         base.OnEnable();
         Initialize();
-
     }
 
     void Initialize()
     {
-
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
         _agent.speed = _movementSpeed;
@@ -30,7 +28,6 @@ public class Enemy_Plus : Enemy
 
     void Move()
     {
-
         _agent.SetDestination(_target.transform.position);
 
         if (_agent.velocity.magnitude > 0.2f) // 움직이는 중이면 true
@@ -67,7 +64,6 @@ public class Enemy_Plus : Enemy
         {
             if (!IsTargetStraight())
                 StopStateCoroutin();
-
 
 
             yield return new WaitForSeconds(_attackSpeed);

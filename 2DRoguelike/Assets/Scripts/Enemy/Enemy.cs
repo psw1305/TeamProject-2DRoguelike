@@ -6,8 +6,7 @@ using static EnemySO;
 
 public class Enemy : MonoBehaviour
 {
-
-    #region Fileds
+    #region Property
 
     static Transform root;
     static protected Transform Root
@@ -23,7 +22,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-     public EnemySO enemySO;
+    #endregion
+
+    #region Fileds
+
+    public EnemySO enemySO;
 
     protected Player _target;
     protected NavMeshAgent _agent;
@@ -37,8 +40,6 @@ public class Enemy : MonoBehaviour
     protected readonly int AttackHash = Animator.StringToHash("Attack");
     protected readonly int DieHash = Animator.StringToHash("Die");
 
-
-
     protected int _maxHp;
     protected int _currentHp;
     protected float _range; // 사정거리
@@ -46,12 +47,11 @@ public class Enemy : MonoBehaviour
     protected float _attackSpeed; // 공격쿨타임
     protected int _attackDamage;
     protected float _bulletSpeed; // 총알 속도
-    protected int _phase = 0; // 기술순서
 
     protected EnemyState _enemyState;
 
-    protected Action dieAction;
     protected Action damagedAction;
+    protected Action dieAction;
 
     #endregion
 
@@ -62,19 +62,16 @@ public class Enemy : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _agent = GetComponent<NavMeshAgent>();
         _attackCoroutine = null;
-
     }
 
     protected virtual void OnEnable()
     {
         _target = Main.Game.Player;
 
+        _enemyState = EnemySO.EnemyState.Ready;
+
         transform.position = transform.position;
         transform.rotation = Quaternion.identity;
-
-        _enemyState = EnemySO.EnemyState.Ready;
-        _enemyState = EnemySO.EnemyState.live;
-
 
         _maxHp = enemySO._maxHp;
         _currentHp = _maxHp;
@@ -82,15 +79,16 @@ public class Enemy : MonoBehaviour
         _movementSpeed = enemySO._movementSpeed;
         _attackSpeed = enemySO._attackSpeed; 
         _attackDamage = enemySO._attackDamage;
-        _bulletSpeed = enemySO._bulletSpeed; 
-        _phase = enemySO.Phase;
+        _bulletSpeed = enemySO._bulletSpeed;
 
+        _enemyState = EnemySO.EnemyState.live;
     }
 
 
     private void OnDisable()
     {
-        if (_attackCoroutine != null) StopCoroutine(_attackCoroutine);
+        if (_attackCoroutine != null) 
+            StopCoroutine(_attackCoroutine);
 
         _attackCoroutine = null;
         CancelInvoke();
@@ -129,7 +127,6 @@ public class Enemy : MonoBehaviour
 
             dieAction?.Invoke();
 
-            // 사라지는 이펙트 추가
             Destroy(gameObject);
 
         }
@@ -145,7 +142,6 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region Skill
-
 
     protected void FanShape(int bulletCount = 1, float rot = 7f, float bulletSpeed = 5f, bool isRandom = false) // 플레이어방향 부채꼴 공격
     {
