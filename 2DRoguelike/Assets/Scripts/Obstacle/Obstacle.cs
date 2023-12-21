@@ -29,6 +29,7 @@ public class Obstacle : MonoBehaviour, IGenerateReward
             Main.Reward.PickupItemDrop(this.transform.position, Main.Game.Dungeon.CurrentRoom.ObjectContainer, 0);
         }
     }
+
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (canDestroyLayer.value == (canDestroyLayer.value | (1 << collision.gameObject.layer)))

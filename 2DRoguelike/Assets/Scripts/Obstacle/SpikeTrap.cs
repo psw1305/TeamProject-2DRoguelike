@@ -8,12 +8,11 @@ public class SpikeTrap : Obstacle
     [SerializeField] private float trapActiveDelay;
     [SerializeField] private float damageDelay;
 
-    private Animator _animator;
     [SerializeField] private RuntimeAnimatorController animController;
+    private Animator _animator;
 
     private void Start()
     {
-        
         gameObject.AddComponent<Animator>();
         _animator = GetComponent<Animator>();
         _animator.runtimeAnimatorController = animController;
@@ -41,7 +40,6 @@ public class SpikeTrap : Obstacle
             _animator.SetBool("isActive", false);
             CancelInvoke();
         }
-
     }
 
     private void GiveDamage()

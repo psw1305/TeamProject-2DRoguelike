@@ -10,6 +10,7 @@ public class SpawnTrap : Obstacle
     {
         spawnPosition = gameObject.transform.position;
     }
+
     public override void DestroySelf()
     {
         for (int i = 0; i < spawnCount; i++)

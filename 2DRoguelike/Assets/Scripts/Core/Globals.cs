@@ -1,3 +1,5 @@
+
+using UnityEngine;
 /// <summary>
 /// 전역 변수 모음 클래스
 /// </summary>

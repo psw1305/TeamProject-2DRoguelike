@@ -12,7 +12,7 @@ public class Enemy_Fly : Enemy
 
     void Update()
     {
-        if (_enemyState != EnemySO.EnemyState.live) return;
+        if (_enemyState != EnemyState.live) return;
 
         Move();
     }
@@ -21,10 +21,10 @@ public class Enemy_Fly : Enemy
     {
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
-        _agent.speed = _movementSpeed;
-        _agent.stoppingDistance = _range;
+        _agent.speed = Speed;
+        _agent.stoppingDistance = AttackRange;
 
-        _currentHp = _maxHp;
+        CurrentHp = MaxHp;
     }
 
 
@@ -37,7 +37,7 @@ public class Enemy_Fly : Enemy
 
         if (_agent.velocity.magnitude > 0.2f) // 움직이는 중이면 true
         {
-            _animator?.SetBool(isWalkHash, true);
+            _animator?.SetBool(IsWalkHash, true);
             StopStateCoroutin();
         }
         else
@@ -54,11 +54,11 @@ public class Enemy_Fly : Enemy
 
         if (!IsTargetStraight())
         {
-            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance - 0.1f, 1.2f, _range);
+            _agent.stoppingDistance = Mathf.Clamp(_agent.stoppingDistance - 0.1f, 1.2f, AttackRange);
             return;
         }
 
-        _agent.stoppingDistance = _range; // 시야거리 초기화
+        _agent.stoppingDistance = AttackRange; // 시야거리 초기화
         _attackCoroutine = StartCoroutine(Attack());
     }
 
@@ -72,12 +72,12 @@ public class Enemy_Fly : Enemy
             if (!IsTargetStraight())
                 StopStateCoroutin();
 
-            yield return new WaitForSeconds(_attackSpeed);
+            yield return new WaitForSeconds(AttackSpeed);
 
-            _animator?.SetBool(isWalkHash, false);
+            _animator?.SetBool(IsWalkHash, false);
             _animator?.SetTrigger(AttackHash);
 
-            _target.Damaged(transform, _attackDamage);
+            _target.Damaged(transform, AttackDamage);
         }
     }
 

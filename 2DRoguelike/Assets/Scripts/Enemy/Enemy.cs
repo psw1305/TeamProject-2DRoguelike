@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using static EnemySO;
 
 public class Enemy : MonoBehaviour
 {
@@ -26,7 +25,7 @@ public class Enemy : MonoBehaviour
 
     #region Fileds
 
-    public EnemySO enemySO;
+    public EnemyBlueprint enemySO;
 
     protected Player _target;
     protected NavMeshAgent _agent;
@@ -36,17 +35,17 @@ public class Enemy : MonoBehaviour
     protected SpriteRenderer _spriteRenderer;
     protected Animator _animator;
 
-    protected readonly int isWalkHash = Animator.StringToHash("isWalk");
+    protected readonly int IsWalkHash = Animator.StringToHash("isWalk");
     protected readonly int AttackHash = Animator.StringToHash("Attack");
     protected readonly int DieHash = Animator.StringToHash("Die");
 
-    protected int _maxHp;
-    protected int _currentHp;
-    protected float _range; // 사정거리
-    protected float _movementSpeed;
-    protected float _attackSpeed; // 공격쿨타임
-    protected int _attackDamage;
-    protected float _bulletSpeed; // 총알 속도
+    public int MaxHp { get; private set; }
+    public int CurrentHp { get; set; }
+    public float Speed { get; private set; }
+    public float AttackRange { get; private set; }
+    public float AttackSpeed { get; private set; }
+    public int AttackDamage { get; private set; }
+    public float BulletSpeed { get; private set; }
 
     protected EnemyState _enemyState;
 
@@ -55,6 +54,23 @@ public class Enemy : MonoBehaviour
 
     #endregion
 
+    private void Initialize()
+    {
+        transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+
+        MaxHp = enemySO.Hp;
+        CurrentHp = MaxHp;
+        AttackRange = enemySO.AttackRange;
+        Speed = enemySO.Speed;
+        AttackSpeed = enemySO.AttackSpeed;
+        AttackDamage = enemySO.AttackDamage;
+        BulletSpeed = enemySO.BulletSpeed;
+
+        _target = Main.Game.Player;
+        _enemyState = EnemyState.live;
+    }
+
+    #region MonoBehaviour
 
     protected void Awake()
     {
@@ -66,24 +82,8 @@ public class Enemy : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        _target = Main.Game.Player;
-
-        _enemyState = EnemySO.EnemyState.Ready;
-
-        transform.position = transform.position;
-        transform.rotation = Quaternion.identity;
-
-        _maxHp = enemySO._maxHp;
-        _currentHp = _maxHp;
-        _range = enemySO._range; 
-        _movementSpeed = enemySO._movementSpeed;
-        _attackSpeed = enemySO._attackSpeed; 
-        _attackDamage = enemySO._attackDamage;
-        _bulletSpeed = enemySO._bulletSpeed;
-
-        _enemyState = EnemySO.EnemyState.live;
+        Initialize();
     }
-
 
     private void OnDisable()
     {
@@ -103,32 +103,33 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    #endregion
+
     #region Damaged
 
     public void Damaged(int damage)
     {
-        if (_enemyState != EnemySO.EnemyState.live) return;
+        if (_enemyState != EnemyState.live) return;
 
         SFX.Instance.PlayOneShot(SFX.Instance.enemyHit);
 
-        _currentHp -= damage;
+        CurrentHp -= damage;
 
         damagedAction?.Invoke();
 
         StartCoroutine(FlickerCharacter());
 
-        if (_currentHp <= 0)
+        if (CurrentHp <= 0)
         {
-            _enemyState = EnemySO.EnemyState.Die;
+            _enemyState = EnemyState.Die;
             StopAllCoroutines();
             Main.Game.Dungeon.CurrentRoom.CheckRoomClear();     // 적 사망 => 방 클리어 조건 체크
 
-            _animator?.SetTrigger(DieHash);
+            _animator.SetTrigger(DieHash);
 
             dieAction?.Invoke();
 
             Destroy(gameObject);
-
         }
     }
 
@@ -145,9 +146,8 @@ public class Enemy : MonoBehaviour
 
     protected void FanShape(int bulletCount = 1, float rot = 7f, float bulletSpeed = 5f, bool isRandom = false) // 플레이어방향 부채꼴 공격
     {
-        _animator?.SetBool(isWalkHash, false);
-        _animator?.SetTrigger(AttackHash);
-
+        _animator.SetBool(IsWalkHash, false);
+        _animator.SetTrigger(AttackHash);
 
         float minAngle = -(bulletCount / 2f) * rot + 0.5f * rot;  // 탄환끼리 rot 각도로 벌린다
 
@@ -166,7 +166,7 @@ public class Enemy : MonoBehaviour
 
     protected void Circle(int bulletCount = 1, float bulletSpeed = 5f, bool isRandom = false) // 방사형 공격
     {
-        _animator?.SetBool(isWalkHash, false);
+        _animator?.SetBool(IsWalkHash, false);
         _animator?.SetTrigger(AttackHash);
 
         float deltaAngle = 2 * Mathf.PI / bulletCount; // 360도를 Count 개수로 등분
@@ -181,22 +181,18 @@ public class Enemy : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
             BulletGenerator(angle, bulletSpeed);
-
         }
     }
 
-
-    protected void BulletGenerator(float rotate, float speed)
+    protected void BulletGenerator(float rotate, float bulletSpeed)
     {
-        EnemyBullet obj = Instantiate(enemySO.bullet);
-        obj.gameObject.transform.SetParent(transform, false);
-        obj.gameObject.transform.localRotation = Quaternion.Euler(0, 0, rotate);
+        EnemyBullet bullet = Instantiate(enemySO.Bullet);
+        bullet.gameObject.transform.SetParent(transform, false);
+        bullet.gameObject.transform.localRotation = Quaternion.Euler(0, 0, rotate);
 
-        obj._bulletSpeed = speed;
-        obj.transform.SetParent(Root);
+        bullet.SetBulletSpeed(bulletSpeed);
+        bullet.transform.SetParent(Root);
     }
-
-
 
     /*
      풀링 부분 백업
@@ -209,10 +205,7 @@ public class Enemy : MonoBehaviour
 
             enemyProjectile.SetVelocity(DirectionToTarget() * 5); //5에 발사체 스피드 넣어주시면 됩니다
             enemyProjectile.gameObject.tag = "EnemyProjectile";
-
-
      */
-
 
     #endregion
 
@@ -254,10 +247,9 @@ public class Enemy : MonoBehaviour
     void OnDrawGizmosSelected() // 사정거리보기
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _range);
+        Gizmos.DrawWireSphere(transform.position, AttackRange);
     }
 
 
     #endregion
-
 }

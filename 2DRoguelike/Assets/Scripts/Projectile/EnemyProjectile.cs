@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
@@ -36,6 +35,7 @@ public class EnemyProjectile : MonoBehaviour
             if (this.IsValid()) Main.Object.Despawn(this);
         }
     }
+
     private bool IsLayer(int layer, string layerName)
     {
         int targetLayer = LayerMask.NameToLayer(layerName);
@@ -54,15 +54,12 @@ public class EnemyProjectile : MonoBehaviour
         Damage = damage;
         AttackRange = attackRange;
         if (this.gameObject.activeInHierarchy) StartCoroutine(CoCheckDestroy());
-
-
     }
 
     public void SetVelocity(Vector2 velocity)
     {
         _rigidbody.velocity = velocity;
     }
-
 
     private IEnumerator CoCheckDestroy()
     {

@@ -1,6 +1,4 @@
-using Unity.VisualScripting;
 using UnityEngine;
-
 
 public class RangeTrap : MonoBehaviour
 {
@@ -20,10 +18,12 @@ public class RangeTrap : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            // 기회가 되면 코루틴으로 작동하는 매서드 한번 시도
             InvokeRepeating("ActiveRangeTrap", 0, trapShootDelay);
             InvokeRepeating("SeeTarget", 0, 0.1f);
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -38,7 +38,7 @@ public class RangeTrap : MonoBehaviour
         _targetPos = Main.Game.Player.transform.position;
         
         //Instantiate(bullet, transform.position, Quaternion.identity);
-        EnemyProjectile trapProjectile = Main.Object.Spawn<EnemyProjectile>("TrapProjectile", gameObject.transform.position);
+        var trapProjectile = Main.Object.Spawn<EnemyProjectile>("TrapProjectile", gameObject.transform.position);
         trapProjectile.SetInfo(bulletDamage, bulletRange);
         trapProjectile.transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(_gameObjectPos.x - _targetPos.x, _targetPos.y - _gameObjectPos.y));
         
