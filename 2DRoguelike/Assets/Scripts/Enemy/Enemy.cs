@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     #region Fileds
 
     static Transform root;
-    static Transform Root
+    static protected Transform Root
     {
         get
         {
@@ -199,6 +199,7 @@ public class Enemy : MonoBehaviour
         obj._bulletSpeed = speed;
         obj.transform.SetParent(Root);
     }
+
 
 
     /*
