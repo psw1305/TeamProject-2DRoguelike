@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
     {
         _target = Main.Game.Player;
 
-        transform.position = Vector3.zero;
+        transform.position = transform.position;
         transform.rotation = Quaternion.identity;
 
         _enemyState = EnemySO.EnemyState.Ready;

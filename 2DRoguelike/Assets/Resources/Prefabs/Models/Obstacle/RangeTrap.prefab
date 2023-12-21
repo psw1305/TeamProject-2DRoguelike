@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7710897635436553136}
   - component: {fileID: 7703449705105658644}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: ShooterSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 5577588080436169278}
   - component: {fileID: 8765267510445021816}
   - component: {fileID: 8015963625852228647}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Shooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,9 +185,9 @@ GameObject:
   - component: {fileID: -8805669588890722547}
   - component: {fileID: 7288400076948742072}
   - component: {fileID: 602497217059687531}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: RangeTrap
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -308,7 +308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4708375518741909887}
   - component: {fileID: 2076314974468207732}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
