@@ -196,7 +196,7 @@ public class PlayerInputController : CharacterController
 
     private void BodyChange(Vector2 direction)
     {
-        if (direction == Vector2.zero)
+        if ( Mathf.Abs(direction.x) <= 0.1 && Mathf.Abs(direction.y) <= 0.1)
         {
             bodyAnimator.SetTrigger("Idle");
             return;
