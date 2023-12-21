@@ -603,7 +603,7 @@ GameObject:
   - component: {fileID: 6164429353223496934}
   - component: {fileID: 1504189316555733591}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Stop Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3998,6 +3998,7 @@ MonoBehaviour:
   statAttackRangeText: {fileID: 1997566220619847898}
   statShotSpeedText: {fileID: 6594133224853044939}
   pausePopup: {fileID: 1453314934822034233}
+  stopTitle: {fileID: 1504189316555733591}
   stopPopup: {fileID: 160935419518352679}
 --- !u!1 &8895375388944171598
 GameObject:

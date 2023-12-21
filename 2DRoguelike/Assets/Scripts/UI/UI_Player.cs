@@ -22,6 +22,7 @@ public class UI_Player : MonoBehaviour
     [SerializeField] private GameObject pausePopup;
 
     [Header("Stop")]
+    [SerializeField] private TextMeshProUGUI stopTitle;
     [SerializeField] private GameObject stopPopup;
 
     #endregion
@@ -87,6 +88,13 @@ public class UI_Player : MonoBehaviour
 
     public void GameOver()
     {
+        stopTitle.text = "You Die...........";
+        stopPopup.SetActive(true);
+    }
+
+    public void GameClear()
+    {
+        stopTitle.text = "You Win!!!!!!!!!!!";
         stopPopup.SetActive(true);
     }
 

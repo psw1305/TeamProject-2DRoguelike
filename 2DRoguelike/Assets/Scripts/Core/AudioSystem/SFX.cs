@@ -52,7 +52,7 @@ public class SFX : AudioSystem<SFX>
     public AudioClip explodeBomb;
 
     [Header("Enemy")]
-    public AudioClip enemyAtk;
+    public AudioClip enemyHit;
     public AudioClip bossIntro;
 
     public void PlayOneShot(AudioClip clip, float volumeScale = 1.0f)

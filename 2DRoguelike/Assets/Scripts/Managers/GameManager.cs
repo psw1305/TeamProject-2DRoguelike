@@ -8,6 +8,7 @@ public class GameManager
     public PlayingState Playing { get; private set; }
     public PausedState Paused { get; private set; }
     public StopState Stop { get; private set; }
+    public ClearedState Clear { get; private set; }
 
     public Dungeon Dungeon { get; private set; }
     public Player Player { get; private set; }
@@ -28,6 +29,7 @@ public class GameManager
         Playing = new PlayingState(this);
         Paused = new PausedState(this);
         Stop = new StopState(this);
+        Clear = new ClearedState(this);
 
         ChangeState(Playing);
     }
@@ -53,6 +55,14 @@ public class GameManager
     public void GameStop()
     {
         ChangeState(Stop);
+    }
+
+    /// <summary>
+    /// 게임 클리어 => 보스 격파
+    /// </summary>
+    public void GameWin()
+    {
+        ChangeState(Clear);
     }
 
     #endregion

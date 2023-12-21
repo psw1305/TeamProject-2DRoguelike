@@ -111,6 +111,8 @@ public class Enemy : MonoBehaviour
     {
         if (_enemyState != EnemySO.EnemyState.live) return;
 
+        SFX.Instance.PlayOneShot(SFX.Instance.enemyHit);
+
         _currentHp -= damage;
 
         damagedAction?.Invoke();

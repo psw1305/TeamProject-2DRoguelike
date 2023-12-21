@@ -208,6 +208,11 @@ public class Room : MonoBehaviour
             {
                 RoomClearReward(); 
             }
+
+            if (roomType == RoomType.Boss)
+            {
+                Main.Game.GameWin();
+            }
             
             isCleared = true;
         }

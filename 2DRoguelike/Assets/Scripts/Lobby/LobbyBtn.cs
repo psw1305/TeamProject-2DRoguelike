@@ -9,7 +9,7 @@ public class LobbyBtn : MonoBehaviour
     public void LoadGameScene()
     {
         SFX.Instance.PlayOneShot(SFX.Instance.btnClick);
-        SceneManager.LoadScene("test");
+        SceneManager.LoadScene("Game");
     }
     public void ActiveOptionUI()
     {

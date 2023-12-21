@@ -298,7 +298,7 @@ MonoBehaviour:
   useKey: {fileID: 8300000, guid: 03598527402cf344ea601f010fe10d98, type: 3}
   useBomb: {fileID: 8300000, guid: 79bf8e596f4c28c4ba758dc7b1513878, type: 3}
   explodeBomb: {fileID: 8300000, guid: b297de45db5f5bf4b8280b4b23b7a4b7, type: 3}
-  enemyAtk: {fileID: 8300000, guid: 1e415df681b56c040ad2750f69213c07, type: 3}
+  enemyHit: {fileID: 8300000, guid: 3ac6fc7d8978ee9499818aa927de77c2, type: 3}
   bossIntro: {fileID: 8300000, guid: c3abe3d305ddc034a87089ef87f452cf, type: 3}
 --- !u!1 &7580983574363506155
 GameObject:
