@@ -1,0 +1,601 @@
+fileFormatVersion: 2
+guid: d0808aa39b2c782408541d45bc1589d5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: "2267 - \u526F\u672C_0"
+  - first:
+      213: 21300002
+    second: "2267 - \u526F\u672C_1"
+  - first:
+      213: 21300004
+    second: "2267 - \u526F\u672C_2"
+  - first:
+      213: 21300006
+    second: "2267 - \u526F\u672C_3"
+  - first:
+      213: 21300008
+    second: "2267 - \u526F\u672C_4"
+  - first:
+      213: 21300010
+    second: "2267 - \u526F\u672C_5"
+  - first:
+      213: 21300012
+    second: "2267 - \u526F\u672C_6"
+  - first:
+      213: 21300014
+    second: "2267 - \u526F\u672C_7"
+  - first:
+      213: 21300016
+    second: "2267 - \u526F\u672C_8"
+  - first:
+      213: 21300018
+    second: "2267 - \u526F\u672C_9"
+  - first:
+      213: 21300020
+    second: "2267 - \u526F\u672C_10"
+  - first:
+      213: 21300022
+    second: "2267 - \u526F\u672C_11"
+  - first:
+      213: 21300024
+    second: "2267 - \u526F\u672C_12"
+  - first:
+      213: 21300026
+    second: "2267 - \u526F\u672C_13"
+  - first:
+      213: 21300028
+    second: "2267 - \u526F\u672C_14"
+  - first:
+      213: 21300030
+    second: "2267 - \u526F\u672C_15"
+  - first:
+      213: 21300032
+    second: "2267 - \u526F\u672C_16"
+  - first:
+      213: 21300034
+    second: "2267 - \u526F\u672C_17"
+  - first:
+      213: 21300036
+    second: "2267 - \u526F\u672C_18"
+  - first:
+      213: 21300038
+    second: "2267 - \u526F\u672C_19"
+  - first:
+      213: 21300040
+    second: "2267 - \u526F\u672C_20"
+  - first:
+      213: 21300042
+    second: "2267 - \u526F\u672C_21"
+  - first:
+      213: 21300044
+    second: "2267 - \u526F\u672C_22"
+  - first:
+      213: 21300046
+    second: "2267 - \u526F\u672C_23"
+  - first:
+      213: 21300048
+    second: "2267 - \u526F\u672C_24"
+  - first:
+      213: 21300050
+    second: "2267 - \u526F\u672C_25"
+  - first:
+      213: 21300052
+    second: "2267 - \u526F\u672C_26"
+  - first:
+      213: 21300054
+    second: "2267 - \u526F\u672C_27"
+  - first:
+      213: 21300056
+    second: "2267 - \u526F\u672C_28"
+  - first:
+      213: 21300058
+    second: "2267 - \u526F\u672C_29"
+  - first:
+      213: 21300060
+    second: "2267 - \u526F\u672C_30"
+  - first:
+      213: 21300062
+    second: "2267 - \u526F\u672C_31"
+  - first:
+      213: 21300064
+    second: "2267 - \u526F\u672C_32"
+  - first:
+      213: 21300066
+    second: "2267 - \u526F\u672C_33"
+  - first:
+      213: 21300068
+    second: "2267 - \u526F\u672C_34"
+  - first:
+      213: 21300070
+    second: "2267 - \u526F\u672C_35"
+  - first:
+      213: 21300072
+    second: "2267 - \u526F\u672C_36"
+  - first:
+      213: 21300074
+    second: "2267 - \u526F\u672C_37"
+  - first:
+      213: 21300076
+    second: "2267 - \u526F\u672C_38"
+  - first:
+      213: 21300078
+    second: "2267 - \u526F\u672C_39"
+  - first:
+      213: 21300080
+    second: "2267 - \u526F\u672C_40"
+  - first:
+      213: 21300082
+    second: "2267 - \u526F\u672C_41"
+  - first:
+      213: 21300084
+    second: "2267 - \u526F\u672C_42"
+  - first:
+      213: 21300086
+    second: "2267 - \u526F\u672C_43"
+  - first:
+      213: 21300088
+    second: "2267 - \u526F\u672C_44"
+  - first:
+      213: 21300090
+    second: "2267 - \u526F\u672C_45"
+  - first:
+      213: 21300092
+    second: "2267 - \u526F\u672C_46"
+  - first:
+      213: 21300094
+    second: "2267 - \u526F\u672C_47"
+  - first:
+      213: 21300096
+    second: "2267 - \u526F\u672C_48"
+  - first:
+      213: 21300098
+    second: "2267 - \u526F\u672C_49"
+  - first:
+      213: 21300100
+    second: "2267 - \u526F\u672C_50"
+  - first:
+      213: 21300102
+    second: "2267 - \u526F\u672C_51"
+  - first:
+      213: 21300104
+    second: "2267 - \u526F\u672C_52"
+  - first:
+      213: 21300106
+    second: "2267 - \u526F\u672C_53"
+  - first:
+      213: 21300108
+    second: "2267 - \u526F\u672C_54"
+  - first:
+      213: 21300110
+    second: "2267 - \u526F\u672C_55"
+  - first:
+      213: 21300112
+    second: "2267 - \u526F\u672C_56"
+  - first:
+      213: 21300114
+    second: "2267 - \u526F\u672C_57"
+  - first:
+      213: 21300116
+    second: "2267 - \u526F\u672C_58"
+  - first:
+      213: 21300118
+    second: "2267 - \u526F\u672C_59"
+  - first:
+      213: 21300120
+    second: "2267 - \u526F\u672C_60"
+  - first:
+      213: 21300122
+    second: 2267_0
+  - first:
+      213: 21300124
+    second: 2267_1
+  - first:
+      213: 21300126
+    second: 2267_2
+  - first:
+      213: 21300128
+    second: 2267_3
+  - first:
+      213: 21300130
+    second: 2267_4
+  - first:
+      213: 21300132
+    second: 2267_5
+  - first:
+      213: 21300134
+    second: 2267_6
+  - first:
+      213: 21300136
+    second: 2267_7
+  - first:
+      213: 21300138
+    second: 2267_8
+  - first:
+      213: 21300140
+    second: 2267_9
+  - first:
+      213: 21300142
+    second: 2267_10
+  - first:
+      213: 21300144
+    second: 2267_11
+  - first:
+      213: 21300146
+    second: 2267_12
+  - first:
+      213: 21300148
+    second: 2267_13
+  - first:
+      213: 21300150
+    second: 2267_14
+  - first:
+      213: 21300152
+    second: 2267_15
+  - first:
+      213: 21300154
+    second: 2267_16
+  - first:
+      213: 21300156
+    second: 2267_17
+  - first:
+      213: 21300158
+    second: 2267_18
+  - first:
+      213: 21300160
+    second: 2267_19
+  - first:
+      213: 21300162
+    second: 2267_20
+  - first:
+      213: 21300164
+    second: 2267_21
+  - first:
+      213: 21300166
+    second: 2267_22
+  - first:
+      213: 21300168
+    second: 2267_23
+  - first:
+      213: 21300170
+    second: 2267_24
+  - first:
+      213: 21300172
+    second: 2267_25
+  - first:
+      213: 21300174
+    second: 2267_26
+  - first:
+      213: 21300176
+    second: 2267_27
+  - first:
+      213: 21300178
+    second: 2267_28
+  - first:
+      213: 21300180
+    second: 2267_29
+  - first:
+      213: 21300182
+    second: 2267_30
+  - first:
+      213: 21300184
+    second: 2267_31
+  - first:
+      213: 21300186
+    second: 2267_32
+  - first:
+      213: 21300188
+    second: 2267_33
+  - first:
+      213: 21300190
+    second: 2267_34
+  - first:
+      213: 21300192
+    second: 2267_35
+  - first:
+      213: 21300194
+    second: 2267_36
+  - first:
+      213: 21300196
+    second: 2267_37
+  - first:
+      213: 21300198
+    second: 2267_38
+  - first:
+      213: 21300200
+    second: 2267_39
+  - first:
+      213: 21300202
+    second: 2267_40
+  - first:
+      213: 21300204
+    second: 2267_41
+  - first:
+      213: 21300206
+    second: 2267_42
+  - first:
+      213: 21300208
+    second: 2267_43
+  - first:
+      213: 21300210
+    second: 2267_44
+  - first:
+      213: 21300212
+    second: 2267_45
+  - first:
+      213: 21300214
+    second: 2267_46
+  - first:
+      213: 21300216
+    second: 2267_47
+  - first:
+      213: 21300218
+    second: 2267_48
+  - first:
+      213: 21300220
+    second: 2267_49
+  - first:
+      213: 21300222
+    second: 2267_50
+  - first:
+      213: 21300224
+    second: 2267_51
+  - first:
+      213: 21300226
+    second: 2267_52
+  - first:
+      213: 21300228
+    second: 2267_53
+  - first:
+      213: 21300230
+    second: 2267_54
+  - first:
+      213: 21300232
+    second: 2267_55
+  - first:
+      213: 21300234
+    second: 2267_56
+  - first:
+      213: 21300236
+    second: 2267_57
+  - first:
+      213: 21300238
+    second: 2267_58
+  - first:
+      213: 21300240
+    second: 2267_59
+  - first:
+      213: 21300242
+    second: 2267_60
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: minimap-board
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 113
+        width: 53
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 12, y: 12, z: 12, w: 12}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44e782fea733d054cb10a825f2834dcc
+      internalID: 21300122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: e33b16aced48a0345a20ad267c71d785
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      2267_1: 21300124
+      2267_10: 21300142
+      2267_11: 21300144
+      2267_12: 21300146
+      2267_13: 21300148
+      2267_14: 21300150
+      2267_15: 21300152
+      2267_16: 21300154
+      2267_17: 21300156
+      2267_18: 21300158
+      2267_19: 21300160
+      2267_2: 21300126
+      2267_20: 21300162
+      2267_21: 21300164
+      2267_22: 21300166
+      2267_23: 21300168
+      2267_24: 21300170
+      2267_25: 21300172
+      2267_26: 21300174
+      2267_27: 21300176
+      2267_28: 21300178
+      2267_29: 21300180
+      2267_3: 21300128
+      2267_30: 21300182
+      2267_31: 21300184
+      2267_32: 21300186
+      2267_33: 21300188
+      2267_34: 21300190
+      2267_35: 21300192
+      2267_36: 21300194
+      2267_37: 21300196
+      2267_38: 21300198
+      2267_39: 21300200
+      2267_4: 21300130
+      2267_40: 21300202
+      2267_41: 21300204
+      2267_42: 21300206
+      2267_43: 21300208
+      2267_44: 21300210
+      2267_45: 21300212
+      2267_46: 21300214
+      2267_47: 21300216
+      2267_48: 21300218
+      2267_49: 21300220
+      2267_5: 21300132
+      2267_50: 21300222
+      2267_51: 21300224
+      2267_52: 21300226
+      2267_53: 21300228
+      2267_54: 21300230
+      2267_55: 21300232
+      2267_56: 21300234
+      2267_57: 21300236
+      2267_58: 21300238
+      2267_59: 21300240
+      2267_6: 21300134
+      2267_60: 21300242
+      2267_7: 21300136
+      2267_8: 21300138
+      2267_9: 21300140
+      minimap-board: 21300122
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

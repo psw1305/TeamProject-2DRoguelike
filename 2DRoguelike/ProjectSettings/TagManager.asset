@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - DoorCollider
+  - PlayerProjectile
+  - Wall
+  - Obstacle
+  - Enemy
+  - EnemyBullet
+  - PickupItem
+  - Bomb
+  - ObstacleProjectile
   layers:
   - Default
   - TransparentFX
@@ -11,10 +20,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Bomb
+  - Enemy
+  - Obstacle
   - 
   - 
   - 
