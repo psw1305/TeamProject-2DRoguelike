@@ -8,11 +8,13 @@ public class StopUIBtn : MonoBehaviour
     public void ReloadCurrentScene()
     {
         SFX.Instance.PlayOneShot(SFX.Instance.btnClick);
+        Main.Clear();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void LoadLobbyScene()
     {
         SFX.Instance.PlayOneShot(SFX.Instance.btnClick);
+        Main.Clear();
         SceneManager.LoadScene(0);
     }
 }

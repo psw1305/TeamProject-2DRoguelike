@@ -41,4 +41,10 @@ public class Main : MonoBehaviour
     public static PoolManager Pool => Instance != null ? Instance._pool : null;
     public static ObjectManager Object => Instance != null ? Instance._object : null;
     public static RewardManager Reward => Instance != null ? Instance._reward : null;
+
+    public static void Clear()
+    {
+        Pool.Clear();
+        Object.Clear();
+    }
 }
